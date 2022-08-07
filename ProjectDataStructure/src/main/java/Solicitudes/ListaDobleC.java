@@ -70,19 +70,21 @@ public class ListaDobleC {
 
         Node<Solicitud> aux = head;
         boolean exist = false;
-        
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
 
         while (aux != tail) {
             if (aux.getValue().getCedulaCliente().equals(cedula)) {
+                while (modelo.getRowCount() > 0) {
+                    modelo.removeRow(0);
+                }
                 Object[] TablaC = {aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
                     aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
                 modelo.addRow(TablaC);
                 exist = true;
                 break;
             } else if (tail.getValue().getCedulaCliente().equals(cedula)) {
+                while (modelo.getRowCount() > 0) {
+                    modelo.removeRow(0);
+                }
                 exist = true;
                 Object[] TablaC = {aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
                     aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
@@ -96,9 +98,9 @@ public class ListaDobleC {
         }
 
     }
-    
-    public void finalizarEstado(String cedula){
-        
+
+    public void finalizarEstado(String cedula) {
+
         Node<Solicitud> aux = head;
         boolean exist = false;
 
@@ -119,7 +121,7 @@ public class ListaDobleC {
         if (exist == false) {
             JOptionPane.showMessageDialog(null, "");
         }
-        
+
     }
 
     public void llenarTabla(DefaultTableModel modelo) {
