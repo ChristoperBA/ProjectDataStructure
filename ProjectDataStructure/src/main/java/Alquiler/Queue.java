@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Solicitudes;
+package Alquiler;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -11,62 +11,60 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author antho
  */
-public class ListaDobleC {
+public class Queue{
 
-    private Node<Solicitud> head;
-    private Node<Solicitud> tail;
+    private static Node<Solicitud> head;
+    private static Node<Solicitud> tail;
 
-    public void insertar(Solicitud value) {
-
+    public static void enqueue(Solicitud value) {
+        Node<Solicitud> newNode = new Node<>(value);
         if (head == null) {
-            head = new Node<>(value);
-            tail = head;
-            tail.setNext(head);
-            head.setNext(tail);
-            head.setBack(tail);
-            tail.setBack(head);
+            head = newNode;
+            tail = newNode;
         } else if (value.getCategoria().equalsIgnoreCase("ZAFIRO")) {
             Node<Solicitud> aux = new Node<>(value);
             aux.setNext(head);
             head = aux;
-            tail.setNext(head);
-            head.setBack(tail);
-
-        } else if (value.getCategoria().equalsIgnoreCase("BRONCE")) {
-            Node<Solicitud> aux = new Node<>(value);
-            aux.setBack(tail);
-            tail.setNext(aux);
-            tail = aux;
-            tail.setNext(head);
-            head.setBack(tail);
-        } else if (value.getCategoria().equalsIgnoreCase("ORO")) {
+        } 
+        else if (value.getCategoria().equalsIgnoreCase("ORO")) {
             Node<Solicitud> aux = head;
             while (aux.getNext().getValue().getCategoria().equalsIgnoreCase("ZAFIRO")) {
                 aux = aux.getNext();
             }
             Node<Solicitud> temp = new Node<>(value);
             temp.setNext(aux.getNext());
-            temp.setBack(aux);
             aux.setNext(temp);
-            temp.getNext().setBack(temp);
-        } else if (value.getCategoria().equalsIgnoreCase("PLATA")) {
+        } 
+        else if (value.getCategoria().equalsIgnoreCase("PLATA")) {
             Node<Solicitud> aux = head;
             while (aux.getNext().getValue().getCategoria().equalsIgnoreCase("ZAFIRO") || aux.getNext().getValue().getCategoria().equalsIgnoreCase("ORO")) {
                 aux = aux.getNext();
             }
             Node<Solicitud> temp = new Node<>(value);
             temp.setNext(aux.getNext());
-            temp.setBack(aux);
             aux.setNext(temp);
-            temp.getNext().setBack(temp);
-
+        } 
+        else if (value.getCategoria().equalsIgnoreCase("Bronce")){
+            tail.setNext(newNode);
+            tail = newNode;
         }
-        head.setBack(tail);
-        tail.setNext(head);
 
     }
 
-    public void buscar(String cedula, DefaultTableModel modelo) {
+    public static Node<Solicitud> dequere(){
+        
+        Node<Solicitud> firstInQuere = head;
+        
+        if (head == null){
+            System.out.println("La cola ya se encuentra vacia");
+            return null;
+        }else{
+            head = head.getNext();
+            return firstInQuere;
+        }
+        
+    }
+    public static void buscar(String cedula, DefaultTableModel modelo) {
 
         Node<Solicitud> aux = head;
         boolean exist = false;
@@ -99,7 +97,7 @@ public class ListaDobleC {
 
     }
 
-    public void finalizarEstado(String cedula) {
+    public static void finalizarEstado(String cedula) {
 
         Node<Solicitud> aux = head;
         boolean exist = false;
@@ -124,7 +122,7 @@ public class ListaDobleC {
 
     }
 
-    public void llenarTabla(DefaultTableModel modelo) {
+    public static void llenarTabla(DefaultTableModel modelo) {
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
@@ -141,8 +139,26 @@ public class ListaDobleC {
         modelo.addRow(TablaC);
 
     }
+    
+    public static void llenarRegistros(DefaultTableModel modelo) {
 
-    public void imprimirList() {
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        Node<Solicitud> aux = head;
+        while (aux != tail) {
+            Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
+                aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+            aux = aux.getNext();
+            modelo.addRow(TablaC);
+        }
+        Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getPlacaVehiculo(),
+            tail.getValue().getPrecioTotal(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
+        modelo.addRow(TablaC);
+
+    }
+    
+    public static void imprimirCola() {
 
         Node<Solicitud> aux = head;
         while (aux != tail) {

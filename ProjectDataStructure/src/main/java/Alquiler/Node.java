@@ -2,20 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Solicitudes;
+package Alquiler;
 
 /**
  *
  * @author antho
  */
-public class Node <T>{
-    
+public class Node<T>{
     private T value;
     private Node<T> next;
-    private Node<T> back;
-
-    public Node() {
-    }
 
     public Node(T value) {
         this.value = value;
@@ -35,14 +30,6 @@ public class Node <T>{
 
     public void setNext(Node<T> next) {
         this.next = next;
-    }
-
-    public Node<T> getBack() {
-        return back;
-    }
-
-    public void setBack(Node<T> back) {
-        this.back = back;
     }
     
 }

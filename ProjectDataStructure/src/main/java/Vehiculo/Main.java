@@ -1,49 +1,26 @@
-
-package Solicitudes;
+package Vehiculo;
 
 import java.util.Scanner;
 
 public class Main {
 
-    
-    public static void main(String[] args) {
+    public static void main(String[] args) {;
 
-        ListaDobleC dc = new ListaDobleC();
-//        dc.insertar(new Solicitud("1", 0, "A", 0,"BRONCE", "Registrado"));
-//        dc.insertar(new Solicitud("1", 1, "B", 1,"ZAFIRO", "Registrado"));
-//        dc.insertar(new Solicitud("2", 2, "C", 2,"BRONCE", "Registrado"));
-//        dc.insertar(new Solicitud("3", 3, "D", 3,"ORO", "Registrado"));
-//        dc.insertar(new Solicitud("4", 4, "E", 4,"PLATA", "Registrado"));
-//        dc.insertar(new Solicitud("5", 5, "F", 5,"ZAFIRO", "Registrado"));
-//        dc.insertar(new Solicitud("6", 6, "G", 6,"ORO", "Registrado"));
-//        dc.insertar(new Solicitud("7", 7, "H", 7,"PLATA", "Registrado"));
-//        dc.insertar(new Solicitud("8", 8, "I", 8,"BRONCE", "Registrado"));
-//        dc.insertar(new Solicitud("9", 9, "J", 9,"ORO", "Registrado"));
-//        dc.insertar(new Solicitud("10", 10, "K", 10,"PLATA", "Registrado"));
-//        dc.insertar(new Solicitud("11", 11, "L", 11,"ZAFIRO", "Registrado"));
-//        dc.insertar(new Solicitud("12", 12, "M", 12,"ORO", "Registrado"));
-//        dc.insertar(new Solicitud("13", 13, "N", 13,"PLATA", "Registrado"));
-//        dc.imprimirList();
-        Menu m = new Menu();
-        m.setVisible(true);
-        
-        
         //Christopher
         StackCars Stack = new StackCars();
         Scanner sc = new Scanner(System.in);
         //Testing
         //Car(String Placa,String Marca, String Model, int Years, String Color, String CylinderCapacity, String Passangers, String Price, String Condition, String Extra)
-        Stack.push(new Car("BFF126","Mitsubichi","L200",2016,"Azul","2.400 cc ","4 Pasajeros",40,"Disponible",""));
-        Stack.push(new Car("CAF654","Nissan","Sentra",2010,"Rojo","1.600 cc ","4 Pasajeros",20,"Disponible",""));
-        Stack.push(new Car("BIC074","Chevrolet","Spark",2014,"Azul","1.400 cc ","4 Pasajeros",23,"Disponible",""));
+        Stack.push(new Car("BFF126", "Mitsubichi", "L200", 2016, "Azul", "2.400 cc ", "4 Pasajeros", 40, "Disponible", ""));
+        Stack.push(new Car("CAF654", "Nissan", "Sentra", 2010, "Rojo", "1.600 cc ", "4 Pasajeros", 20, "Disponible", ""));
+        Stack.push(new Car("BIC074", "Chevrolet", "Spark", 2014, "Azul", "1.400 cc ", "4 Pasajeros", 23, "Disponible", ""));
 //        
 //        System.out.println("----------------------------------------Car List----------------------------------------\n");
 //        Stack.PrintStack();
 
         boolean salir = false;
         int opcion;
-        while (!salir)
-        {
+        while (!salir) {
             System.out.println("""
                                    ____________________Menu del Sistema____________________
                                    
@@ -53,12 +30,10 @@ public class Main {
                                    [4] Salir del sistema""");
             opcion = Integer.parseInt(sc.nextLine());
 
-            switch (opcion)
-            {
+            switch (opcion) {
                 case 1:
                     int OpcionVehiculos;
-                    do
-                    {
+                    do {
                         System.out.println("""
                                                 ____________________Menu Vehiculos____________________
 
@@ -68,10 +43,8 @@ public class Main {
                                                 [4] Ver Lista Carros
                                                 [5] Salir del sistema""");
                         OpcionVehiculos = Integer.parseInt(sc.nextLine());
-                        switch (OpcionVehiculos)
-                        {
-                            case 1 ->
-                            {
+                        switch (OpcionVehiculos) {
+                            case 1 -> {
                                 //Ingreso de datos del Vehiculo
                                 System.out.println("Placa?");
                                 String Placa = sc.nextLine();
@@ -93,12 +66,10 @@ public class Main {
                                 String Condition = sc.nextLine();
                                 String Extra = "";
                                 boolean extra = true;
-                                while (extra)
-                                {
+                                while (extra) {
                                     System.out.println("Quieres agregrar un Extra al Vehiculo?\n[1] Si\n[2] No");
                                     int opcionextra = Integer.parseInt(sc.nextLine());
-                                    switch (opcionextra)
-                                    {
+                                    switch (opcionextra) {
                                         case 1:
                                             System.out.println("Extra");
                                             String mensaje = sc.nextLine();
@@ -115,29 +86,25 @@ public class Main {
                                 Stack.push(new Car(Placa, Marca, Model, Years, Color, CylinderCapacity, Passangers, Price, Condition, Extra));
                                 break;
                             }
-                            case 2 ->
-                            {
+                            case 2 -> {
                                 //Modificar
                                 System.out.println("Ingresa la placa, para modificar la informacion: ");
                                 String placa = sc.nextLine();
                                 Stack.modificar(placa);
                                 break;
                             }
-                            case 3 ->
-                            {
+                            case 3 -> {
                                 //Borrar
                                 break;
                             }
-                            case 4 ->
-                            {
+                            case 4 -> {
                                 //
                                 System.out.println("----------------------------------------Car List----------------------------------------\n");
                                 //Stack.PrintStack();
                                 Stack.SearchCar("BFF126");
                                 break;
                             }
-                            case 5 ->
-                            {
+                            case 5 -> {
                                 System.out.println("""
                                Cerrando Programa...
                                El programa fue cerrado con exito
@@ -173,5 +140,5 @@ public class Main {
         }
 
     }//Main
-    
+
 }

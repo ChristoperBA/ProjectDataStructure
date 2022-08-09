@@ -1,5 +1,5 @@
 
-package Solicitudes;
+package Vehiculo;
 
 
 public class Car {
