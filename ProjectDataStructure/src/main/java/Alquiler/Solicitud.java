@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Solicitud {
 
-    private Date fecha;
+    private String fecha;
     private String cedulaCliente;
     private int dias;
     private int cantidadPasajeros;
@@ -20,9 +20,9 @@ public class Solicitud {
     private String modelo;
     private int año;
     private String extras;
-    private String categoria;
-    private String placaVehiculo;
     private double precioTotal;
+    private String placaVehiculo;
+    private String categoria;
     private String estadoSolicitud;
 
     public Solicitud() {
@@ -37,7 +37,7 @@ public class Solicitud {
         this.estadoSolicitud = estadoSolicitud;
     }
 
-    public Solicitud(Date fecha, String cedulaCliente, int dias, int cantidadPasajeros, String marca, String modelo, int año, String extras, String categoria, String placaVehiculo, double precioTotal, String estadoSolicitud) {
+    public Solicitud(String fecha, String cedulaCliente, int dias, int cantidadPasajeros, String marca, String modelo, int año, String extras, String categoria, String estadoSolicitud) {
         this.fecha = fecha;
         this.cedulaCliente = cedulaCliente;
         this.dias = dias;
@@ -47,16 +47,14 @@ public class Solicitud {
         this.año = año;
         this.extras = extras;
         this.categoria = categoria;
-        this.placaVehiculo = placaVehiculo;
-        this.precioTotal = precioTotal;
         this.estadoSolicitud = estadoSolicitud;
     }
-
-    public Date getFecha() {
+    
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

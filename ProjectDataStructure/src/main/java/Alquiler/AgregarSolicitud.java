@@ -4,20 +4,24 @@
  */
 package Alquiler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author antho
  */
 public class AgregarSolicitud extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AgregarSolicitud
-     */
+    String ced;
+    String cat;
+    
     public AgregarSolicitud() {
         initComponents();
         this.setLocationRelativeTo(null);
-        int pasajeros = cantidadPasajeros.getComponentCount();
-        System.out.println(pasajeros);
+        txtCedula.setEnabled(false);
+        txtCategoria.setEnabled(false);
         
     }
 
@@ -51,12 +55,12 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         txtExtras = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        fecha = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel11 = new javax.swing.JLabel();
-        txtExtras1 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        txtCategoria = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
+        fecha = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +76,11 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         jLabel3.setText("Cedula:");
 
         btnBuscar.setText("Buscar cliente");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel4.setText("Datos del cliente");
@@ -105,6 +114,11 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         jLabel10.setText("Extras:");
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,12 +127,12 @@ public class AgregarSolicitud extends javax.swing.JFrame {
             }
         });
 
-        fecha.setText("dd/mm/yyyy");
-
         jScrollPane2.setViewportView(jTextPane1);
 
         jLabel11.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel11.setText("Categoria:");
+
+        fecha.setModel(new javax.swing.SpinnerDateModel());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,7 +142,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -171,7 +185,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
                                     .addComponent(txtAño, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtModelo)
                                     .addComponent(txtExtras, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                    .addComponent(txtExtras1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))))
+                                    .addComponent(txtCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -223,7 +237,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtExtras1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)))
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -231,7 +245,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
                     .addComponent(btnAgregar)
                     .addComponent(btnCancelar)
                     .addComponent(btnBuscar)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -256,6 +270,40 @@ public class AgregarSolicitud extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        txtCedula.setEnabled(true);
+        txtCategoria.setEnabled(true);
+        
+        //Metodo para buscar cliente
+        
+//        ced = txtCedula.getText();
+//        cat = txtCategoria.getText();
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        //Temporal
+        ced = txtCedula.getText();
+        cat = txtCategoria.getText();
+        //---------------------------
+        Date f = (Date) fecha.getValue();
+        SimpleDateFormat fa = new SimpleDateFormat("dd/MM/yyyy");
+        String fec = fa.format(f);
+        int d = (int) dias.getValue();
+        int cP = (int) cantidadPasajeros.getValue();
+        String ma = txtMarca.getText();
+        String mo = txtModelo.getText();
+        int añ = Integer.parseInt(txtAño.getText());
+        String ex = txtExtras.getText();
+        boolean v = Queue.enqueue(new Solicitud(fec, ced, d, cP, ma, mo, añ, ex, cat, "Registrada"));
+        if (v == true){
+            JOptionPane.showMessageDialog(null, "Solicitud Agregada");
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Solicitud no agregada");
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,7 +347,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JSpinner cantidadPasajeros;
     private javax.swing.JSpinner dias;
-    private javax.swing.JTextField fecha;
+    private javax.swing.JSpinner fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -313,12 +361,12 @@ public class AgregarSolicitud extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextField txtAño;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtExtras;
-    private javax.swing.JTextField txtExtras1;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     // End of variables declaration//GEN-END:variables

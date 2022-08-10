@@ -14,15 +14,13 @@ import javax.swing.table.DefaultTableModel;
 public class PanelAlquileres extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
-    
+
     public PanelAlquileres() {
         initComponents();
-        popupMenu.add(subMenu);
-
         String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
         modelo = new DefaultTableModel(null, titulos);
         tablaSolicitudes.setModel(modelo);
-        Queue.llenarTabla(modelo);
+        Queue.llenarTabla("LlenarSolicitudes", modelo);
     }
 
     /**
@@ -131,6 +129,11 @@ public class PanelAlquileres extends javax.swing.JPanel {
         jLabel1.setText("Control de Alquileres");
 
         combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registradas", "Rechazadas", "Registro de solicitudes" }));
+        combox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboxItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -191,12 +194,20 @@ public class PanelAlquileres extends javax.swing.JPanel {
         if (evt.getClickCount() == 1) {
 
             JTable receptor = (JTable) evt.getSource();
-            String datos = "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
-            + "\nPlaca: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nPrecio: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
-            + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString();
-            txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 0).toString());
-            //            text.setText(receptor.getValueAt(receptor.getSelectedRow(), 0).toString());
-            text.setText(datos);
+            if (receptor.getColumnCount() == 10) {
+                String datos = "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
+                        + "\nPlaca: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nPrecio: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
+                        + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString();
+                txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
+                text.setText(datos);
+            } else if (receptor.getColumnCount() == 7) {
+                String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
+                        + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nPlaca: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
+                        + "\nPrecio total: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString() /*+ "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString()*/;
+                txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
+                text.setText(datos);
+
+            }
 
         }
     }//GEN-LAST:event_tablaSolicitudesMouseClicked
@@ -209,7 +220,9 @@ public class PanelAlquileres extends javax.swing.JPanel {
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
         text.setText("");
         txtBuscar.setText("");
-        Queue.llenarTabla(modelo);
+        combox.setSelectedIndex(0);
+        popupMenu.setEnabled(false);
+        Queue.llenarTabla("LlenarSolicitudes", modelo);
     }//GEN-LAST:event_btnRefrescarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -222,9 +235,38 @@ public class PanelAlquileres extends javax.swing.JPanel {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         text.setText("");
-        Queue.finalizarEstado(txtOculta.getText());
-        Queue.llenarTabla(modelo);
+        Queue.cambiarEstado(txtOculta.getText());
+        Queue.llenarTabla("LlenarSolicitudes", modelo);
     }//GEN-LAST:event_btnFinalizarActionPerformed
+
+    private void comboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboxItemStateChanged
+        if (combox.getSelectedItem().equals("Registradas")) {
+            text.setText("");
+            btnAsignarVehiculo.setEnabled(true);
+            popupMenu.setEnabled(false);
+            String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
+            modelo = new DefaultTableModel(null, titulos);
+            tablaSolicitudes.setModel(modelo);
+            Queue.llenarTabla("LlenarSolicitudes", modelo);
+        } else if (combox.getSelectedItem().equals("Rechazadas")) {
+            text.setText("");
+            btnAsignarVehiculo.setEnabled(false);
+            String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
+            modelo = new DefaultTableModel(null, titulos);
+            tablaSolicitudes.setModel(modelo);
+            Queue.llenarTabla("LlenarRechazadas", modelo);
+
+        } else if (combox.getSelectedItem().equals("Registro de solicitudes")) {
+            text.setText("");
+            btnAsignarVehiculo.setEnabled(false);
+            popupMenu.add(subMenu);
+            String[] titulos = {"Fecha", "Cedula", "Dias", "Placa", "Precio total", "Categoria", "Estado"};
+            modelo = new DefaultTableModel(null, titulos);
+            tablaSolicitudes.setModel(modelo);
+            Queue.llenarTabla("LlenarRegistro", modelo);
+        }
+
+    }//GEN-LAST:event_comboxItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

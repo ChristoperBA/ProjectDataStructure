@@ -11,22 +11,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author antho
  */
-public class Queue{
+public class Queue {
 
     private static Node<Solicitud> head;
     private static Node<Solicitud> tail;
 
-    public static void enqueue(Solicitud value) {
+    public static boolean enqueue(Solicitud value) {
+        boolean v;
         Node<Solicitud> newNode = new Node<>(value);
         if (head == null) {
             head = newNode;
             tail = newNode;
+            v = true;
         } else if (value.getCategoria().equalsIgnoreCase("ZAFIRO")) {
             Node<Solicitud> aux = new Node<>(value);
             aux.setNext(head);
             head = aux;
-        } 
-        else if (value.getCategoria().equalsIgnoreCase("ORO")) {
+            v = true;
+        } else if (value.getCategoria().equalsIgnoreCase("ORO")) {
             Node<Solicitud> aux = head;
             while (aux.getNext().getValue().getCategoria().equalsIgnoreCase("ZAFIRO")) {
                 aux = aux.getNext();
@@ -34,8 +36,8 @@ public class Queue{
             Node<Solicitud> temp = new Node<>(value);
             temp.setNext(aux.getNext());
             aux.setNext(temp);
-        } 
-        else if (value.getCategoria().equalsIgnoreCase("PLATA")) {
+            v = true;
+        } else if (value.getCategoria().equalsIgnoreCase("PLATA")) {
             Node<Solicitud> aux = head;
             while (aux.getNext().getValue().getCategoria().equalsIgnoreCase("ZAFIRO") || aux.getNext().getValue().getCategoria().equalsIgnoreCase("ORO")) {
                 aux = aux.getNext();
@@ -43,27 +45,31 @@ public class Queue{
             Node<Solicitud> temp = new Node<>(value);
             temp.setNext(aux.getNext());
             aux.setNext(temp);
-        } 
-        else if (value.getCategoria().equalsIgnoreCase("Bronce")){
+            v = true;
+        } else if (value.getCategoria().equalsIgnoreCase("Bronce")) {
             tail.setNext(newNode);
             tail = newNode;
+            v = true;
+        } else {
+            v = false;
         }
-
+        return v;
     }
 
-    public static Node<Solicitud> dequere(){
-        
+    public static Node<Solicitud> dequere() {
+
         Node<Solicitud> firstInQuere = head;
-        
-        if (head == null){
+
+        if (head == null) {
             System.out.println("La cola ya se encuentra vacia");
             return null;
-        }else{
+        } else {
             head = head.getNext();
             return firstInQuere;
         }
-        
+
     }
+
     public static void buscar(String cedula, DefaultTableModel modelo) {
 
         Node<Solicitud> aux = head;
@@ -97,19 +103,19 @@ public class Queue{
 
     }
 
-    public static void finalizarEstado(String cedula) {
+    public static void cambiarEstado(String cedula) {
 
         Node<Solicitud> aux = head;
         boolean exist = false;
 
         while (aux != tail) {
             if (aux.getValue().getCedulaCliente().equals(cedula)) {
-                aux.getValue().setEstadoSolicitud("Finalizado");
+                aux.getValue().setEstadoSolicitud("Finalizada");
                 JOptionPane.showMessageDialog(null, "Estado de la solicitud finalizado");
                 exist = true;
                 break;
             } else if (tail.getValue().getCedulaCliente().equals(cedula)) {
-                aux.getValue().setEstadoSolicitud("Finalizado");
+                aux.getValue().setEstadoSolicitud("Finalizada");
                 JOptionPane.showMessageDialog(null, "Estado de la solicitud finalizado");
                 exist = true;
                 break;
@@ -121,43 +127,80 @@ public class Queue{
         }
 
     }
+//
+//    public static void llenarTabla(DefaultTableModel modelo) {
+//
+//        while (modelo.getRowCount() > 0) {
+//            modelo.removeRow(0);
+//        }
+//        Node<Solicitud> aux = head;
+//        while (aux != tail) {
+//            Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
+//                aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+//            aux = aux.getNext();
+//            modelo.addRow(TablaC);
+//        }
+//        Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
+//            aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+//        modelo.addRow(TablaC);
+//
+//    }
 
-    public static void llenarTabla(DefaultTableModel modelo) {
-
+    public static void llenarTabla(String tipo, DefaultTableModel modelo) {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        Node<Solicitud> aux = head;
-        while (aux != tail) {
-            Object[] TablaC = {aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
-                aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
-            aux = aux.getNext();
-            modelo.addRow(TablaC);
+        if (tipo.equalsIgnoreCase("LlenarRegistro")) {
+            Node<Solicitud> aux = head;
+            while (aux != tail) {
+                if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Procesada") || aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
+                        aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                    modelo.addRow(TablaC);
+                }
+                aux = aux.getNext();
+            }
+            if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Procesada") || aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getPlacaVehiculo(),
+                    tail.getValue().getPrecioTotal(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
+                modelo.addRow(TablaC);
+            }
+        } else if (tipo.equalsIgnoreCase("LlenarSolicitudes")) {
+
+            Node<Solicitud> aux = head;
+            while (aux != tail) {
+                if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
+                    Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
+                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                    modelo.addRow(TablaC);
+                }
+                aux = aux.getNext();
+            }
+            if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
+                Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
+                    aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                modelo.addRow(TablaC);
+            }
+        } else if (tipo.equalsIgnoreCase("LlenarRechazas")) {
+            Node<Solicitud> aux = head;
+            while (aux != tail) {
+                if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
+                    Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
+                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                    modelo.addRow(TablaC);
+                }
+                aux = aux.getNext();
+            }
+            if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
+                Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
+                    aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                modelo.addRow(TablaC);
+            }
+
         }
-        Object[] TablaC = {tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getPlacaVehiculo(),
-            tail.getValue().getPrecioTotal(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
-        modelo.addRow(TablaC);
 
     }
-    
-    public static void llenarRegistros(DefaultTableModel modelo) {
 
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-        Node<Solicitud> aux = head;
-        while (aux != tail) {
-            Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
-                aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
-            aux = aux.getNext();
-            modelo.addRow(TablaC);
-        }
-        Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getPlacaVehiculo(),
-            tail.getValue().getPrecioTotal(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
-        modelo.addRow(TablaC);
-
-    }
-    
     public static void imprimirCola() {
 
         Node<Solicitud> aux = head;
