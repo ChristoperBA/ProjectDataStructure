@@ -5,6 +5,7 @@
 package Alquiler;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -103,6 +104,44 @@ public class Queue {
 
     }
 
+    public static void llenarPanelAV(String cedula, JTextField f, JTextField d, JTextField cP, JTextField ma, JTextField mo, JTextField a, JTextField ex, JTextField ca, JTextField es) {
+
+        Node<Solicitud> aux = head;
+        boolean exist = false;
+        while (aux != tail) {
+            if (aux.getValue().getCedulaCliente().equals(cedula)) {
+                f.setText(aux.getValue().getFecha());
+                d.setText(String.valueOf(aux.getValue().getDias()));
+                cP.setText(String.valueOf(aux.getValue().getCantidadPasajeros()));
+                ma.setText(aux.getValue().getMarca());
+                mo.setText(aux.getValue().getModelo());
+                a.setText(String.valueOf(aux.getValue().getAño()));
+                ex.setText(aux.getValue().getExtras());
+                ca.setText(aux.getValue().getCategoria());
+                es.setText(aux.getValue().getEstadoSolicitud());
+                exist = true;
+                break;
+            }
+            aux = aux.getNext();
+        }
+        if (tail.getValue().getCedulaCliente().equals(cedula)) {
+            f.setText(tail.getValue().getFecha());
+            d.setText(String.valueOf(tail.getValue().getDias()));
+            cP.setText(String.valueOf(tail.getValue().getCantidadPasajeros()));
+            ma.setText(tail.getValue().getMarca());
+            mo.setText(tail.getValue().getModelo());
+            a.setText(String.valueOf(tail.getValue().getAño()));
+            ex.setText(tail.getValue().getExtras());
+            ca.setText(tail.getValue().getCategoria());
+            es.setText(tail.getValue().getEstadoSolicitud());
+            exist = true;
+        }
+        if (exist == false) {
+            JOptionPane.showMessageDialog(null, "Error, No se puede cargar los datos de la solicitud");
+        }
+
+    }
+
     public static void cambiarEstado(String cedula) {
 
         Node<Solicitud> aux = head;
@@ -127,24 +166,6 @@ public class Queue {
         }
 
     }
-//
-//    public static void llenarTabla(DefaultTableModel modelo) {
-//
-//        while (modelo.getRowCount() > 0) {
-//            modelo.removeRow(0);
-//        }
-//        Node<Solicitud> aux = head;
-//        while (aux != tail) {
-//            Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
-//                aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
-//            aux = aux.getNext();
-//            modelo.addRow(TablaC);
-//        }
-//        Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
-//            aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
-//        modelo.addRow(TablaC);
-//
-//    }
 
     public static void llenarTabla(String tipo, DefaultTableModel modelo) {
         while (modelo.getRowCount() > 0) {

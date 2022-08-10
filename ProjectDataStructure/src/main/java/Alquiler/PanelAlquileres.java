@@ -285,6 +285,6 @@ public class PanelAlquileres extends javax.swing.JPanel {
     private javax.swing.JTable tablaSolicitudes;
     private javax.swing.JTextPane text;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtOculta;
+    public javax.swing.JTextField txtOculta;
     // End of variables declaration//GEN-END:variables
 }
