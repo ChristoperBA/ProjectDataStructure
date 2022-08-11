@@ -53,7 +53,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
 
         subMenu.setBackground(new java.awt.Color(204, 102, 0));
 
-        btnFinalizar.setText("Finalizar");
+        btnFinalizar.setText("Cambiar Estado");
         btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinalizarActionPerformed(evt);
@@ -64,7 +64,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
         subMenu.setLayout(subMenuLayout);
         subMenuLayout.setHorizontalGroup(
             subMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addComponent(btnFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         subMenuLayout.setVerticalGroup(
             subMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

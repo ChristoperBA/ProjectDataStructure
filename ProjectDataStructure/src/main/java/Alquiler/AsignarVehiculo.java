@@ -5,7 +5,6 @@
 package Alquiler;
 
 import Vehiculo.StackCars;
-import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 

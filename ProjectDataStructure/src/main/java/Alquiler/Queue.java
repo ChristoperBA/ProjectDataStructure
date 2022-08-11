@@ -146,23 +146,40 @@ public class Queue {
 
         Node<Solicitud> aux = head;
         boolean exist = false;
-
         while (aux != tail) {
             if (aux.getValue().getCedulaCliente().equals(cedula)) {
-                aux.getValue().setEstadoSolicitud("Finalizada");
-                JOptionPane.showMessageDialog(null, "Estado de la solicitud finalizado");
-                exist = true;
+                if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
+                    aux.getValue().setEstadoSolicitud("Rechazada");
+                    JOptionPane.showMessageDialog(null, "El estado de la solicitud ha cambiado a Rechazada");
+                } else if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Procesada")) {
+                    aux.getValue().setEstadoSolicitud("Finalizada");
+                    JOptionPane.showMessageDialog(null, "El estado de la solicitud ha finalizado");
+                } else if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
+                    aux.getValue().setEstadoSolicitud("Registrada");
+                    JOptionPane.showMessageDialog(null, "El estado de la solicitud ha cambiado a Registrada nuevamente");
+                } else if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    JOptionPane.showMessageDialog(null, "Estado de la solicitud ha finalizado, no se puede cambiar el estado");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error con el estado de la solicitud");
+                }
                 break;
             } else if (tail.getValue().getCedulaCliente().equals(cedula)) {
-                aux.getValue().setEstadoSolicitud("Finalizada");
-                JOptionPane.showMessageDialog(null, "Estado de la solicitud finalizado");
-                exist = true;
-                break;
+                if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
+                    tail.getValue().setEstadoSolicitud("Rechazada");
+                    JOptionPane.showMessageDialog(null, "El estado de la solicitud ha cambiado a Rechazada");
+                } else if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procesada")) {
+                    tail.getValue().setEstadoSolicitud("Finalizada");
+                    JOptionPane.showMessageDialog(null, "El estado de la solicitud ha finalizado");
+                } else if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
+                    tail.getValue().setEstadoSolicitud("Registrada");
+                    JOptionPane.showMessageDialog(null, "El estado de la solicitud ha cambiado a Registrada nuevamente");
+                } else if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    JOptionPane.showMessageDialog(null, "Estado de la solicitud finalizado, no se puede cambiar el estado");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error con el estado de la solicitud");
+                }
             }
             aux = aux.getNext();
-        }
-        if (exist == false) {
-            JOptionPane.showMessageDialog(null, "");
         }
 
     }
@@ -197,12 +214,12 @@ public class Queue {
                 }
                 aux = aux.getNext();
             }
-            if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
-                Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
-                    aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
+                Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getCantidadPasajeros(),
+                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getAño(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
                 modelo.addRow(TablaC);
             }
-        } else if (tipo.equalsIgnoreCase("LlenarRechazas")) {
+        } else if (tipo.equalsIgnoreCase("LlenarRechazadas")) {
             Node<Solicitud> aux = head;
             while (aux != tail) {
                 if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
@@ -212,9 +229,9 @@ public class Queue {
                 }
                 aux = aux.getNext();
             }
-            if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
-                Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
-                    aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
+                Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getCantidadPasajeros(),
+                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getAño(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
                 modelo.addRow(TablaC);
             }
 
