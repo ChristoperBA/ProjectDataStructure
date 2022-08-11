@@ -4,6 +4,7 @@
  */
 package Alquiler;
 
+import Vehiculo.StackCars;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -71,35 +72,60 @@ public class Queue {
 
     }
 
-    public static void buscar(String cedula, DefaultTableModel modelo) {
+    public static void buscar(String tipoBus, String dato, DefaultTableModel modelo) {
 
         Node<Solicitud> aux = head;
         boolean exist = false;
 
-        while (aux != tail) {
-            if (aux.getValue().getCedulaCliente().equals(cedula)) {
-                while (modelo.getRowCount() > 0) {
-                    modelo.removeRow(0);
+        if (tipoBus.equalsIgnoreCase("Solicitudes")) {
+            while (aux != tail) {
+                if (aux.getValue().getCedulaCliente().equalsIgnoreCase(dato) || aux.getValue().getPlacaVehiculo().equalsIgnoreCase(dato)) {
+                    while (modelo.getRowCount() > 0) {
+                        modelo.removeRow(0);
+                    }
+                    Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
+                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                    modelo.addRow(TablaC);
+                    exist = true;
+                    break;
                 }
-                Object[] TablaC = {aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
-                    aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
-                modelo.addRow(TablaC);
-                exist = true;
-                break;
-            } else if (tail.getValue().getCedulaCliente().equals(cedula)) {
-                while (modelo.getRowCount() > 0) {
-                    modelo.removeRow(0);
-                }
-                exist = true;
-                Object[] TablaC = {aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
-                    aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
-                modelo.addRow(TablaC);
-                break;
+                aux = aux.getNext();
             }
-            aux = aux.getNext();
+            if (tail.getValue().getCedulaCliente().equalsIgnoreCase(dato) || tail.getValue().getPlacaVehiculo().equalsIgnoreCase(dato)) {
+                while (modelo.getRowCount() > 0) {
+                    modelo.removeRow(0);
+                }
+                exist = true;
+                Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getCantidadPasajeros(),
+                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getAño(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
+                modelo.addRow(TablaC);
+            }
+        } else if (tipoBus.equalsIgnoreCase("Registradas")) {
+            while (aux != tail) {
+                if (aux.getValue().getCedulaCliente().equalsIgnoreCase(dato) || aux.getValue().getPlacaVehiculo().equalsIgnoreCase(dato)) {
+                    while (modelo.getRowCount() > 0) {
+                        modelo.removeRow(0);
+                    }
+                    Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getPlacaVehiculo(),
+                        aux.getValue().getPrecioTotal(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                    modelo.addRow(TablaC);
+                    exist = true;
+                    break;
+                }
+                aux = aux.getNext();
+            }
+            if (tail.getValue().getCedulaCliente().equalsIgnoreCase(dato) || tail.getValue().getPlacaVehiculo().equalsIgnoreCase(dato)) {
+                while (modelo.getRowCount() > 0) {
+                    modelo.removeRow(0);
+                }
+                exist = true;
+                Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getPlacaVehiculo(),
+                    tail.getValue().getPrecioTotal(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
+                modelo.addRow(TablaC);
+            }
         }
         if (exist == false) {
-            JOptionPane.showMessageDialog(null, "No existe ninguna solicitud con la cedula ingresada");
+            JOptionPane.showMessageDialog(null, "No existe ninguna solicitud con la cedula o placa ingresada");
         }
 
     }
@@ -145,13 +171,13 @@ public class Queue {
     public static void cambiarEstado(String cedula) {
 
         Node<Solicitud> aux = head;
-        boolean exist = false;
         while (aux != tail) {
             if (aux.getValue().getCedulaCliente().equals(cedula)) {
                 if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
                     aux.getValue().setEstadoSolicitud("Rechazada");
                     JOptionPane.showMessageDialog(null, "El estado de la solicitud ha cambiado a Rechazada");
                 } else if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Procesada")) {
+                    StackCars.cambiarEstadoVehiculo(aux.getValue().getPlacaVehiculo(), "Devolucion");
                     aux.getValue().setEstadoSolicitud("Finalizada");
                     JOptionPane.showMessageDialog(null, "El estado de la solicitud ha finalizado");
                 } else if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
@@ -239,15 +265,30 @@ public class Queue {
 
     }
 
-    public static void imprimirCola() {
+    public static boolean asignarVehiculo(String ced, double total, String placa, String nuevoEst) {
 
+        boolean v = false;
         Node<Solicitud> aux = head;
         while (aux != tail) {
-            System.out.println(aux.getValue().toString());
+            if (aux.getValue().getCedulaCliente().equalsIgnoreCase(ced)) {
+                aux.getValue().setPrecioTotal(total);
+                aux.getValue().setPlacaVehiculo(placa);
+                aux.getValue().setEstadoSolicitud(nuevoEst);
+                v = true;
+                StackCars.cambiarEstadoVehiculo(placa, "Asignar");
+                break;
+            }
             aux = aux.getNext();
         }
-        System.out.println(tail.getValue().toString());
+        if (tail.getValue().getCedulaCliente().equalsIgnoreCase(ced)) {
+            tail.getValue().setPrecioTotal(total);
+            tail.getValue().setPlacaVehiculo(placa);
+            tail.getValue().setEstadoSolicitud(nuevoEst);
+            StackCars.cambiarEstadoVehiculo(placa, "Asignar");
+            v = true;
+        }
 
+        return v;
     }
 
 }

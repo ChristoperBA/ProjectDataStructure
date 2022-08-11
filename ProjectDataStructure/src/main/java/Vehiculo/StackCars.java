@@ -1,6 +1,7 @@
 package Vehiculo;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class StackCars {
@@ -10,6 +11,7 @@ public class StackCars {
 
     //Push usa void porque no devuelve nada
     public static void push(Car value) {
+
         NodeCar newNode = new NodeCar(value);
         if (top == null) {
             top = newNode;
@@ -29,22 +31,47 @@ public class StackCars {
     }
 
     public static void llenarTabla(DefaultTableModel modelo) {
-        
+
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
         NodeCar aux = top;
         while (aux != null) {
-            Object[] TablaC = {aux.getValue().getPlaca(), aux.getValue().getMarca(), aux.getValue().getModel(), aux.getValue().getYears(), 
-            aux.getValue().getColor(), aux.getValue().getCylinderCapacity(), aux.getValue().getPassangers(), aux.getValue().getPrice(),
-            aux.getValue().getCondition(), aux.getValue().getExtra()};
+            Object[] TablaC = {aux.getValue().getPlaca(), aux.getValue().getMarca(), aux.getValue().getModel(), aux.getValue().getYears(),
+                aux.getValue().getColor(), aux.getValue().getCylinderCapacity(), aux.getValue().getPassangers(), aux.getValue().getPrice(),
+                aux.getValue().getCondition(), aux.getValue().getExtra()};
             modelo.addRow(TablaC);
             aux = aux.getNext();
         }
-        
+
     }
 
-    public void SearchCar(String Placa) {
+    public static boolean llenarTA(DefaultTableModel modelo, int cantP, String ma, String mo, int año, String ex) {
+
+        boolean v = false;
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        NodeCar aux = top;
+        while (aux != null) {
+            if (aux.getValue().getPassangers() == cantP && aux.getValue().getMarca().equalsIgnoreCase(ma)
+                    && aux.getValue().getModel().equalsIgnoreCase(mo) && aux.getValue().getYears() == año
+                    || aux.getValue().getExtra().equalsIgnoreCase(ex)) {
+                if (aux.getValue().getEstado().equalsIgnoreCase("Disponible")) {
+                    Object[] TablaC = {aux.getValue().getPlaca(), aux.getValue().getMarca(), aux.getValue().getModel(), aux.getValue().getYears(),
+                        aux.getValue().getColor(), aux.getValue().getCylinderCapacity(), aux.getValue().getPassangers(), aux.getValue().getPrice(),
+                        aux.getValue().getExtra(), aux.getValue().getCondition(), aux.getValue().getEstado()};
+                    modelo.addRow(TablaC);
+                    v = true;
+                }
+            }
+            aux = aux.getNext();
+        }
+
+        return v;
+    }
+
+    public static void SearchCar(String Placa) {
         NodeCar aux = top;
         while (aux != null && !Placa.equals(aux.getValue().getPlaca())) {
             aux = aux.getNext();
@@ -54,6 +81,30 @@ public class StackCars {
         } else {
             System.out.println("El Vehiculo no se encuentra, dentro de nuestro inventario");
 
+        }
+    }
+
+    public static void cambiarEstadoVehiculo(String Placa, String tipo) {
+        
+        NodeCar aux = top;
+        if (tipo.equalsIgnoreCase("Asignar")) {
+            while (aux != null) {
+                if (aux.getValue().getPlaca().equalsIgnoreCase(Placa)) {
+                    aux.getValue().setEstado("Alquilado");
+                    break;
+                }
+                aux = aux.getNext();
+            }
+        } else if (tipo.equalsIgnoreCase("Devolucion")) {
+            while (aux != null) {
+                if (aux.getValue().getPlaca().equalsIgnoreCase(Placa)) {
+                    String c = JOptionPane.showInputDialog(null, "Ingrese la condicion en la que se devuelve el vehiculo: ");
+                    aux.getValue().setCondition(tipo);
+                    aux.getValue().setEstado("Disponible");
+                    break;
+                }
+                aux = aux.getNext();
+            }
         }
     }
 
@@ -109,7 +160,7 @@ public class StackCars {
                     case 6 -> {
                         System.out.println("Ingresa el dato a modificar: ");
                         String dato = sc.nextLine();
-                        aux.getValue().setPassangers(dato);
+                        aux.getValue().setPassangers(Integer.parseInt(dato));
                     }
                     case 7 -> {
                         System.out.println("Ingresa el dato a modificar: ");

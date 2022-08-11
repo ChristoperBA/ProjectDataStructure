@@ -1,14 +1,13 @@
-
 package Vehiculo;
 
-
 public class Car {
+
     /*
     Atributos del Vehículo: Placa, modelo, año, color, cilindrada, 
     tipo de combustible, capacidad de pasajeros, precio de alquiler por día, 
     Estado (Disponible, Alquilado, En reparación, Fuera de circulación.)
-    */
-    
+     */
+
     //Atributos
     private String Placa;
     private String Marca;
@@ -16,30 +15,42 @@ public class Car {
     private int Years;
     private String Color;
     private String CylinderCapacity;
-    private String Passangers;
+    private int Passangers;
     private double Price;
-    private String Condition;
     private String Extra;
+    private String Condition;
+    private String estado;
+    private int cantAlquilado;
 
-    public Car(String Placa,String Marca, String Model, int Years, String Color, String CylinderCapacity, String Passangers, double Price, String Condition, String Extra) {
+    public Car(String Placa, String Marca, String Model, int Years, String Color, String CylinderCapacity, int Passangers, double Price, String Extra, String Condition, String estado, int cantAlquilado) {
         this.Placa = Placa;
-        this.Marca= Marca;
+        this.Marca = Marca;
         this.Model = Model;
         this.Years = Years;
         this.Color = Color;
         this.CylinderCapacity = CylinderCapacity;
         this.Passangers = Passangers;
         this.Price = Price;
-        this.Condition = Condition;
         this.Extra = Extra;
+        this.Condition = Condition;
+        this.estado = estado;
+        this.cantAlquilado = cantAlquilado;
     }
-    //Setter and Getters
+
     public String getPlaca() {
         return Placa;
     }
 
     public void setPlaca(String Placa) {
         this.Placa = Placa;
+    }
+
+    public String getMarca() {
+        return Marca;
+    }
+
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
     }
 
     public String getModel() {
@@ -74,11 +85,11 @@ public class Car {
         this.CylinderCapacity = CylinderCapacity;
     }
 
-    public String getPassangers() {
+    public int getPassangers() {
         return Passangers;
     }
 
-    public void setPassangers(String Passangers) {
+    public void setPassangers(int Passangers) {
         this.Passangers = Passangers;
     }
 
@@ -86,16 +97,8 @@ public class Car {
         return Price;
     }
 
-    public void setPrice(double  Price) {
+    public void setPrice(double Price) {
         this.Price = Price;
-    }
-
-    public String getCondition() {
-        return Condition;
-    }
-
-    public void setCondition(String Condition) {
-        this.Condition = Condition;
     }
 
     public String getExtra() {
@@ -106,23 +109,33 @@ public class Car {
         this.Extra = Extra;
     }
 
-    public String getMarca() {
-        return Marca;
+    public String getCondition() {
+        return Condition;
     }
 
-    public void setMarca(String Marca) {
-        this.Marca = Marca;
+    public void setCondition(String Condition) {
+        this.Condition = Condition;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getCantAlquilado() {
+        return cantAlquilado;
+    }
+
+    public void setCantAlquilado(int cantAlquilado) {
+        this.cantAlquilado = cantAlquilado;
     }
 
     @Override
     public String toString() {
-        return "Placa:" + Placa +" Marca:" + Marca +", Model:" + Model + ", Years:" + Years + ", Color:" + Color + 
-               ", CylinderCapacity:" +CylinderCapacity + "Passangers:" + Passangers + ", Price:" + 
-               Price + ", Condition:" + Condition + ", Extra:" + Extra + '}';
+        return "Car{" + "Placa=" + Placa + ", Marca=" + Marca + ", Model=" + Model + ", Years=" + Years + ", Color=" + Color + ", CylinderCapacity=" + CylinderCapacity + ", Passangers=" + Passangers + ", Price=" + Price + ", Extra=" + Extra + ", Condition=" + Condition + ", estado=" + estado + ", cantAlquilado=" + cantAlquilado + '}';
     }
-    
-    
-    
-    
     
 }

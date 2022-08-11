@@ -5,6 +5,7 @@
 package Alquiler;
 
 import Vehiculo.StackCars;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,15 +16,16 @@ import javax.swing.table.DefaultTableModel;
 public class AsignarVehiculo extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
-    
+
     public AsignarVehiculo() {
         initComponents();
         this.setLocationRelativeTo(null);
-        String[] titulos = {"Placa", "Marca", "Modelo", "Año", "Color", "Capacidad", "Cant. Pas", "Precio Dia", "Condicion", "Extra"};
+        String[] titulos = {"Placa", "Marca", "Modelo", "Año", "Color", "Capacidad", "Cant. Pas", "Precio Dia", "Precio", "Condicion", "Estado"};
         modelo = new DefaultTableModel(null, titulos);
         tablaVehiculos.setModel(modelo);
-        StackCars.llenarTabla(modelo);
-        tablaVehiculos.setEnabled(false);
+        btnAsignar.setEnabled(false);
+        btnRechazar.setEnabled(false);
+
         bloquearjText();
     }
 
@@ -346,11 +348,18 @@ public class AsignarVehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIvaActionPerformed
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
-        // TODO add your handling code here:
+        boolean v = Queue.asignarVehiculo(txtCed.getText(), Double.parseDouble(txtTotal.getText()), txtPlaca.getText(), "Procesada");
+        if (v == true) {
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "Se agrego correctamente un vehiculo a la solicitud");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error a la hora de agregar un vehiculo a la solicitud");
+        }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
     private void btnRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Queue.cambiarEstado(txtCed.getText());
     }//GEN-LAST:event_btnRechazarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -360,20 +369,25 @@ public class AsignarVehiculo extends javax.swing.JFrame {
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         String c = txtCed.getText();
         Queue.llenarPanelAV(c, txtFecha, txtDias, txtCant, txtMarca, txtModelo, txtAño, txtExtras, txtCategoria, txtEstado);
-        tablaVehiculos.setEnabled(true);
         bloquearjText();
+        StackCars.llenarTA(modelo, Integer.parseInt(txtCant.getText()), txtMarca.getText(), txtModelo.getText(), Integer.parseInt(txtAño.getText()),
+                txtExtras.getText());
+        btnRechazar.setEnabled(true);
+        btnCargar.setEnabled(false);
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void tablaVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVehiculosMouseClicked
         if (evt.getClickCount() == 1) {
             JTable receptor = (JTable) evt.getSource();
+            btnAsignar.setEnabled(true);
             txtPlaca.setText(receptor.getValueAt(receptor.getSelectedRow(), 0).toString());
             double precio = Double.parseDouble(receptor.getValueAt(receptor.getSelectedRow(), 7).toString());
-            double p = calcularTotal(precio);   
+            calcularTotal(precio);
+            btnRechazar.setEnabled(false);
         }
     }//GEN-LAST:event_tablaVehiculosMouseClicked
 
-    private void bloquearjText(){
+    private void bloquearjText() {
         txtFecha.setEnabled(false);
         txtCed.setEnabled(false);
         txtDias.setEnabled(false);
@@ -388,16 +402,16 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         txtIva.setEnabled(false);
         txtTotal.setEnabled(false);
     }
-    
-    private double calcularTotal(double precio){  
+
+    private double calcularTotal(double precio) {
         int d = Integer.parseInt(txtDias.getText());
-        double iva = (d*precio)*0.13;
-        double total = (d*precio)+iva;
+        double iva = (d * precio) * 0.13;
+        double total = (d * precio) + iva;
         txtIva.setText(String.valueOf(iva));
         txtTotal.setText(String.valueOf(total));
         return total;
     }
-    
+
     /**
      * @param args the command line arguments
      */

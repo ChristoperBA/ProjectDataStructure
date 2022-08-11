@@ -14,11 +14,14 @@ import javax.swing.table.DefaultTableModel;
 public class PanelAlquileres extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
-    String item = "Registradas";
+    String item;
+    String tipoBusqueda;
 
     public PanelAlquileres() {
         initComponents();
         popupMenu.add(subMenu);
+        item = "Registradas";
+        tipoBusqueda = "Solicitudes";
         String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
         modelo = new DefaultTableModel(null, titulos);
         tablaSolicitudes.setModel(modelo);
@@ -37,7 +40,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
 
         popupMenu = new javax.swing.JPopupMenu();
         subMenu = new javax.swing.JPanel();
-        btnFinalizar = new javax.swing.JButton();
+        btnCambiarEstado = new javax.swing.JButton();
         txtOculta = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSolicitudes = new javax.swing.JTable();
@@ -48,16 +51,16 @@ public class PanelAlquileres extends javax.swing.JPanel {
         btnAsignarVehiculo = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextPane();
-        jLabel2 = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         combox = new javax.swing.JComboBox<>();
 
         subMenu.setBackground(new java.awt.Color(204, 102, 0));
 
-        btnFinalizar.setText("Cambiar Estado");
-        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+        btnCambiarEstado.setText("Cambiar Estado");
+        btnCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFinalizarActionPerformed(evt);
+                btnCambiarEstadoActionPerformed(evt);
             }
         });
 
@@ -65,11 +68,11 @@ public class PanelAlquileres extends javax.swing.JPanel {
         subMenu.setLayout(subMenuLayout);
         subMenuLayout.setHorizontalGroup(
             subMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnCambiarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         subMenuLayout.setVerticalGroup(
             subMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnFinalizar)
+            .addComponent(btnCambiarEstado)
         );
 
         setBackground(new java.awt.Color(204, 102, 0));
@@ -128,15 +131,16 @@ public class PanelAlquileres extends javax.swing.JPanel {
             }
         });
 
+        text.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jScrollPane2.setViewportView(text);
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jLabel2.setText("Datos de solicitud");
+        label2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        label2.setText("Datos de solicitud");
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setText("Control de Alquileres");
 
-        combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registradas", "Rechazadas", "Registro de solicitudes" }));
+        combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registradas", "Rechazadas", "Registro de solicitudes", "Análisis de datos" }));
         combox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboxItemStateChanged(evt);
@@ -171,7 +175,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
+                                    .addComponent(label2)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(22, 22, 22))))
         );
@@ -181,7 +185,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(label2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -204,28 +208,48 @@ public class PanelAlquileres extends javax.swing.JPanel {
             JTable receptor = (JTable) evt.getSource();
             if (receptor.getColumnCount() == 10) {
                 if (item.equalsIgnoreCase("Registradas")) {
-                    String datos = "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
-                            + "\nPlaca: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nPrecio: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
-                            + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString();
+                    String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nCédula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
+                            + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCant. Pasajeros: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
+                            + " \nMarca: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nModelo: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString()
+                            + "\nAño: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString() + "\nExtras: " + receptor.getValueAt(receptor.getSelectedRow(), 7).toString()
+                            + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 8).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 9).toString();
                     txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
                     text.setText(datos);
                     btnAsignarVehiculo.setEnabled(true);
+                    if (receptor.getValueAt(receptor.getSelectedRow(), 9).toString().equalsIgnoreCase("Registrada")) {
+                        btnCambiarEstado.setText("Rechazar solicitud");
+                        btnCambiarEstado.setEnabled(true);
+                    }
                 } else if (item.equalsIgnoreCase("Rechazadas")) {
-                    String datos = "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
-                            + "\nPlaca: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nPrecio: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
-                            + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString();
+                    String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nCédula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
+                            + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCant. Pasajeros: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
+                            + " \nMarca: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nModelo: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString()
+                            + "\nAño: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString() + "\nExtras: " + receptor.getValueAt(receptor.getSelectedRow(), 7).toString()
+                            + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 8).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 9).toString();
                     txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
                     text.setText(datos);
                     btnAsignarVehiculo.setEnabled(false);
+                    if (receptor.getValueAt(receptor.getSelectedRow(), 9).toString().equalsIgnoreCase("Rechazada")) {
+                        btnCambiarEstado.setText("Agregar a solicitudes");
+                        btnCambiarEstado.setEnabled(true);
+                    }
                 }
 
             } else if (receptor.getColumnCount() == 7) {
-                String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
+                String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nCedula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
                         + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nPlaca: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
-                        + "\nPrecio total: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString() /*+ "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString()*/;
+                        + "\nPrecio total: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString()
+                        + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString();
                 txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
                 text.setText(datos);
                 btnAsignarVehiculo.setEnabled(false);
+                if (receptor.getValueAt(receptor.getSelectedRow(), 6).toString().equalsIgnoreCase("Procesada")) {
+                    btnCambiarEstado.setText("Finalizar");
+                    btnCambiarEstado.setEnabled(true);
+                } else if (receptor.getValueAt(receptor.getSelectedRow(), 6).toString().equalsIgnoreCase("Finalizada")) {
+                    btnCambiarEstado.setText("Finalizar");
+                    btnCambiarEstado.setEnabled(false);
+                }
             }
 
         }
@@ -237,12 +261,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSolicitudActionPerformed
 
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
-        text.setText("");
-        txtBuscar.setText("");
-        combox.setSelectedIndex(0);
-        popupMenu.setEnabled(false);
-        item = "Registradas";
-        Queue.llenarTabla("LlenarSolicitudes", modelo);
+        refrescar();
     }//GEN-LAST:event_btnRefrescarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -250,17 +269,18 @@ public class PanelAlquileres extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        Queue.buscar(txtBuscar.getText(), modelo);
+        Queue.buscar(tipoBusqueda, txtBuscar.getText(), modelo);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        text.setText("");
+    private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
         Queue.cambiarEstado(txtOculta.getText());
         Queue.llenarTabla("LlenarSolicitudes", modelo);
-    }//GEN-LAST:event_btnFinalizarActionPerformed
+        refrescar();
+    }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
     private void comboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboxItemStateChanged
         if (combox.getSelectedItem().equals("Registradas")) {
+            tipoBusqueda = "Solicitudes";
             text.setText("");
             String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
             modelo = new DefaultTableModel(null, titulos);
@@ -268,6 +288,8 @@ public class PanelAlquileres extends javax.swing.JPanel {
             Queue.llenarTabla("LlenarSolicitudes", modelo);
             item = "Registradas";
         } else if (combox.getSelectedItem().equals("Rechazadas")) {
+            txtBuscar.setText("");
+            tipoBusqueda = "Solicitudes";
             text.setText("");
             btnAsignarVehiculo.setEnabled(false);
             String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
@@ -277,12 +299,18 @@ public class PanelAlquileres extends javax.swing.JPanel {
             item = "Rechazadas";
 
         } else if (combox.getSelectedItem().equals("Registro de solicitudes")) {
+            txtBuscar.setText("");
+            tipoBusqueda = "Registradas";
             text.setText("");
             btnAsignarVehiculo.setEnabled(false);
             String[] titulos = {"Fecha", "Cedula", "Dias", "Placa", "Precio total", "Categoria", "Estado"};
             modelo = new DefaultTableModel(null, titulos);
             tablaSolicitudes.setModel(modelo);
             Queue.llenarTabla("LlenarRegistro", modelo);
+        } else if (combox.getSelectedItem().equals("Análisis de datos")) {
+            Analisis a = new Analisis();
+            a.setVisible(true);
+            refrescar();
         }
 
     }//GEN-LAST:event_comboxItemStateChanged
@@ -293,21 +321,27 @@ public class PanelAlquileres extends javax.swing.JPanel {
         aV.setVisible(true);
     }//GEN-LAST:event_btnAsignarVehiculoActionPerformed
 
-    public String cedula() {
-        return txtOculta.getText();
+    private void refrescar() {
+        tipoBusqueda = "Solicitudes";
+        text.setText("");
+        txtBuscar.setText("");
+        item = "Registradas";
+        combox.setSelectedIndex(0);
+        btnCambiarEstado.setText("Rechazar solicitud");
+        Queue.llenarTabla("LlenarSolicitudes", modelo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarVehiculo;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnFinalizar;
+    private javax.swing.JButton btnCambiarEstado;
     private javax.swing.JButton btnRefrescar;
     private javax.swing.JButton btnSolicitud;
     private javax.swing.JComboBox<String> combox;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel label2;
     private javax.swing.JPopupMenu popupMenu;
     private javax.swing.JPanel subMenu;
     private javax.swing.JTable tablaSolicitudes;

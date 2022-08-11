@@ -16,13 +16,13 @@ public class AgregarSolicitud extends javax.swing.JFrame {
 
     String ced;
     String cat;
-    
+
     public AgregarSolicitud() {
         initComponents();
         this.setLocationRelativeTo(null);
         txtCedula.setEnabled(false);
         txtCategoria.setEnabled(false);
-        
+
     }
 
     /**
@@ -274,12 +274,11 @@ public class AgregarSolicitud extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         txtCedula.setEnabled(true);
         txtCategoria.setEnabled(true);
-        
+
         //Metodo para buscar cliente
-        
 //        ced = txtCedula.getText();
 //        cat = txtCategoria.getText();
-        
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -296,11 +295,11 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         String mo = txtModelo.getText();
         int añ = Integer.parseInt(txtAño.getText());
         String ex = txtExtras.getText();
-        boolean v = Queue.enqueue(new Solicitud(fec, ced, d, cP, ma, mo, añ, ex, cat, "Registrada"));
-        if (v == true){
+        boolean v = Queue.enqueue(new Solicitud(fec, ced, d, cP, ma, mo, añ, ex, 0, "####", cat, "Registrada"));
+        if (v == true) {
             JOptionPane.showMessageDialog(null, "Solicitud Agregada");
             this.dispose();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Solicitud no agregada");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed

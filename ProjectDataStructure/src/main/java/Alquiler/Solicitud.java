@@ -4,8 +4,6 @@
  */
 package Alquiler;
 
-import java.util.Date;
-
 /**
  *
  * @author antho
@@ -28,16 +26,7 @@ public class Solicitud {
     public Solicitud() {
     }
 
-    public Solicitud(String cedulaCliente, int dias, String placaVehiculo, double precioTotal, String categoria, String estadoSolicitud) {
-        this.cedulaCliente = cedulaCliente;
-        this.dias = dias;
-        this.placaVehiculo = placaVehiculo;
-        this.precioTotal = precioTotal;
-        this.categoria = categoria;
-        this.estadoSolicitud = estadoSolicitud;
-    }
-
-    public Solicitud(String fecha, String cedulaCliente, int dias, int cantidadPasajeros, String marca, String modelo, int año, String extras, String categoria, String estadoSolicitud) {
+    public Solicitud(String fecha, String cedulaCliente, int dias, int cantidadPasajeros, String marca, String modelo, int año, String extras, double precioTotal, String placaVehiculo, String categoria, String estadoSolicitud) {
         this.fecha = fecha;
         this.cedulaCliente = cedulaCliente;
         this.dias = dias;
@@ -46,6 +35,8 @@ public class Solicitud {
         this.modelo = modelo;
         this.año = año;
         this.extras = extras;
+        this.precioTotal = precioTotal;
+        this.placaVehiculo = placaVehiculo;
         this.categoria = categoria;
         this.estadoSolicitud = estadoSolicitud;
     }
@@ -144,33 +135,6 @@ public class Solicitud {
 
     public void setEstadoSolicitud(String estadoSolicitud) {
         this.estadoSolicitud = estadoSolicitud;
-    }
-    
-    public String mostrarSolicitud() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nSolicitud");
-        sb.append("Fecha: ").append(fecha);
-        sb.append("cedulaCliente=").append(cedulaCliente);
-        sb.append(", dias=").append(dias);
-        sb.append(", placaVehiculo=").append(placaVehiculo);
-        sb.append(", precioTotal=").append(precioTotal);
-        sb.append(", categoria=").append(categoria);
-        sb.append(", estadoSolicitud=").append(estadoSolicitud);
-        sb.append('}');
-        return sb.toString();
-    }
-    
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nSolicitud");
-        sb.append("\nCedula del cliente: ").append(cedulaCliente);
-        sb.append("\nDias: ").append(dias);
-        sb.append("\nPlaca del vehiculo: ").append(placaVehiculo);
-        sb.append("\nPrecio total: ").append(precioTotal);
-        sb.append("\nCategoria: ").append(categoria);
-        sb.append("\nEstado de la solicitud: ").append(estadoSolicitud);
-        return sb.toString();
     }
     
 }

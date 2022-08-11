@@ -11,9 +11,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         //Testing
         //Car(String Placa,String Marca, String Model, int Years, String Color, String CylinderCapacity, String Passangers, String Price, String Condition, String Extra)
-        Stack.push(new Car("BFF126", "Mitsubichi", "L200", 2016, "Azul", "2.400 cc ", "4 Pasajeros", 40, "Disponible", ""));
-        Stack.push(new Car("CAF654", "Nissan", "Sentra", 2010, "Rojo", "1.600 cc ", "4 Pasajeros", 20, "Disponible", ""));
-        Stack.push(new Car("BIC074", "Chevrolet", "Spark", 2014, "Azul", "1.400 cc ", "4 Pasajeros", 23, "Disponible", ""));
+//        Stack.push(new Car("BFF126", "Mitsubichi", "L200", 2016, "Azul", "2.400 cc ", 4, 40, "Disponible", ""));
+//        Stack.push(new Car("CAF654", "Nissan", "Sentra", 2010, "Rojo", "1.600 cc ", 4, 20, "Disponible", ""));
+//        Stack.push(new Car("BIC074", "Chevrolet", "Spark", 2014, "Azul", "1.400 cc ", 4, 23, "Disponible", ""));
 //        
 //        System.out.println("----------------------------------------Car List----------------------------------------\n");
 //        Stack.PrintStack();
@@ -59,7 +59,7 @@ public class Main {
                                 System.out.println("Cylinder?");
                                 String CylinderCapacity = sc.nextLine();
                                 System.out.println("Pasajeros?");
-                                String Passangers = sc.nextLine();
+                                int Passangers = Integer.parseInt(sc.nextLine());
                                 System.out.println("Precio?");
                                 int Price = Integer.parseInt(sc.nextLine());
                                 System.out.println("Condicion?");
@@ -83,7 +83,7 @@ public class Main {
 
                                     }
                                 }
-                                Stack.push(new Car(Placa, Marca, Model, Years, Color, CylinderCapacity, Passangers, Price, Condition, Extra));
+//                                Stack.push(new Car(Placa, Marca, Model, Years, Color, CylinderCapacity, Passangers, Price, Condition, Extra));
                                 break;
                             }
                             case 2 -> {
