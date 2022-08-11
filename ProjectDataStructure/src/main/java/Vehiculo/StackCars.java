@@ -1,14 +1,15 @@
 package Vehiculo;
 
 import java.util.Scanner;
+import javax.swing.table.DefaultTableModel;
 
 public class StackCars {
 
-    private NodeCar top;
+    private static NodeCar top;
     Scanner sc = new Scanner(System.in);
 
     //Push usa void porque no devuelve nada
-    public void push(Car value) {
+    public static void push(Car value) {
         NodeCar newNode = new NodeCar(value);
         if (top == null) {
             top = newNode;
@@ -25,6 +26,22 @@ public class StackCars {
             System.out.println(aux.getValue().toString());
             aux = aux.getNext();
         }
+    }
+
+    public static void llenarTabla(DefaultTableModel modelo) {
+        
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        NodeCar aux = top;
+        while (aux != null) {
+            Object[] TablaC = {aux.getValue().getPlaca(), aux.getValue().getMarca(), aux.getValue().getModel(), aux.getValue().getYears(), 
+            aux.getValue().getColor(), aux.getValue().getCylinderCapacity(), aux.getValue().getPassangers(), aux.getValue().getPrice(),
+            aux.getValue().getCondition(), aux.getValue().getExtra()};
+            modelo.addRow(TablaC);
+            aux = aux.getNext();
+        }
+        
     }
 
     public void SearchCar(String Placa) {

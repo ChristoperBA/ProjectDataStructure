@@ -17,11 +17,11 @@ public class Car {
     private String Color;
     private String CylinderCapacity;
     private String Passangers;
-    private int Price;
+    private double Price;
     private String Condition;
     private String Extra;
 
-    public Car(String Placa,String Marca, String Model, int Years, String Color, String CylinderCapacity, String Passangers, int Price, String Condition, String Extra) {
+    public Car(String Placa,String Marca, String Model, int Years, String Color, String CylinderCapacity, String Passangers, double Price, String Condition, String Extra) {
         this.Placa = Placa;
         this.Marca= Marca;
         this.Model = Model;
@@ -82,11 +82,11 @@ public class Car {
         this.Passangers = Passangers;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(int  Price) {
+    public void setPrice(double  Price) {
         this.Price = Price;
     }
 

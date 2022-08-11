@@ -17,10 +17,12 @@ public class PanelAlquileres extends javax.swing.JPanel {
 
     public PanelAlquileres() {
         initComponents();
+        popupMenu.add(subMenu);
         String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
         modelo = new DefaultTableModel(null, titulos);
         tablaSolicitudes.setModel(modelo);
         Queue.llenarTabla("LlenarSolicitudes", modelo);
+        btnAsignarVehiculo.setEnabled(false);
     }
 
     /**
@@ -119,6 +121,11 @@ public class PanelAlquileres extends javax.swing.JPanel {
         });
 
         btnAsignarVehiculo.setText("Asignar Vehiculo");
+        btnAsignarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarVehiculoActionPerformed(evt);
+            }
+        });
 
         jScrollPane2.setViewportView(text);
 
@@ -200,13 +207,14 @@ public class PanelAlquileres extends javax.swing.JPanel {
                         + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString();
                 txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
                 text.setText(datos);
+                btnAsignarVehiculo.setEnabled(true);
             } else if (receptor.getColumnCount() == 7) {
                 String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
                         + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nPlaca: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
                         + "\nPrecio total: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + " \nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString() /*+ "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString()*/;
                 txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
                 text.setText(datos);
-
+                btnAsignarVehiculo.setEnabled(false);
             }
 
         }
@@ -242,8 +250,6 @@ public class PanelAlquileres extends javax.swing.JPanel {
     private void comboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboxItemStateChanged
         if (combox.getSelectedItem().equals("Registradas")) {
             text.setText("");
-            btnAsignarVehiculo.setEnabled(true);
-            popupMenu.setEnabled(false);
             String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
             modelo = new DefaultTableModel(null, titulos);
             tablaSolicitudes.setModel(modelo);
@@ -259,7 +265,6 @@ public class PanelAlquileres extends javax.swing.JPanel {
         } else if (combox.getSelectedItem().equals("Registro de solicitudes")) {
             text.setText("");
             btnAsignarVehiculo.setEnabled(false);
-            popupMenu.add(subMenu);
             String[] titulos = {"Fecha", "Cedula", "Dias", "Placa", "Precio total", "Categoria", "Estado"};
             modelo = new DefaultTableModel(null, titulos);
             tablaSolicitudes.setModel(modelo);
@@ -268,6 +273,15 @@ public class PanelAlquileres extends javax.swing.JPanel {
 
     }//GEN-LAST:event_comboxItemStateChanged
 
+    private void btnAsignarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarVehiculoActionPerformed
+        AsignarVehiculo aV = new AsignarVehiculo();
+        aV.txtCed.setText(txtOculta.getText());
+        aV.setVisible(true);
+    }//GEN-LAST:event_btnAsignarVehiculoActionPerformed
+
+    public String cedula(){
+        return txtOculta.getText();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarVehiculo;
@@ -285,6 +299,6 @@ public class PanelAlquileres extends javax.swing.JPanel {
     private javax.swing.JTable tablaSolicitudes;
     private javax.swing.JTextPane text;
     private javax.swing.JTextField txtBuscar;
-    public javax.swing.JTextField txtOculta;
+    private javax.swing.JTextField txtOculta;
     // End of variables declaration//GEN-END:variables
 }
