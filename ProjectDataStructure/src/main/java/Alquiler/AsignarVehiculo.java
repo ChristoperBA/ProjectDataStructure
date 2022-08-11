@@ -24,6 +24,7 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         modelo = new DefaultTableModel(null, titulos);
         tablaVehiculos.setModel(modelo);
         StackCars.llenarTabla(modelo);
+        tablaVehiculos.setEnabled(false);
         bloquearjText();
     }
 
@@ -103,14 +104,24 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel2.setText("Fecha:");
 
+        txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel3.setText("Cedula:");
+
+        txtCed.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel4.setText("Dias:");
 
+        txtDias.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel5.setText("Cant. Pas:");
+
+        txtCant.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        txtMarca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel6.setText("Marca:");
@@ -118,21 +129,32 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel7.setText("Datos del cliente:");
 
+        txtModelo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         jLabel8.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel8.setText("Año:");
+
+        txtAño.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel9.setText("Extras:");
 
+        txtExtras.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         jLabel10.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel10.setText("Categoria:");
+
+        txtCategoria.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel11.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel11.setText("Placa:");
 
+        txtPlaca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         jLabel13.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel13.setText("IVA 13%:");
 
+        txtIva.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIvaActionPerformed(evt);
@@ -141,6 +163,8 @@ public class AsignarVehiculo extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel14.setText("Total:");
+
+        txtTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         btnAsignar.setText("Asigar Vehiculo");
         btnAsignar.addActionListener(new java.awt.event.ActionListener() {
@@ -337,6 +361,7 @@ public class AsignarVehiculo extends javax.swing.JFrame {
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         String c = txtCed.getText();
         Queue.llenarPanelAV(c, txtFecha, txtDias, txtCant, txtMarca, txtModelo, txtAño, txtExtras, txtCategoria, txtEstado);
+        tablaVehiculos.setEnabled(true);
         bloquearjText();
     }//GEN-LAST:event_btnCargarActionPerformed
 
