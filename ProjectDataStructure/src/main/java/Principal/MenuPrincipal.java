@@ -5,6 +5,7 @@
 package Principal;
 
 import Alquiler.PanelAlquileres;
+import Vehiculo.PanelVehiculos;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -146,7 +147,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void controlVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlVehiculosActionPerformed
-        // TODO add your handling code here:
+        PanelVehiculos pV = new PanelVehiculos();
+        paneles(pV);
     }//GEN-LAST:event_controlVehiculosActionPerformed
 
     private void controlAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlAlquileresActionPerformed

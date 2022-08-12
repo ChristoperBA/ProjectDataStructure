@@ -124,13 +124,10 @@ public class Queue {
                 modelo.addRow(TablaC);
             }
         }
-        if (exist == false) {
-            JOptionPane.showMessageDialog(null, "No existe ninguna solicitud con la cedula o placa ingresada");
-        }
 
     }
 
-    public static void llenarPanelAV(String cedula, JTextField f, JTextField d, JTextField cP, JTextField ma, JTextField mo, JTextField a, JTextField ex, JTextField ca, JTextField es) {
+    public static void llenarPanelAV(String cedula, JTextField f, JTextField d, JTextField cP, JTextField ma, JTextField mo, JTextField ex, JTextField ca, JTextField es) {
 
         Node<Solicitud> aux = head;
         boolean exist = false;
@@ -141,7 +138,6 @@ public class Queue {
                 cP.setText(String.valueOf(aux.getValue().getCantidadPasajeros()));
                 ma.setText(aux.getValue().getMarca());
                 mo.setText(aux.getValue().getModelo());
-                a.setText(String.valueOf(aux.getValue().getAño()));
                 ex.setText(aux.getValue().getExtras());
                 ca.setText(aux.getValue().getCategoria());
                 es.setText(aux.getValue().getEstadoSolicitud());
@@ -156,7 +152,6 @@ public class Queue {
             cP.setText(String.valueOf(tail.getValue().getCantidadPasajeros()));
             ma.setText(tail.getValue().getMarca());
             mo.setText(tail.getValue().getModelo());
-            a.setText(String.valueOf(tail.getValue().getAño()));
             ex.setText(tail.getValue().getExtras());
             ca.setText(tail.getValue().getCategoria());
             es.setText(tail.getValue().getEstadoSolicitud());

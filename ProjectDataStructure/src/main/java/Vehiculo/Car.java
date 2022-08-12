@@ -22,6 +22,9 @@ public class Car {
     private String estado;
     private int cantAlquilado;
 
+    public Car() {
+    }
+   
     public Car(String Placa, String Marca, String Model, int Years, String Color, String CylinderCapacity, int Passangers, double Price, String Extra, String Condition, String estado, int cantAlquilado) {
         this.Placa = Placa;
         this.Marca = Marca;
