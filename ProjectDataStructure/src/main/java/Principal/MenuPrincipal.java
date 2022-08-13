@@ -21,6 +21,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Inicio i = new Inicio();
+        paneles(i);
     }
 
     /**
@@ -180,7 +182,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnalisisActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        
+        Inicio i = new Inicio();
+        paneles(i);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void paneles(JPanel p) { //metodo para quitar el panel contenedor y cmabiarlo por un panel del boton seleccionado
