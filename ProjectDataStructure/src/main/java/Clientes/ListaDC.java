@@ -1,6 +1,5 @@
 package Clientes;
 
-import Clientes.Cliente;
 import javax.swing.JOptionPane;
 
 public class ListaDC {
@@ -33,8 +32,8 @@ public class ListaDC {
                 "Digite su correo: "));
         c.setCategoria(Double.parseDouble(JOptionPane.showInputDialog(null,
                 "Digite su categoria: \n "
-                        + "1. Bronce == 2. Plata == 3. Oro == 4. Zafiro. "
-                        + "\n Seleccione por medio de un número su categoría:  ")));
+                + "1. Bronce == 2. Plata == 3. Oro == 4. Zafiro. "
+                + "\n Seleccione por medio de un número su categoría:  ")));
         Node nuevo = new Node();
         nuevo.setElemento(c);
         if (esVacia()) {
@@ -108,18 +107,17 @@ public class ListaDC {
     public void mostrarElementos() {
         String s = "";
         Node aux = inicio;
-        s = s + aux.getElemento().getNomCompleto()+ "=="
-                + aux.getElemento().getFechaNacimiento()+ "=="
-                + aux.getElemento().getCategoria()+ "<==>";
+        s = s + aux.getElemento().getNomCompleto() + "=="
+                + aux.getElemento().getFechaNacimiento() + "=="
+                + aux.getElemento().getCategoria() + "<==>";
         aux = aux.getSiguiente();
         while (aux != inicio) {
-            s = s + aux.getElemento().getNomCompleto()+ "=="
-                    + aux.getElemento().getFechaNacimiento()+ "=="
-                    + aux.getElemento().getCategoria()+ "<==>";
+            s = s + aux.getElemento().getNomCompleto() + "=="
+                    + aux.getElemento().getFechaNacimiento() + "=="
+                    + aux.getElemento().getCategoria() + "<==>";
             aux = aux.getSiguiente();
         }
         JOptionPane.showMessageDialog(null, "La lista contiene:\n" + s);
     }
-
 
 }

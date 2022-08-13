@@ -8,12 +8,12 @@ package Principal;
  *
  * @author antho
  */
-public class Analisis extends javax.swing.JPanel {
+public class PanelAnalisis extends javax.swing.JPanel {
 
     /**
      * Creates new form Analisis1
      */
-    public Analisis() {
+    public PanelAnalisis() {
         initComponents();
         text1.setText("Top 5 de los clientes con mayor cantidad de alquileres realizados.");
         text2.setText("Top 5 del vehículo que se ha alquilado la mayor cantidad de veces.");

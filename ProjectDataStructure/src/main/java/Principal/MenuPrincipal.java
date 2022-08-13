@@ -22,7 +22,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Inicio i = new Inicio();
+        PanelInicio i = new PanelInicio();
         paneles(i);
     }
 
@@ -178,12 +178,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void btnAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalisisActionPerformed
-        Analisis a = new Analisis();
+        PanelAnalisis a = new PanelAnalisis();
         paneles(a);
     }//GEN-LAST:event_btnAnalisisActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        Inicio i = new Inicio();
+        PanelInicio i = new PanelInicio();
         paneles(i);
     }//GEN-LAST:event_btnInicioActionPerformed
 

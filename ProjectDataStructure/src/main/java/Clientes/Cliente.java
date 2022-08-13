@@ -1,12 +1,11 @@
-
 package Clientes;
 
-public class Cliente 
-{
-     private String id;
-     private String nomCompleto;
-     private String placa;
-     private String correo;
+public class Cliente {
+
+    private String id;
+    private String nomCompleto;
+    private String placa;
+    private String correo;
     private int fechaNacimiento;
     private double categoria;
 
@@ -67,7 +66,4 @@ public class Cliente
         this.categoria = categoria;
     }
 
-  
-   
-    
 }
