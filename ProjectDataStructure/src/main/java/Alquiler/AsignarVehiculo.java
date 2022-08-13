@@ -5,6 +5,7 @@
 package Alquiler;
 
 import Vehiculo.StackCars;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -25,8 +26,8 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         tablaVehiculos.setModel(modelo);
         btnAsignar.setEnabled(false);
         btnRechazar.setEnabled(false);
-
         bloquearjText();
+        cambiarColor();
     }
 
     /**
@@ -77,7 +78,7 @@ public class AsignarVehiculo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 102, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
         tablaVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -393,6 +394,23 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         txtPlaca.setEnabled(false);
         txtIva.setEnabled(false);
         txtTotal.setEnabled(false);
+    }
+    
+    private void cambiarColor(){
+        jLabel1.setForeground(Color.WHITE);
+        jLabel2.setForeground(Color.WHITE);
+        jLabel3.setForeground(Color.WHITE);
+        jLabel4.setForeground(Color.WHITE);
+        jLabel5.setForeground(Color.WHITE);
+        jLabel1.setForeground(Color.WHITE);
+        jLabel6.setForeground(Color.WHITE);
+        jLabel7.setForeground(Color.WHITE);
+        jLabel9.setForeground(Color.WHITE);
+        jLabel10.setForeground(Color.WHITE);
+        jLabel11.setForeground(Color.WHITE);
+        jLabel12.setForeground(Color.WHITE);
+        jLabel13.setForeground(Color.WHITE);
+        jLabel14.setForeground(Color.WHITE);
     }
 
     private double calcularTotal(double precio) {
