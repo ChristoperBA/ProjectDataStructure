@@ -4,6 +4,7 @@
  */
 package Alquiler;
 
+import Principal.Analisis;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -140,7 +141,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setText("Control de Alquileres");
 
-        combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registradas", "Rechazadas", "Registro de solicitudes", "Análisis de datos" }));
+        combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registradas", "Rechazadas", "Registro de solicitudes" }));
         combox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboxItemStateChanged(evt);
@@ -307,10 +308,6 @@ public class PanelAlquileres extends javax.swing.JPanel {
             modelo = new DefaultTableModel(null, titulos);
             tablaSolicitudes.setModel(modelo);
             Queue.llenarTabla("LlenarRegistro", modelo);
-        } else if (combox.getSelectedItem().equals("Análisis de datos")) {
-            Analisis a = new Analisis();
-            a.setVisible(true);
-            refrescar();
         }
 
     }//GEN-LAST:event_comboxItemStateChanged
