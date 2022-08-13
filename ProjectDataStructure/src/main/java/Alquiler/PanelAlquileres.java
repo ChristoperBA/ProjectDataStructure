@@ -4,7 +4,6 @@
  */
 package Alquiler;
 
-import Principal.Analisis;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +22,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
         popupMenu.add(subMenu);
         item = "Registradas";
         tipoBusqueda = "Solicitudes";
-        String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
+        String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Extras", "Categoria", "Estado"};
         modelo = new DefaultTableModel(null, titulos);
         tablaSolicitudes.setModel(modelo);
         Queue.llenarTabla("LlenarSolicitudes", modelo);
@@ -207,17 +206,17 @@ public class PanelAlquileres extends javax.swing.JPanel {
         if (evt.getClickCount() == 1) {
 
             JTable receptor = (JTable) evt.getSource();
-            if (receptor.getColumnCount() == 10) {
+            if (receptor.getColumnCount() == 9) {
                 if (item.equalsIgnoreCase("Registradas")) {
                     String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nCédula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
                             + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCant. Pasajeros: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
                             + " \nMarca: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nModelo: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString()
-                            + "\nAño: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString() + "\nExtras: " + receptor.getValueAt(receptor.getSelectedRow(), 7).toString()
-                            + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 8).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 9).toString();
+                            + "\nExtras: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString() + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 7).toString()
+                            + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 8).toString();
                     txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
                     text.setText(datos);
                     btnAsignarVehiculo.setEnabled(true);
-                    if (receptor.getValueAt(receptor.getSelectedRow(), 9).toString().equalsIgnoreCase("Registrada")) {
+                    if (receptor.getValueAt(receptor.getSelectedRow(), 8).toString().equalsIgnoreCase("Registrada")) {
                         btnCambiarEstado.setText("Rechazar solicitud");
                         btnCambiarEstado.setEnabled(true);
                     }
@@ -225,12 +224,12 @@ public class PanelAlquileres extends javax.swing.JPanel {
                     String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nCédula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
                             + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCant. Pasajeros: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
                             + " \nMarca: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nModelo: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString()
-                            + "\nAño: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString() + "\nExtras: " + receptor.getValueAt(receptor.getSelectedRow(), 7).toString()
-                            + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 8).toString() + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 9).toString();
+                            + "\nExtras: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString() + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 7).toString()
+                            + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 8).toString();
                     txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 1).toString());
                     text.setText(datos);
                     btnAsignarVehiculo.setEnabled(false);
-                    if (receptor.getValueAt(receptor.getSelectedRow(), 9).toString().equalsIgnoreCase("Rechazada")) {
+                    if (receptor.getValueAt(receptor.getSelectedRow(), 8).toString().equalsIgnoreCase("Rechazada")) {
                         btnCambiarEstado.setText("Agregar a solicitudes");
                         btnCambiarEstado.setEnabled(true);
                     }
@@ -283,7 +282,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
         if (combox.getSelectedItem().equals("Registradas")) {
             tipoBusqueda = "Solicitudes";
             text.setText("");
-            String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
+            String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Extras", "Categoria", "Estado"};
             modelo = new DefaultTableModel(null, titulos);
             tablaSolicitudes.setModel(modelo);
             Queue.llenarTabla("LlenarSolicitudes", modelo);
@@ -293,7 +292,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
             tipoBusqueda = "Solicitudes";
             text.setText("");
             btnAsignarVehiculo.setEnabled(false);
-            String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Año", "Extras", "Categoria", "Estado"};
+            String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Extras", "Categoria", "Estado"};
             modelo = new DefaultTableModel(null, titulos);
             tablaSolicitudes.setModel(modelo);
             Queue.llenarTabla("LlenarRechazadas", modelo);

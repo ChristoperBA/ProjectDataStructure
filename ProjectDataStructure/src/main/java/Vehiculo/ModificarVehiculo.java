@@ -75,6 +75,8 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel2.setText("Placa:");
 
+        txtPlaca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         pasajeros.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         btnModificar.setText("Modificar");
@@ -94,11 +96,17 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel3.setText("Marca:");
 
+        txtMarca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        txtModelo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel4.setText("Modelo:");
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel5.setText("Año:");
+
+        txtAño.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel6.setText("Color:");

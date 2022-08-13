@@ -84,7 +84,7 @@ public class Queue {
                         modelo.removeRow(0);
                     }
                     Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
-                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
                     modelo.addRow(TablaC);
                     exist = true;
                     break;
@@ -97,7 +97,7 @@ public class Queue {
                 }
                 exist = true;
                 Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getCantidadPasajeros(),
-                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getAño(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
+                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
                 modelo.addRow(TablaC);
             }
         } else if (tipoBus.equalsIgnoreCase("Registradas")) {
@@ -230,14 +230,14 @@ public class Queue {
             while (aux != tail) {
                 if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
                     Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
-                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
                     modelo.addRow(TablaC);
                 }
                 aux = aux.getNext();
             }
             if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
                 Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getCantidadPasajeros(),
-                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getAño(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
+                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
                 modelo.addRow(TablaC);
             }
         } else if (tipo.equalsIgnoreCase("LlenarRechazadas")) {
@@ -245,14 +245,14 @@ public class Queue {
             while (aux != tail) {
                 if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
                     Object[] TablaC = {aux.getValue().getFecha(), aux.getValue().getCedulaCliente(), aux.getValue().getDias(), aux.getValue().getCantidadPasajeros(),
-                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getAño(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
+                        aux.getValue().getMarca(), aux.getValue().getModelo(), aux.getValue().getExtras(), aux.getValue().getCategoria(), aux.getValue().getEstadoSolicitud()};
                     modelo.addRow(TablaC);
                 }
                 aux = aux.getNext();
             }
             if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Rechazada")) {
                 Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getCantidadPasajeros(),
-                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getAño(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
+                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
                 modelo.addRow(TablaC);
             }
 
