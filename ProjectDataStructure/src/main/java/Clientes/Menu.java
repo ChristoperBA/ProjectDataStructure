@@ -35,7 +35,7 @@ public class Menu {
                 case 2 -> {
                 }
                 case 3 -> {
-                    l.mostrarElementos();
+//                    l.mostrarElementos();
                 }
                 case 4 -> {
 //                    l.mostrarElementosInversa();

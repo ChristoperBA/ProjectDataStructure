@@ -4,6 +4,7 @@
  */
 package Alquiler;
 
+import Clientes.ListaDC;
 import Vehiculo.StackCars;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -185,6 +186,7 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel12.setText("Modelo:");
 
+        textDatos.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
         jScrollPane3.setViewportView(textDatos);
 
         btnCargar.setText("Cargar Datos");
@@ -364,7 +366,7 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         String c = txtCed.getText();
         Queue.llenarPanelAV(c, txtFecha, txtDias, txtCant, txtMarca, txtModelo, txtExtras, txtCategoria, txtEstado);
         bloquearjText();
-
+        textDatos.setText(ListaDC.mostrarCliente(txtCed.getText()));
         StackCars.llenarTA(modelo, Integer.parseInt(txtCant.getText()), txtMarca.getText(), txtModelo.getText(), txtExtras.getText());
         btnRechazar.setEnabled(true);
         btnCargar.setEnabled(false);

@@ -4,6 +4,8 @@
  */
 package Alquiler;
 
+import Clientes.Cliente;
+import Clientes.ListaDC;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,14 +17,20 @@ import javax.swing.JOptionPane;
  */
 public class AgregarSolicitud extends javax.swing.JFrame {
 
-    String ced;
-    String cat;
-
     public AgregarSolicitud() {
         initComponents();
         this.setLocationRelativeTo(null);
         txtCategoria.setEnabled(false);
         btnAgregar.setEnabled(false);
+
+        fecha.setEnabled(false);
+        dias.setEnabled(false);
+        pasajeros.setEnabled(false);
+        txtMarca.setEnabled(false);
+        txtModelo.setEnabled(false);
+        txtExtras.setEnabled(false);
+        txtCategoria.setEnabled(false);
+
         cambiarColor();
     }
 
@@ -45,7 +53,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         dias = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
-        cantidadPasajeros = new javax.swing.JSpinner();
+        pasajeros = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
         txtMarca = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -55,10 +63,10 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        textDatos = new javax.swing.JTextPane();
         jLabel11 = new javax.swing.JLabel();
-        txtCategoria = new javax.swing.JTextField();
         fecha = new javax.swing.JSpinner();
+        txtCategoria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +99,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel6.setText("Pasajeros:");
 
-        cantidadPasajeros.setModel(new javax.swing.SpinnerNumberModel(1, 1, 15, 1));
+        pasajeros.setModel(new javax.swing.SpinnerNumberModel(1, 1, 15, 1));
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel7.setText("Marca:");
@@ -116,72 +124,74 @@ public class AgregarSolicitud extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(jTextPane1);
+        textDatos.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        jScrollPane2.setViewportView(textDatos);
 
         jLabel11.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel11.setText("Categoria:");
 
-        fecha.setModel(new javax.swing.SpinnerDateModel());
+        fecha.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
+
+        txtCategoria.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1)
-                        .addGap(0, 21, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(9, 9, 9)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMarca)
-                                    .addComponent(txtCedula)
-                                    .addComponent(dias)
-                                    .addComponent(cantidadPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                    .addComponent(fecha)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(pasajeros)
+                                            .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCedula)
+                                            .addComponent(dias)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(txtExtras))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(btnAgregar))
-                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtExtras, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                            .addComponent(txtCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                            .addComponent(txtModelo)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
                                         .addComponent(btnBuscar)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(18, 18, 18)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2))))
-                .addContainerGap())
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnCancelar)))
+                        .addGap(32, 32, 32))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(51, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,8 +201,8 @@ public class AgregarSolicitud extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -207,7 +217,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(cantidadPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,9 +231,9 @@ public class AgregarSolicitud extends javax.swing.JFrame {
                             .addComponent(txtExtras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -252,39 +262,46 @@ public class AgregarSolicitud extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        txtCedula.setEnabled(true);
-        txtCategoria.setEnabled(true);
-        btnAgregar.setEnabled(true);
-
-        //Metodo para buscar cliente
-//        ced = txtCedula.getText();
-//        cat = txtCategoria.getText();
+        boolean v = ListaDC.validarCliente(txtCedula.getText());
+        if (v == true) {
+            desbloquearForm();
+            textDatos.setText(ListaDC.mostrarCliente(txtCedula.getText()));
+            txtCategoria.setText(ListaDC.estado);
+        } else {
+            JOptionPane.showMessageDialog(null, """
+                                                 No existe ningun cliente asociado con la cedula ingresada 
+                                                 Ingrese a Control de clientes y agrueguelo""");
+        }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        //Temporal
-        ced = txtCedula.getText();
-        cat = txtCategoria.getText();
-        //---------------------------
+        String ced = txtCedula.getText();
+        String cat = txtCategoria.getText();
         Date f = (Date) fecha.getValue();
         SimpleDateFormat fa = new SimpleDateFormat("dd/MM/yyyy");
         String fec = fa.format(f);
         int d = (int) dias.getValue();
-        int cP = (int) cantidadPasajeros.getValue();
+        int cP = (int) pasajeros.getValue();
         String ma = txtMarca.getText();
         String mo = txtModelo.getText();
         String ex = txtExtras.getText();
         boolean v = Queue.enqueue(new Solicitud(fec, ced, d, cP, ma, mo, 0000, ex, 0, "####", cat, "Registrada"));
         if (v == true) {
-            JOptionPane.showMessageDialog(null, "Solicitud Agregada");
+            if ( d>40){
+                ListaDC.cambiarCategoria(ced, "Subir Categoria");
+                ListaDC.extraer(ced);
+                JOptionPane.showMessageDialog(null, "Solicitud Agregada \nLa categoria del cliente ha cambiado");
+            }else{
+                JOptionPane.showMessageDialog(null, "Solicitud Agregada");
+            }
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Solicitud no agregada");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void cambiarColor(){
+    private void cambiarColor() {
         jLabel1.setForeground(Color.WHITE);
         jLabel2.setForeground(Color.WHITE);
         jLabel3.setForeground(Color.WHITE);
@@ -297,7 +314,17 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         jLabel10.setForeground(Color.WHITE);
         jLabel11.setForeground(Color.WHITE);
     }
-    
+
+    private void desbloquearForm() {
+        fecha.setEnabled(true);
+        dias.setEnabled(true);
+        pasajeros.setEnabled(true);
+        txtMarca.setEnabled(true);
+        txtModelo.setEnabled(true);
+        txtExtras.setEnabled(true);
+        btnAgregar.setEnabled(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -340,7 +367,6 @@ public class AgregarSolicitud extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JSpinner cantidadPasajeros;
     private javax.swing.JSpinner dias;
     private javax.swing.JSpinner fecha;
     private javax.swing.JLabel jLabel1;
@@ -355,7 +381,8 @@ public class AgregarSolicitud extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JSpinner pasajeros;
+    private javax.swing.JTextPane textDatos;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtExtras;

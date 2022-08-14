@@ -21,10 +21,6 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtPlaca.setEnabled(false);
-        txtMarca.setEnabled(false);
-        txtModelo.setEnabled(false);
-        txtAño.setEnabled(false);
-        pasajeros.setEnabled(false);
         btnModificar.setEnabled(false);
     }
 
