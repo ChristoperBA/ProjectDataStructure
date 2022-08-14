@@ -4,6 +4,7 @@
  */
 package Alquiler;
 
+import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +23,8 @@ public class PanelAlquileres extends javax.swing.JPanel {
         popupMenu.add(subMenu);
         item = "Registradas";
         tipoBusqueda = "Solicitudes";
+        jLabel1.setForeground(Color.WHITE);
+        jLabel2.setForeground(Color.WHITE);
         String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Extras", "Categoria", "Estado"};
         modelo = new DefaultTableModel(null, titulos);
         tablaSolicitudes.setModel(modelo);
@@ -51,7 +54,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
         btnAsignarVehiculo = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextPane();
-        label2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         combox = new javax.swing.JComboBox<>();
 
@@ -75,7 +78,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
             .addComponent(btnCambiarEstado)
         );
 
-        setBackground(new java.awt.Color(204, 102, 0));
+        setBackground(new java.awt.Color(0, 51, 153));
         setPreferredSize(new java.awt.Dimension(696, 500));
 
         tablaSolicitudes.setModel(new javax.swing.table.DefaultTableModel(
@@ -134,9 +137,11 @@ public class PanelAlquileres extends javax.swing.JPanel {
         text.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jScrollPane2.setViewportView(text);
 
-        label2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        label2.setText("Datos de solicitud");
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel2.setText("Datos de solicitud");
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setText("Control de Alquileres");
 
@@ -175,7 +180,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label2)
+                                    .addComponent(jLabel2)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(22, 22, 22))))
         );
@@ -185,7 +190,7 @@ public class PanelAlquileres extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(label2))
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,9 +340,9 @@ public class PanelAlquileres extends javax.swing.JPanel {
     private javax.swing.JButton btnSolicitud;
     private javax.swing.JComboBox<String> combox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel label2;
     private javax.swing.JPopupMenu popupMenu;
     private javax.swing.JPanel subMenu;
     private javax.swing.JTable tablaSolicitudes;

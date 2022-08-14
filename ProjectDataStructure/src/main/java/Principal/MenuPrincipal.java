@@ -5,6 +5,7 @@
 package Principal;
 
 import Alquiler.PanelAlquileres;
+import Clientes.PanelClientes;
 import Vehiculo.PanelVehiculos;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -163,13 +164,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_controlVehiculosActionPerformed
 
     private void controlAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlAlquileresActionPerformed
-        // TODO add your handling code here:
         PanelAlquileres pA = new PanelAlquileres();
-        paneles(pA);
+        paneles(pA);     
     }//GEN-LAST:event_controlAlquileresActionPerformed
 
     private void controlClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlClientesActionPerformed
-        // TODO add your handling code here:
+        PanelClientes c = new PanelClientes();
+        paneles(c);
     }//GEN-LAST:event_controlClientesActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
@@ -220,6 +221,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
