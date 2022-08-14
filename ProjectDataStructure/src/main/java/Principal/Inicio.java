@@ -8,12 +8,12 @@ package Principal;
  *
  * @author antho
  */
-public class PanelInicio extends javax.swing.JPanel {
+public class Inicio extends javax.swing.JPanel {
 
     /**
      * Creates new form Analisis1
      */
-    public PanelInicio() {
+    public Inicio() {
         initComponents();
     }
 

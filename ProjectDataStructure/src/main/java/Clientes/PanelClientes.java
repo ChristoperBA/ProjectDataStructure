@@ -4,7 +4,6 @@
  */
 package Clientes;
 
-import Vehiculo.*;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,10 +17,10 @@ public class PanelClientes extends javax.swing.JPanel {
 
     public PanelClientes() {
         initComponents();
-        String[] titulos = {"Atributos"};
+        String[] titulos = {"Cedula", "Nombre completo", "Fecha de nacimiento", "Correo", "Categoria", "Cant. Alquileres"};
         modelo = new DefaultTableModel(null, titulos);
         tablaClientes.setModel(modelo);
-        //metodo para llenar la tabla
+        ListaDC.llenarTablaC(modelo);
         btnModificar.setEnabled(false);
         btnEliminar.setEnabled(false);
     }
@@ -213,7 +212,7 @@ public class PanelClientes extends javax.swing.JPanel {
         txtBuscar.setText("");
         btnModificar.setEnabled(false);
         btnEliminar.setEnabled(false);
-        StackCars.llenarTabla(modelo);
+        ListaDC.llenarTablaC(modelo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

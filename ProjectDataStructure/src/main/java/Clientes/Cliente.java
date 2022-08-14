@@ -4,34 +4,21 @@ public class Cliente {
 
     private String id;
     private String nomCompleto;
-    private String placa;
+    private String fechaNacimiento;
     private String correo;
-    private int fechaNacimiento;
-    private double categoria;
+    private int categoria;
+    private int cantAlquilado;
 
     public Cliente() {
-        this.id = "";
-        this.fechaNacimiento = 0;
-        this.categoria = 0.00;
-        this.nomCompleto = "";
-        this.placa = "";
-        this.correo = "";
     }
 
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
+    public Cliente(String id, String nomCompleto, String fechaNacimiento, String correo, int categoria, int cantAlquilado) {
+        this.id = id;
+        this.nomCompleto = nomCompleto;
+        this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
+        this.categoria = categoria;
+        this.cantAlquilado = cantAlquilado;
     }
 
     public String getId() {
@@ -42,14 +29,6 @@ public class Cliente {
         this.id = id;
     }
 
-    public int getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(int fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
     public String getNomCompleto() {
         return nomCompleto;
     }
@@ -58,12 +37,50 @@ public class Cliente {
         this.nomCompleto = nomCompleto;
     }
 
-    public double getCategoria() {
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(double categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 
+    public int getCantAlquilado() {
+        return cantAlquilado;
+    }
+
+    public void setCantAlquilado(int cantAlquilado) {
+        this.cantAlquilado = cantAlquilado;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nDatos del cliente");
+        sb.append("\nId: ").append(id);
+        sb.append("\nNombre completo: ").append(nomCompleto);
+        sb.append("\nFecha de nacimiento: ").append(fechaNacimiento);
+        sb.append("\nCorreo: ").append(correo);
+        sb.append("\nCategoria: ").append(categoria);
+        sb.append("\nCantidad que ha alquilado: ").append(cantAlquilado);
+        sb.append("\n");
+        return sb.toString();
+    }
+    
 }

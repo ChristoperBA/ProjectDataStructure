@@ -22,7 +22,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        PanelInicio i = new PanelInicio();
+        Inicio i = new Inicio();
         paneles(i);
     }
 
@@ -178,12 +178,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void btnAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalisisActionPerformed
-        PanelAnalisis a = new PanelAnalisis();
+        Analisis a = new Analisis();
         paneles(a);
     }//GEN-LAST:event_btnAnalisisActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        PanelInicio i = new PanelInicio();
+        Inicio i = new Inicio();
         paneles(i);
     }//GEN-LAST:event_btnInicioActionPerformed
 
@@ -221,6 +221,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
