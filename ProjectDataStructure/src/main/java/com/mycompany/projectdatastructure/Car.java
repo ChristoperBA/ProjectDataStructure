@@ -1,13 +1,14 @@
-package Vehiculo;
+
+package com.mycompany.projectdatastructure;
+
 
 public class Car {
-
     /*
     Atributos del Vehículo: Placa, modelo, año, color, cilindrada, 
     tipo de combustible, capacidad de pasajeros, precio de alquiler por día, 
     Estado (Disponible, Alquilado, En reparación, Fuera de circulación.)
-     */
-
+    */
+    
     //Atributos
     private String Placa;
     private String Marca;
@@ -15,47 +16,30 @@ public class Car {
     private int Years;
     private String Color;
     private String CylinderCapacity;
-    private int Passangers;
-    private double Price;
-    private String Extra;
+    private String Passangers;
+    private int Price;
     private String Condition;
-    private String estado;
-    private int cantAlquilado;
+    private String Extra;
 
-
-    public Car(String Placa, String Marca, String Model, int Years, String Color, String CylinderCapacity, int Passangers, double Price, String Extra, String Condition, String estado, int cantAlquilado) {
+    public Car(String Placa,String Marca, String Model, int Years, String Color, String CylinderCapacity, String Passangers, int Price, String Condition, String Extra) {
         this.Placa = Placa;
-        this.Marca = Marca;
+        this.Marca= Marca;
         this.Model = Model;
         this.Years = Years;
         this.Color = Color;
         this.CylinderCapacity = CylinderCapacity;
         this.Passangers = Passangers;
         this.Price = Price;
-        this.Extra = Extra;
         this.Condition = Condition;
-        this.estado = estado;
-        this.cantAlquilado = cantAlquilado;
+        this.Extra = Extra;
     }
-
-    
-
-    
-
+    //Setter and Getters
     public String getPlaca() {
         return Placa;
     }
 
     public void setPlaca(String Placa) {
         this.Placa = Placa;
-    }
-
-    public String getMarca() {
-        return Marca;
-    }
-
-    public void setMarca(String Marca) {
-        this.Marca = Marca;
     }
 
     public String getModel() {
@@ -90,28 +74,20 @@ public class Car {
         this.CylinderCapacity = CylinderCapacity;
     }
 
-    public int getPassangers() {
+    public String getPassangers() {
         return Passangers;
     }
 
-    public void setPassangers(int Passangers) {
+    public void setPassangers(String Passangers) {
         this.Passangers = Passangers;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return Price;
     }
 
-    public void setPrice(double Price) {
+    public void setPrice(int  Price) {
         this.Price = Price;
-    }
-
-    public String getExtra() {
-        return Extra;
-    }
-
-    public void setExtra(String Extra) {
-        this.Extra = Extra;
     }
 
     public String getCondition() {
@@ -122,25 +98,31 @@ public class Car {
         this.Condition = Condition;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getExtra() {
+        return Extra;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setExtra(String Extra) {
+        this.Extra = Extra;
     }
 
-    public int getCantAlquilado() {
-        return cantAlquilado;
+    public String getMarca() {
+        return Marca;
     }
 
-    public void setCantAlquilado(int cantAlquilado) {
-        this.cantAlquilado = cantAlquilado;
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
     }
 
     @Override
     public String toString() {
-        return "\nPlaca:" + Placa + ", Marca:" + Marca + ", Modelo:" + Model + ", Anios=" + Years + ", Color=" + Color + ", Capacidad de Cilindraje=" + CylinderCapacity +"\n"+ "Pasajeros=" + Passangers + ", Precio=" + Price + ", Extras=" + Extra + ", Condicion=" + Condition + ", Estado=" + estado + ", Cantidadd Alquilado=" + cantAlquilado;
+        return "Placa:" + Placa +" Marca:" + Marca +", Model:" + Model + ", Years:" + Years + ", Color:" + Color + 
+               ", CylinderCapacity:" +CylinderCapacity + "Passangers:" + Passangers + ", Price:" + 
+               Price + ", Condition:" + Condition + ", Extra:" + Extra + '}';
     }
+    
+    
+    
+    
     
 }
