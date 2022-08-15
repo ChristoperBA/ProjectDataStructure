@@ -26,18 +26,11 @@ public class Main {
         StackCars.push(new Car("######", "#", "#", 0001, "#", "# cc ", 0, 0, "#", "#", "#", 0));        
         
         StackCars.push(new Car("CAF654", "Nissan", "Sentra", 2010, "Rojo", "1.600 cc ", 6, 20, "B", "Nuevo", "Disponible", 2));
-<<<<<<< HEAD
         StackCars.push(new Car("BFF126", "Mitsubichi", "L200", 2016, "Azul", "2.400 cc ", 4, 20, "A", "Nuevo", "Disponible", 2));
         StackCars.push(new Car("BIC074", "Chevrolet", "Spark", 2014, "Azul", "1.400 cc ", 5, 23, "C", "Nuevo", "Alquilado", 2));
         StackCars.push(new Car("FO902N", "Mitsubichi", "L200", 2022, "Azul", "2.400 cc ", 4, 50, "D", "Nuevo", "Disponible", 2));
         StackCars.push(new Car("J90NWA", "Mitsubichi", "L200", 2011, "Azul", "2.400 cc ", 4, 90, "E", "Nuevo", "Disponible", 2));
         
-=======
-        StackCars.push(new Car("BIC074", "Chevrolet", "Spark", 2014, "Azul", "1.400 cc ", 5, 23, "C", "Nuevo", "Disponible", 2));
-        StackCars.push(new Car("FO902N", "Dodge", "RAM", 2022, "Negra", "2.700 cc ", 4, 50, "D", "Nuevo", "Disponible", 2));
-        StackCars.push(new Car("J90NWA", "Honda", "Civic", 2011, "Azul", "1.300 cc ", 4, 90, "E", "Nuevo", "Disponible", 2));
-
->>>>>>> 723283de0231eeb2a3c51193e691290ad9421ccc
         ListaDC.agregar(new Cliente("00", "0000", "00/00/2000", "0@gmail.com", 2, 0));
         ListaDC.agregar(new Cliente("A1", "Alex", "01/01/2001", "a@gmail.com", 1, 1));
         ListaDC.agregar(new Cliente("D4", "Dani", "04/04/2004", "d@gmail.com", 1, 0));

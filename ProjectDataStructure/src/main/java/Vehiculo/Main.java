@@ -11,10 +11,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         //Testing
         //Car(String Placa,String Marca, String Model, int Years, String Color, String CylinderCapacity, String Passangers, String Price, String Condition, String Extra)
-        Stack.push(new Car("BFF126", "Mitsubichi", "L200", 2016, "Azul", "2.400 cc ", 4, 40.0, "", "Disponible","",4));
-        Stack.push(new Car("CAF654", "Nissan", "Sentra", 2010, "Rojo", "1.600 cc ", 4, 20.0, "", "Disponible","",4));
-        Stack.push(new Car("BIC074", "Chevrolet", "Spark", 2014, "Azul", "1.400 cc ", 4, 23.0, "", "Disponible","",4));
-      
+//        Stack.push(new Car("BFF126", "Mitsubichi", "L200", 2016, "Azul", "2.400 cc ", 4, 40, "Disponible", ""));
+//        Stack.push(new Car("CAF654", "Nissan", "Sentra", 2010, "Rojo", "1.600 cc ", 4, 20, "Disponible", ""));
+//        Stack.push(new Car("BIC074", "Chevrolet", "Spark", 2014, "Azul", "1.400 cc ", 4, 23, "Disponible", ""));
+//        
 //        System.out.println("----------------------------------------Car List----------------------------------------\n");
 //        Stack.PrintStack();
 
@@ -61,13 +61,9 @@ public class Main {
                                 System.out.println("Pasajeros?");
                                 int Passangers = Integer.parseInt(sc.nextLine());
                                 System.out.println("Precio?");
-                                double Price = Double.parseDouble(sc.nextLine());
+                                int Price = Integer.parseInt(sc.nextLine());
                                 System.out.println("Condicion?");
                                 String Condition = sc.nextLine();
-                                System.out.println("Estado?");
-                                String estado = sc.nextLine();
-                                System.out.println("Cantidad Alquilado?");
-                                int cantAlquilado = Integer.parseInt(sc.nextLine());
                                 String Extra = "";
                                 boolean extra = true;
                                 while (extra) {
@@ -87,45 +83,25 @@ public class Main {
 
                                     }
                                 }
-                                Stack.push(new Car(Placa, Marca, Model, Years, Color, CylinderCapacity, Passangers, Price, Extra,Condition,estado,cantAlquilado));
-                                
+//                                Stack.push(new Car(Placa, Marca, Model, Years, Color, CylinderCapacity, Passangers, Price, Condition, Extra));
                                 break;
                             }
                             case 2 -> {
                                 //Modificar
                                 System.out.println("Ingresa la placa, para modificar la informacion: ");
                                 String placa = sc.nextLine();
-                                Stack.Modify(placa);
+                                Stack.modificar(placa);
                                 break;
                             }
                             case 3 -> {
                                 //Borrar
-                                //Stack.eliminar("BFF126");
-                                //Stack.eliminar("CAF654");
-                                Stack.Delete("BFF126");
-                                Stack.PrintStack();
                                 break;
                             }
                             case 4 -> {
-                                System.out.println("""
-                                                Que deseas ver?
-
-                                                [1] Ver Lista
-                                                [2] Buscar Vehiculo
-                                                [3] Salir del sistema""");
-                                int OpcionModificar=sc.nextInt();
-                                if(OpcionModificar==1){
+                                //
                                 System.out.println("----------------------------------------Car List----------------------------------------\n");
-                                Stack.PrintStack();
-                                }
-                                else if(OpcionModificar==2){
-                                    System.out.println("Ingresa la placa del vehiculo, que quieres buscar");
-                                    String Placa =sc.nextLine();
-                                    Stack.SearchCar(Placa);
-                                }
-                                else{
-                                    System.out.println("Opcion Invalida");
-                                }
+                                //Stack.PrintStack();
+                                Stack.SearchCar("BFF126");
                                 break;
                             }
                             case 5 -> {
@@ -142,6 +118,7 @@ public class Main {
 
                     } while (OpcionVehiculos != 5);
                     break;
+                //Chris Fin************************************************
                 case 2:
                     break;
                 case 3:

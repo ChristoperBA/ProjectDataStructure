@@ -138,9 +138,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "\nPlaca:" + Placa + ", Marca:" + Marca + ", Modelo:" + Model + ", Anios:" + Years + ", Color:" + Color + ", Capacidad de Cilindraje:" + CylinderCapacity +"\n"+ "Pasajeros:" + Passangers + ", Precio:" + Price + ", Extras:" + Extra + ", Condicion:" + Condition + ", Estado:" + estado + ", Cantidadd Alquilado:" + cantAlquilado;
+        return "Car{" + "Placa=" + Placa + ", Marca=" + Marca + ", Model=" + Model + ", Years=" + Years + ", Color=" + Color + ", CylinderCapacity=" + CylinderCapacity + ", Passangers=" + Passangers + ", Price=" + Price + ", Extra=" + Extra + ", Condition=" + Condition + ", estado=" + estado + ", cantAlquilado=" + cantAlquilado + '}';
     }
+    
 }
-  
-
-
