@@ -17,43 +17,43 @@ public class ListaDC {
         return inicio == null;
     }
 
-<<<<<<< HEAD
+
 
     public void agregar() {
-        Cliente c = new Cliente();
-        c.setCedula(JOptionPane.showInputDialog(null,"Digite su ID: "));
-        c.setNomCompleto(JOptionPane.showInputDialog(null,"Digite su nombre : "));
-        c.setFechaNacimiento(JOptionPane.showInputDialog(null,"Digite la fecha de nacimiento :"));
-        c.setCorreo(JOptionPane.showInputDialog(null,"Digite su correo: "));
-        c.setCategoria(JOptionPane.showInputDialog(null, """
+        Cliente cliente = new Cliente();
+        cliente.setCedula(JOptionPane.showInputDialog(null,"Digite su ID: "));
+        cliente.setNomCompleto(JOptionPane.showInputDialog(null,"Digite su nombre : "));
+        cliente.setFechaNacimiento(JOptionPane.showInputDialog(null,"Digite la fecha de nacimiento :"));
+        cliente.setCorreo(JOptionPane.showInputDialog(null,"Digite su correo: "));
+        cliente.setCategoria(JOptionPane.showInputDialog(null, """
                 Digite su categoria: 
                 1. Bronce == 2. Plata == 3. Oro == 4. Zafiro. 
                 Seleccione por medio de un n\u00famero su categor\u00eda:  """));
         
         Node nuevo = new Node();
-        nuevo.setElemento(c);
+        nuevo.setElemento(cliente);
 
-    public static void agregar(Cliente c) {
-        Node<Cliente> nuevo = new Node(c);
+    public static void agregar(Cliente cliente) {
+        Node<Cliente> nuevo = new Node(cliente);
+    }
 
-=======
-    public static boolean agregar(Cliente c) {
-        Node<Cliente> nuevo = new Node(c);
+    public static boolean agregar(Cliente cliente) {
+        Node<Cliente> nuevo = new Node(cliente);
         boolean v = false;
->>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
+
         if (esVacia()) {
             inicio = nuevo;
             fin = nuevo;
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
-<<<<<<< HEAD
 
-        } else if (c.getCategoria() < inicio.getElemento().getCategoria()) {
+
+        } else if (cliente.getCategoria() < inicio.getElemento().getCategoria()) {
             nuevo.setSiguiente(inicio);
             inicio = nuevo;
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
-        } else if (c.getCategoria() >= fin.getElemento().getCategoria()) {
+        } else if (cliente.getCategoria() >= fin.getElemento().getCategoria()) {
             fin.setSiguiente(nuevo);
             fin = fin.getSiguiente(); //fin=nuevo;
             fin.setSiguiente(inicio);
@@ -69,16 +69,17 @@ public class ListaDC {
             aux.setSiguiente(nuevo);
             nuevo.getSiguiente().setAnterior(nuevo);
 
-=======
+
             v = true;
->>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
-        } else if (c.getCategoria() < inicio.getElemento().getCategoria()) {
+            
+         if(){
+        } else if (cliente.getCategoria() < inicio.getElemento().getCategoria()) {
             nuevo.setSiguiente(inicio);
             inicio = nuevo;
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
             v = true;
-        } else if (c.getCategoria() >= fin.getElemento().getCategoria()) {
+        } else if (cliente.getCategoria() >= fin.getElemento().getCategoria()) {
             fin.setSiguiente(nuevo);
             fin = fin.getSiguiente(); //fin=nuevo;
             fin.setSiguiente(inicio);
@@ -93,10 +94,9 @@ public class ListaDC {
             nuevo.setAnterior(aux);
             aux.setSiguiente(nuevo);
             nuevo.getSiguiente().setAnterior(nuevo);
-<<<<<<< HEAD
-=======
+
             v = true;
->>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
+
         }
         return v;
     }
@@ -144,15 +144,13 @@ public class ListaDC {
 //        }
 //
 //    }
-<<<<<<< HEAD
+
     public static void llenarTablaC(DefaultTableModel modelo) {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
 
     }
-=======
->>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
 
     public static void cambiarCategoria(String ced, String tipo) {
 
@@ -205,10 +203,10 @@ public class ListaDC {
                 }
                 aux = aux.getSiguiente();
             }
-<<<<<<< HEAD
+
             JOptionPane.showMessageDialog(null, "Los datos fueron modificados!");
 
-=======
+
             if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                 if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                     switch (fin.getElemento().getCategoria()) {
@@ -230,7 +228,7 @@ public class ListaDC {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
->>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
+
         Node<Cliente> aux = inicio;
         while (aux != fin) {
             String s = categoria(aux.getElemento().getCategoria());
@@ -238,10 +236,7 @@ public class ListaDC {
                 aux.getElemento().getCorreo(), s, aux.getElemento().getCantAlquilado()};
             modelo.addRow(TablaC);
             aux = aux.getSiguiente();
-<<<<<<< HEAD
 
-=======
->>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
         }
         String s = categoria(fin.getElemento().getCategoria());
         Object[] TablaC = {fin.getElemento().getId(), fin.getElemento().getNomCompleto(), fin.getElemento().getFechaNacimiento(),
