@@ -283,7 +283,7 @@ public class AgregarVehiculo extends javax.swing.JFrame {
 
         boolean v = StackCars.push(new Car(p, ma, mo, añ, cl, cp, ps, pc, ex, cd, est, 0));
         if (v == true) {
-            JOptionPane.showMessageDialog(null, "Vehiculo Agregado");
+            JOptionPane.showMessageDialog(null, "Vehiculo agregado");
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Vehiculo no agregado");

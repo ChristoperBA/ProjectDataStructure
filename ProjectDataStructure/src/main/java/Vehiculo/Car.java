@@ -22,7 +22,9 @@ public class Car {
     private String estado;
     private int cantAlquilado;
 
-
+    public Car() {
+    }
+   
     public Car(String Placa, String Marca, String Model, int Years, String Color, String CylinderCapacity, int Passangers, double Price, String Extra, String Condition, String estado, int cantAlquilado) {
         this.Placa = Placa;
         this.Marca = Marca;
@@ -37,10 +39,6 @@ public class Car {
         this.estado = estado;
         this.cantAlquilado = cantAlquilado;
     }
-
-    
-
-    
 
     public String getPlaca() {
         return Placa;
@@ -140,7 +138,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "\nPlaca:" + Placa + ", Marca:" + Marca + ", Modelo:" + Model + ", Anios=" + Years + ", Color=" + Color + ", Capacidad de Cilindraje=" + CylinderCapacity +"\n"+ "Pasajeros=" + Passangers + ", Precio=" + Price + ", Extras=" + Extra + ", Condicion=" + Condition + ", Estado=" + estado + ", Cantidadd Alquilado=" + cantAlquilado;
+        return "Car{" + "Placa=" + Placa + ", Marca=" + Marca + ", Model=" + Model + ", Years=" + Years + ", Color=" + Color + ", CylinderCapacity=" + CylinderCapacity + ", Passangers=" + Passangers + ", Price=" + Price + ", Extra=" + Extra + ", Condition=" + Condition + ", estado=" + estado + ", cantAlquilado=" + cantAlquilado + '}';
     }
     
 }

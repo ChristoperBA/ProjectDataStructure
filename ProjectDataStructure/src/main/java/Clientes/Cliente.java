@@ -1,5 +1,6 @@
 package Clientes;
 
+<<<<<<< HEAD
 
 public class Cliente 
 {
@@ -17,6 +18,8 @@ public class Cliente
         this.correo = "";
     }
     
+=======
+>>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
 public class Cliente {
 
     private String cedula;
@@ -25,7 +28,10 @@ public class Cliente {
     private String correo;
     private int categoria;
     private int cantAlquilado;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
 
     public Cliente() {
     }
@@ -35,6 +41,7 @@ public class Cliente {
         this.nomCompleto = nomCompleto;
         this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
+<<<<<<< HEAD
 
     }
 
@@ -45,14 +52,37 @@ public class Cliente {
         public void setCedula(String cedula) {
             this.cedula = cedula;
         }
+=======
+        this.categoria = categoria;
+        this.cantAlquilado = cantAlquilado;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNomCompleto() {
+        return nomCompleto;
+    }
+>>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
 
         public String getNomCompleto() {
             return nomCompleto;
         }
 
+<<<<<<< HEAD
         public void setNomCompleto(String nomCompleto) {
             this.nomCompleto = nomCompleto;
         }
+=======
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+>>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
 
         public String getFechaNacimiento() {
             return fechaNacimiento;
@@ -66,6 +96,7 @@ public class Cliente {
             return correo;
         }
 
+<<<<<<< HEAD
         public void setCorreo(String correo) {
             this.correo = correo;
         }
@@ -77,6 +108,15 @@ public class Cliente {
         public void setCategoria(int categoria) {
             this.categoria = categoria;
         }
+=======
+    public int getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
+>>>>>>> f6b087012ae75e98bcd5cbf27ba259acd46f112e
 
         public int getCantAlquilado() {
             return cantAlquilado;

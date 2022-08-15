@@ -39,14 +39,14 @@ public class PanelClientes extends javax.swing.JPanel {
         btnRefrescar = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        text = new javax.swing.JTextPane();
         label2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        text = new javax.swing.JTextPane();
 
         setBackground(new java.awt.Color(204, 102, 0));
         setPreferredSize(new java.awt.Dimension(696, 500));
@@ -77,9 +77,6 @@ public class PanelClientes extends javax.swing.JPanel {
                 btnBuscarActionPerformed(evt);
             }
         });
-
-        text.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jScrollPane2.setViewportView(text);
 
         label2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         label2.setText("Datos del cliente");
@@ -112,7 +109,10 @@ public class PanelClientes extends javax.swing.JPanel {
                 tablaClientesMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(tablaClientes);
+        jScrollPane1.setViewportView(tablaClientes);
+
+        text.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        jScrollPane3.setViewportView(text);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,7 +122,7 @@ public class PanelClientes extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
+                        .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,14 +136,13 @@ public class PanelClientes extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(label2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnModificar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnEliminar))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnModificar)
+                                .addGap(42, 42, 42)
+                                .addComponent(btnEliminar))
+                            .addComponent(jScrollPane3))
                         .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
@@ -154,7 +153,7 @@ public class PanelClientes extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(label2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarCliente)
@@ -164,13 +163,14 @@ public class PanelClientes extends javax.swing.JPanel {
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-        
+          AgregarCliente a = new AgregarCliente();
+          a.setVisible(true);
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
@@ -182,30 +182,27 @@ public class PanelClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+
         text.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         if (evt.getClickCount() == 1) {
             JTable receptor = (JTable) evt.getSource();
-//            String datos = "Placa: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nMarca: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
-//                    + "\nModelo: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nAño: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
-//                    + " \nColor: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nCapacidad: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString()
-//                    + "\nCant. Pas: " + receptor.getValueAt(receptor.getSelectedRow(), 6).toString() + "\nPrecio dia: " + receptor.getValueAt(receptor.getSelectedRow(), 7).toString()
-//                    + "\nExtras: " + receptor.getValueAt(receptor.getSelectedRow(), 8).toString() + "\nCondicion: " + receptor.getValueAt(receptor.getSelectedRow(), 9).toString()
-//                    + "\nEstado: " + receptor.getValueAt(receptor.getSelectedRow(), 10).toString() + "\nCant. Alquilado: " + receptor.getValueAt(receptor.getSelectedRow(), 11).toString();
-            
+            String datos = "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nNombre completo: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
+                    + "\nFecha de naciciento: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCorreo: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
+                    + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nCantidad de alquileres " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString();
+
             txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 0).toString());
-//            text.setText(datos);
+            text.setText(datos);
             btnModificar.setEnabled(true);
             btnEliminar.setEnabled(true);
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        
-    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void refrescar() {
         text.setText("");
@@ -222,7 +219,7 @@ public class PanelClientes extends javax.swing.JPanel {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRefrescar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel label2;
     private javax.swing.JTable tablaClientes;

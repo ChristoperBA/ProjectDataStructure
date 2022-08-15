@@ -48,13 +48,16 @@ public class Analisis extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 51));
 
         text1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        text1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         text1.setName(""); // NOI18N
         jScrollPane2.setViewportView(text1);
 
         text2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        text2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane3.setViewportView(text2);
 
         text3.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        text3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane4.setViewportView(text3);
 
         jScrollPane1.setViewportView(jEditorPane1);
