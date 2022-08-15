@@ -4,8 +4,6 @@
  */
 package Clientes;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +18,7 @@ public class ModificarCliente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtNombreC.setEnabled(false);
-        fecha.setEnabled(false);
+        txtFecha.setEnabled(false);
         txtCorreo.setEnabled(false);
         categoria.setEnabled(false);
         btnAgregar.setEnabled(false);
@@ -40,7 +38,6 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         btnCargar = new javax.swing.JButton();
-        fecha = new javax.swing.JSpinner();
         btnAgregar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -50,6 +47,7 @@ public class ModificarCliente extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         categoria = new javax.swing.JComboBox<>();
+        txtFecha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,14 +59,14 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel2.setText("Cedula:");
 
+        txtCedula.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         btnCargar.setText("Cargar datos");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarActionPerformed(evt);
             }
         });
-
-        fecha.setModel(new javax.swing.SpinnerDateModel());
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,18 +122,17 @@ public class ModificarCliente extends javax.swing.JFrame {
                                 .addComponent(btnCargar)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnCancelar)))))
+                                .addComponent(btnCancelar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                    .addComponent(txtNombreC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                    .addComponent(categoria, javax.swing.GroupLayout.Alignment.LEADING, 0, 134, Short.MAX_VALUE)
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -154,7 +151,7 @@ public class ModificarCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,24 +183,17 @@ public class ModificarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        boolean v = false; //Metodo para cargar datos
-        if (v == true) {
-            
-        } else {
-            
-            desbloquearForm();
-        }
+        ListaDC.cargarDatos(txtCedula.getText(), txtNombreC, txtFecha, txtCorreo, categoria);
+        desbloquearForm();
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String c = txtCedula.getText().toUpperCase();
+        String c = txtCedula.getText();
         String n = txtNombreC.getText();
-        Date f = (Date) fecha.getValue();
-        SimpleDateFormat fa = new SimpleDateFormat("dd/MM/yyyy");
-        String fec = fa.format(f);
+        String fec = txtFecha.getText();
         String co = txtCorreo.getText();
 
-        boolean v = ListaDC.agregar(new Cliente(c, n, fec, co, est, 0));
+        boolean v = ListaDC.modificarCliente(c, n, fec, co, est);
         if (v == true) {
             JOptionPane.showMessageDialog(null, "Clienre modificado");
             this.dispose();
@@ -229,8 +219,9 @@ public class ModificarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_categoriaItemStateChanged
 
     private void desbloquearForm() {
+        txtCedula.setEnabled(false);
         txtNombreC.setEnabled(true);
-        fecha.setEnabled(true);
+        txtFecha.setEnabled(true);
         txtCorreo.setEnabled(true);
         categoria.setEnabled(true);
         btnAgregar.setEnabled(true);
@@ -280,7 +271,6 @@ public class ModificarCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCargar;
     private javax.swing.JComboBox<String> categoria;
-    private javax.swing.JSpinner fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -288,8 +278,9 @@ public class ModificarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtCedula;
+    public javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtNombreC;
     // End of variables declaration//GEN-END:variables
 }

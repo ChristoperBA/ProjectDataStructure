@@ -90,7 +90,7 @@ public class Main {
                                 //Modificar
                                 System.out.println("Ingresa la placa, para modificar la informacion: ");
                                 String placa = sc.nextLine();
-                                Stack.modificar(placa);
+//                                Stack.modificar(placa);
                                 break;
                             }
                             case 3 -> {
@@ -101,7 +101,7 @@ public class Main {
                                 //
                                 System.out.println("----------------------------------------Car List----------------------------------------\n");
                                 //Stack.PrintStack();
-                                Stack.SearchCar("BFF126");
+//                                Stack.SearchCar("BFF126");
                                 break;
                             }
                             case 5 -> {

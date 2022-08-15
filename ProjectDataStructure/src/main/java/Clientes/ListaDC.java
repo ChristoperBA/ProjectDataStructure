@@ -1,5 +1,7 @@
 package Clientes;
 
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class ListaDC {
@@ -52,7 +54,47 @@ public class ListaDC {
         return v;
     }
 
-    public static void modificarCliente(String ced, String n, String f, String c, int cat) {
+    public static void cargarDatos(String ced, JTextField n, JTextField f, JTextField c, JComboBox cat) {
+        Node aux = inicio;
+        while (aux != fin) {
+            if (aux.getElemento().getId().equalsIgnoreCase(ced)) {
+                n.setText(aux.getElemento().getNomCompleto());
+                f.setText(aux.getElemento().getFechaNacimiento());
+                c.setText(aux.getElemento().getCorreo());
+                switch (aux.getElemento().getCategoria()) {
+                    case 1 ->
+                        cat.setSelectedIndex(0);
+                    case 2 ->
+                        cat.setSelectedIndex(1);
+                    case 3 ->
+                        cat.setSelectedIndex(2);
+                    case 4 ->
+                        cat.setSelectedIndex(3);
+                    default -> {
+                    }
+                }
+                break;
+            }
+            aux = aux.getSiguiente();
+        }
+        if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
+            n.setText(fin.getElemento().getNomCompleto());
+            f.setText(fin.getElemento().getFechaNacimiento());
+            c.setText(fin.getElemento().getCorreo());
+            switch (fin.getElemento().getCategoria()) {
+                case 1 ->
+                    cat.setSelectedIndex(0);
+                case 2 ->
+                    cat.setSelectedIndex(1);
+                case 3 ->
+                    cat.setSelectedIndex(2);
+                case 4 ->
+                    cat.setSelectedIndex(3);
+            }
+        }
+    }
+
+    public static boolean modificarCliente(String ced, String n, String f, String c, int cat) {
         Node aux = inicio;
         boolean v = false;
         while (aux != fin) {
@@ -72,6 +114,7 @@ public class ListaDC {
             fin.getElemento().setCategoria(cat);
             v = true;
         }
+        return v;
     }
 
     public static String cambiarCategoria(String ced, String tipo) {

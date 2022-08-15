@@ -12,9 +12,9 @@ import javax.swing.table.DefaultTableModel;
  * @author antho
  */
 public class PanelClientes extends javax.swing.JPanel {
-
+    
     DefaultTableModel modelo;
-
+    
     public PanelClientes() {
         initComponents();
         String[] titulos = {"Cedula", "Nombre completo", "Fecha de nacimiento", "Correo", "Categoria", "Cant. Alquileres"};
@@ -169,8 +169,8 @@ public class PanelClientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-          AgregarCliente a = new AgregarCliente();
-          a.setVisible(true);
+        AgregarCliente a = new AgregarCliente();
+        a.setVisible(true);
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
@@ -182,12 +182,14 @@ public class PanelClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+        
         text.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-
+        ModificarCliente m = new ModificarCliente();
+        m.txtCedula.setText(txtOculta.getText());
+        m.setVisible(true);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
@@ -196,14 +198,14 @@ public class PanelClientes extends javax.swing.JPanel {
             String datos = "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nNombre completo: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
                     + "\nFecha de naciciento: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCorreo: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
                     + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nCantidad de alquileres " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString();
-
+            
             txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 0).toString());
             text.setText(datos);
             btnModificar.setEnabled(true);
             btnEliminar.setEnabled(true);
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
-
+    
     private void refrescar() {
         text.setText("");
         txtBuscar.setText("");
