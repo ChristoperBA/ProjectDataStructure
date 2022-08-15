@@ -260,6 +260,77 @@ public class Queue {
 
     }
 
+    public static String promedio() {
+        int cont1 = 0;
+        int cont2 = 0;
+        int cont3 = 0;
+        int cont4 = 0;
+        double total1 = 0;
+        double total2 = 0;
+        double total3 = 0;
+        double total4 = 0;
+        String promedios;
+        Node<Solicitud> aux = head;
+        while (aux != tail) {
+            if (aux.getValue().getCategoria().equalsIgnoreCase("ZAFIRO")) {
+                if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    cont1 = cont1 + 1;
+                    total1 = total1 + aux.getValue().getPrecioTotal();
+                }
+            }
+            if (aux.getValue().getCategoria().equalsIgnoreCase("ORO")) {
+                if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    cont2 = cont2 + 1;
+                    total2 = total2 + aux.getValue().getPrecioTotal();
+                }
+            }
+            if (aux.getValue().getCategoria().equalsIgnoreCase("PLATA")) {
+                if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    cont3 = cont3 + 1;
+                    total3 = total3 + aux.getValue().getPrecioTotal();
+                }
+            }
+            if (aux.getValue().getCategoria().equalsIgnoreCase("BRONCE")) {
+                if (aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || aux.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    cont4 = cont4 + 1;
+                    total4 = total4 + aux.getValue().getPrecioTotal();
+                }
+            }
+            aux = aux.getNext();
+        }
+        if (tail.getValue().getCategoria().equalsIgnoreCase("ZAFIRO")) {
+            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                cont1 = cont1 + 1;
+                total1 = total1 + tail.getValue().getPrecioTotal();
+            }
+        }
+        if (tail.getValue().getCategoria().equalsIgnoreCase("ORO")) {
+            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                cont2 = cont2 + 1;
+                total2 = total2 + tail.getValue().getPrecioTotal();
+            }
+        }
+        if (aux.getValue().getCategoria().equalsIgnoreCase("PLATA")) {
+            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                cont3 = cont3 + 1;
+                total3 = total3 + tail.getValue().getPrecioTotal();
+            }
+        }
+        if (tail.getValue().getCategoria().equalsIgnoreCase("BRONCE")) {
+            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                cont4 = cont4 + 1;
+                total4 = total4 + tail.getValue().getPrecioTotal();
+            }
+        }
+
+        promedios = "\n\nZAFIRO\nPromedio: " + (total1 / cont1) + "\nTotal pagado: " + (total1)
+                + "\n\nORO\nPromedio: " + (total2 / cont2) + "\nTotal pagado: " + (total2)
+                + "\n\nPLATA\nPromedio: " + (total3 / cont3) + "\nTotal pagado: " + (total3)
+                + "\n\nBRONCE\nPromedio: " + (total4 / cont4) + "\nTotal pagado: " + (total4);
+
+        return promedios;
+    }
+
     public static boolean asignarVehiculo(String ced, double total, String placa, String nuevoEst) {
 
         boolean v = false;

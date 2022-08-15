@@ -4,16 +4,18 @@
  */
 package Principal;
 
+import Alquiler.Queue;
+
 /**
  *
  * @author antho
  */
-public class Analisis extends javax.swing.JPanel {
+public class PanelAnalisis extends javax.swing.JPanel {
 
     /**
      * Creates new form Analisis1
      */
-    public Analisis() {
+    public PanelAnalisis() {
         initComponents();
         text1.setText("Top 5 de los clientes con mayor cantidad de alquileres realizados.");
         text2.setText("Top 5 del vehículo que se ha alquilado la mayor cantidad de veces.");
@@ -21,6 +23,9 @@ public class Analisis extends javax.swing.JPanel {
         text1.setEnabled(false);
         text2.setEnabled(false);
         text3.setEnabled(false);
+        text4.setText("");
+        text5.setText("");
+        text6.setText(Queue.promedio());
     }
 
     /**
@@ -39,11 +44,11 @@ public class Analisis extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         text3 = new javax.swing.JTextPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
+        text4 = new javax.swing.JEditorPane();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        text5 = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jEditorPane2 = new javax.swing.JEditorPane();
+        text6 = new javax.swing.JEditorPane();
 
         setBackground(new java.awt.Color(0, 153, 51));
 
@@ -60,11 +65,17 @@ public class Analisis extends javax.swing.JPanel {
         text3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane4.setViewportView(text3);
 
-        jScrollPane1.setViewportView(jEditorPane1);
+        text4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        text4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(text4);
 
-        jScrollPane5.setViewportView(jTextPane1);
+        text5.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        text5.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jScrollPane5.setViewportView(text5);
 
-        jScrollPane6.setViewportView(jEditorPane2);
+        text6.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        text6.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jScrollPane6.setViewportView(text6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,17 +115,17 @@ public class Analisis extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JEditorPane jEditorPane2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane text1;
     private javax.swing.JTextPane text2;
     private javax.swing.JTextPane text3;
+    private javax.swing.JEditorPane text4;
+    private javax.swing.JTextPane text5;
+    private javax.swing.JEditorPane text6;
     // End of variables declaration//GEN-END:variables
 }

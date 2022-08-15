@@ -9,21 +9,30 @@ import javax.swing.table.DefaultTableModel;
 
 public class StackCars {
 
-    private static NodeCar top;
+    private static NodeCar<Car> top;
 
     Scanner sc = new Scanner(System.in);
 
     //Push usa void porque no devuelve nada
     public static boolean push(Car value) {
 
-        NodeCar newNode = new NodeCar(value);
+        NodeCar<Car> newNode = new NodeCar(value);
         boolean v;
         if (top == null) {
             top = newNode;
             v = true;
-        } else {
+        } else if (top.getValue().getYears() < value.getYears()) {
             newNode.setNext(top);
             top = newNode;
+            v = true;
+        } else {
+            NodeCar<Car> aux = top;
+            while (aux.getNext().getValue().getYears() > value.getYears()) {
+                aux = aux.getNext();
+            }
+            NodeCar<Car> temp = new NodeCar<>(value);
+            temp.setNext(aux.getNext());
+            aux.setNext(temp);
             v = true;
         }
 
@@ -31,7 +40,7 @@ public class StackCars {
     }
 
     public void PrintStack() {
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         while (aux != null) {
             System.out.println(aux.getValue().toString());
             aux = aux.getNext();
@@ -39,7 +48,7 @@ public class StackCars {
     }
 
     public static void SearchCar(String Placa) {
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         while (aux != null && !Placa.equals(aux.getValue().getPlaca())) {
             aux = aux.getNext();
         }
@@ -68,7 +77,7 @@ public class StackCars {
         [9] Modificar Extra                        
         [10] Salir del sistema""");
             OpcionModificar = Integer.parseInt(sc.nextLine());
-            NodeCar aux = top;
+            NodeCar<Car> aux = top;
             while (aux != null && !Placa.equals(aux.getValue().getPlaca())) {
                 aux = aux.getNext();
             }
@@ -147,7 +156,7 @@ public class StackCars {
 
     public static void buscar(String placa, DefaultTableModel modelo) {
 
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         while (aux != null) {
             if (aux.getValue().getPlaca().equalsIgnoreCase(placa)) {
                 while (modelo.getRowCount() > 0) {
@@ -169,12 +178,14 @@ public class StackCars {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         while (aux != null) {
-            Object[] TablaC = {aux.getValue().getPlaca(), aux.getValue().getMarca(), aux.getValue().getModel(), aux.getValue().getYears(),
-                aux.getValue().getColor(), aux.getValue().getCylinderCapacity(), aux.getValue().getPassangers(), aux.getValue().getPrice(),
-                aux.getValue().getExtra(), aux.getValue().getCondition(), aux.getValue().getEstado(), aux.getValue().getCantAlquilado()};
-            modelo.addRow(TablaC);
+            if (!"######".equals(aux.getValue().getPlaca())) {
+                Object[] TablaC = {aux.getValue().getPlaca(), aux.getValue().getMarca(), aux.getValue().getModel(), aux.getValue().getYears(),
+                    aux.getValue().getColor(), aux.getValue().getCylinderCapacity(), aux.getValue().getPassangers(), aux.getValue().getPrice(),
+                    aux.getValue().getExtra(), aux.getValue().getCondition(), aux.getValue().getEstado(), aux.getValue().getCantAlquilado()};
+                modelo.addRow(TablaC);
+            }
             aux = aux.getNext();
         }
 
@@ -186,7 +197,7 @@ public class StackCars {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         while (aux != null) {
             if (aux.getValue().getPassangers() == cantP && aux.getValue().getMarca().equalsIgnoreCase(ma)
                     && aux.getValue().getModel().equalsIgnoreCase(mo) || aux.getValue().getExtra().equalsIgnoreCase(ex)) {
@@ -206,7 +217,7 @@ public class StackCars {
 
     public static void cambiarEstadoVehiculo(String placa, String tipo) {
 
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         if (tipo.equalsIgnoreCase("Asignar")) {
             while (aux != null) {
                 if (aux.getValue().getPlaca().equalsIgnoreCase(placa)) {
@@ -229,12 +240,15 @@ public class StackCars {
         }
     }
 
-    public static boolean modificarVehiculo(String placa, String c, String cl, double p, String ex, String cd, String est) {
+    public static boolean modificarVehiculo(String placa, String ma, String mo, int añ, String c, String cl, double p, String ex, String cd, String est) {
 
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         boolean v = false;
         while (aux != null) {
             if (placa.equals(aux.getValue().getPlaca())) {
+                aux.getValue().setMarca(ma);
+                aux.getValue().setModel(mo);
+                aux.getValue().setYears(añ);
                 aux.getValue().setColor(c);
                 aux.getValue().setCylinderCapacity(cl);
                 aux.getValue().setPrice(p);
@@ -252,7 +266,7 @@ public class StackCars {
     }
 
     public static boolean validarVehiculo(String placa) {
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         boolean v = false;
         while (aux != null) {
             if (aux.getValue().getPlaca().equalsIgnoreCase(placa)) {
@@ -266,7 +280,7 @@ public class StackCars {
 
     public static void agregarDatos(String placa, JTextField ma, JTextField mo, JTextField añ, JTextField cl, JTextField cp,
             JSpinner ps, JTextField pc, JTextField ex, JTextField cd, JComboBox est) {
-        NodeCar aux = top;
+        NodeCar<Car> aux = top;
         while (aux != null) {
             if (aux.getValue().getPlaca().equalsIgnoreCase(placa)) {
                 ma.setText(aux.getValue().getMarca());

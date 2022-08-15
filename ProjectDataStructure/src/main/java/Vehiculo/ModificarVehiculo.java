@@ -258,13 +258,16 @@ public class ModificarVehiculo extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         String p = txtPlaca.getText();
+        String ma = txtMarca.getText();
+        String mo = txtModelo.getText();
+        int añ = Integer.parseInt(txtAño.getText());
         String cl = txtColor.getText();
         String cp = txtCapacidad.getText();
         double pc = Double.parseDouble(txtPrecio.getText());
         String ex = txtExtra.getText();
         String cd = txtCondicion.getText();
 
-        boolean v = StackCars.modificarVehiculo(p, cl, cp, pc, ex, cd, est);
+        boolean v = StackCars.modificarVehiculo(p, ma, mo, añ, cl, cp, pc, ex, cd, est);
         if (v == true) {
             JOptionPane.showMessageDialog(null, "Datos del vehiculo modificados");
             this.dispose();
@@ -293,10 +296,9 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         StackCars.agregarDatos(txtPlaca.getText(), txtMarca, txtModelo, txtAño, txtColor, txtCapacidad,
                 pasajeros, txtPrecio, txtExtra, txtCondicion, estado);
         btnModificar.setEnabled(true);
+
     }//GEN-LAST:event_BtnCargarActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */

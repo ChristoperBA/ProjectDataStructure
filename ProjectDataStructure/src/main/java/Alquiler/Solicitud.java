@@ -16,7 +16,6 @@ public class Solicitud {
     private int cantidadPasajeros;
     private String marca;
     private String modelo;
-    private int año;
     private String extras;
     private double precioTotal;
     private String placaVehiculo;
@@ -26,14 +25,13 @@ public class Solicitud {
     public Solicitud() {
     }
 
-    public Solicitud(String fecha, String cedulaCliente, int dias, int cantidadPasajeros, String marca, String modelo, int año, String extras, double precioTotal, String placaVehiculo, String categoria, String estadoSolicitud) {
+    public Solicitud(String fecha, String cedulaCliente, int dias, int cantidadPasajeros, String marca, String modelo, String extras, double precioTotal, String placaVehiculo, String categoria, String estadoSolicitud) {
         this.fecha = fecha;
         this.cedulaCliente = cedulaCliente;
         this.dias = dias;
         this.cantidadPasajeros = cantidadPasajeros;
         this.marca = marca;
         this.modelo = modelo;
-        this.año = año;
         this.extras = extras;
         this.precioTotal = precioTotal;
         this.placaVehiculo = placaVehiculo;
@@ -87,14 +85,6 @@ public class Solicitud {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
-
-    public int getAño() {
-        return año;
-    }
-
-    public void setAño(int año) {
-        this.año = año;
     }
 
     public String getExtras() {

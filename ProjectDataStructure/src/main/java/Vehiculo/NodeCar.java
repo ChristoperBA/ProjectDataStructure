@@ -1,30 +1,33 @@
 
 package Vehiculo;
 
-public class NodeCar {
+public class NodeCar <T>{
 
-    private Car value;
-    private NodeCar next;
+    private T value;
+    private NodeCar<T> next;
 
-    public NodeCar(Car value) {
+    public NodeCar() {
+    }
+
+    public NodeCar(T value) {
         this.value = value;
     }
 
-    public Car getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(Car value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
-    public NodeCar getNext() {
+    public NodeCar<T> getNext() {
         return next;
     }
 
-    public void setNext(NodeCar next) {
+    public void setNext(NodeCar<T> next) {
         this.next = next;
     }
-
+    
 }
 

@@ -52,65 +52,47 @@ public class ListaDC {
         return v;
     }
 
-    public static Node<Cliente> extraer(String ced) {
-        Node<Cliente> aux = inicio;
-        if (!esVacia()) {
-            while (aux != fin) {
-                if (aux.getSiguiente().getElemento().getId().equalsIgnoreCase(ced)) {
-                    aux = aux.getSiguiente();
-                    break;
-                }
-                aux = aux.getSiguiente();
+    public static void modificarCliente(String ced, String n, String f, String c, int cat) {
+        Node aux = inicio;
+        boolean v = false;
+        while (aux != fin) {
+            if (aux.getElemento().getId().equalsIgnoreCase(ced)) {
+                aux.getElemento().setNomCompleto(n);
+                aux.getElemento().setFechaNacimiento(f);
+                aux.getElemento().setCorreo(c);
+                aux.getElemento().setCategoria(cat);
+                v = true;
             }
+            aux = aux.getSiguiente();
         }
-        return aux;
+        if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
+            fin.getElemento().setNomCompleto(n);
+            fin.getElemento().setFechaNacimiento(f);
+            fin.getElemento().setCorreo(c);
+            fin.getElemento().setCategoria(cat);
+            v = true;
+        }
     }
-//
-//    public void modificar(String curso) {
-//        String s = "";
-//        Node aux = inicio;
-//        Cliente c = new Cliente();
-//        c.setNomCompleto(JOptionPane.showInputDialog(null,
-//                "Digite el nuevo nombre: "));
-//        c.setFechaNacimiento(JOptionPane.showInputDialog(null,
-//                "Digite la nueva fecha de nacimiento: "));
-//        c.setCategoria(Integer.parseInt(JOptionPane.showInputDialog(null,
-//                "Digite la nueva categoría: ")));
-//        if (aux.getElemento().getNomCompleto().equals(curso)) {
-//            aux.setElemento(c);
-//            aux = aux.getSiguiente();
-//            while (aux != inicio) {
-//                if (aux.getElemento().getNomCompleto().equals(curso)) {
-//                    c.setNomCompleto(JOptionPane.showInputDialog(null,
-//                            "Digite el nuevo nombre: "));
-//                    c.setFechaNacimiento(JOptionPane.showInputDialog(null,
-//                            "Digite la nueva fecha de nacimiento: "));
-//                    c.setCategoria(Integer.parseInt(JOptionPane.showInputDialog(null,
-//                            "Digite la nueva categoría: ")));
-//                    aux.setElemento(c);
-//                }
-//                aux = aux.getSiguiente();
-//            }
-//            JOptionPane.showMessageDialog(null, "Los datos fueron modificados!");
-//        }
-//
-//    }
 
-    public static void cambiarCategoria(String ced, String tipo) {
+    public static String cambiarCategoria(String ced, String tipo) {
 
         Node<Cliente> aux = inicio;
-
+        String cat = "";
         if (tipo.equalsIgnoreCase("Subir Categoria")) {
             while (aux != fin) {
                 if (aux.getElemento().getId().equalsIgnoreCase(ced)) {
                     switch (aux.getElemento().getCategoria()) {
-                        case 2 ->
+                        case 2 -> {
                             aux.getElemento().setCategoria(1);
-                        case 3 ->
+                            cat = "ZAFIRO";
+                        }
+                        case 3 -> {
                             aux.getElemento().setCategoria(2);
-                        case 4 ->
+                            cat = "ORO";
+                        }
+                        case 4 -> {
                             aux.getElemento().setCategoria(3);
-                        default -> {
+                            cat = "PLATA";
                         }
                     }
                 }
@@ -119,13 +101,17 @@ public class ListaDC {
             if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                 if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                     switch (fin.getElemento().getCategoria()) {
-                        case 2 ->
+                        case 2 -> {
                             aux.getElemento().setCategoria(1);
-                        case 3 ->
+                            cat = "ZAFIRO";
+                        }
+                        case 3 -> {
                             fin.getElemento().setCategoria(2);
-                        case 4 ->
+                            cat = "ORO";
+                        }
+                        case 4 -> {
                             fin.getElemento().setCategoria(3);
-                        default -> {
+                            cat = "PLATA";
                         }
                     }
                 }
@@ -135,13 +121,17 @@ public class ListaDC {
             while (aux != fin) {
                 if (aux.getElemento().getId().equalsIgnoreCase(ced)) {
                     switch (aux.getElemento().getCategoria()) {
-                        case 1 ->
+                        case 1 -> {
                             aux.getElemento().setCategoria(2);
-                        case 2 ->
+                            cat = "ORO";
+                        }
+                        case 2 -> {
                             aux.getElemento().setCategoria(3);
-                        case 3 ->
+                            cat = "PLATA";
+                        }
+                        case 3 -> {
                             aux.getElemento().setCategoria(4);
-                        default -> {
+                            cat = "BRONCE";
                         }
                     }
                 }
@@ -150,18 +140,25 @@ public class ListaDC {
             if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                 if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                     switch (fin.getElemento().getCategoria()) {
-                        case 1 ->
+                        case 1 -> {
                             aux.getElemento().setCategoria(2);
-                        case 2 ->
+                            cat = "ORO";
+                        }
+                        case 2 -> {
                             fin.getElemento().setCategoria(3);
-                        case 3 ->
+                            cat = "PLATA";
+                        }
+                        case 3 -> {
                             fin.getElemento().setCategoria(4);
+                            cat = "BRONCE";
+                        }
                         default -> {
                         }
                     }
                 }
             }
         }
+        return cat;
     }
 
     public static void llenarTablaC(DefaultTableModel modelo) {

@@ -4,7 +4,6 @@
  */
 package Alquiler;
 
-import Clientes.Cliente;
 import Clientes.ListaDC;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -267,6 +266,7 @@ public class AgregarSolicitud extends javax.swing.JFrame {
             desbloquearForm();
             textDatos.setText(ListaDC.mostrarCliente(txtCedula.getText()));
             txtCategoria.setText(ListaDC.estado);
+            txtCedula.setText(txtCedula.getText().toUpperCase());
         } else {
             JOptionPane.showMessageDialog(null, """
                                                  No existe ningun cliente asociado con la cedula ingresada 
@@ -286,18 +286,22 @@ public class AgregarSolicitud extends javax.swing.JFrame {
         String ma = txtMarca.getText();
         String mo = txtModelo.getText();
         String ex = txtExtras.getText();
-        boolean v = Queue.enqueue(new Solicitud(fec, ced, d, cP, ma, mo, 0000, ex, 0, "####", cat, "Registrada"));
-        if (v == true) {
-            if ( d>40){
-                ListaDC.cambiarCategoria(ced, "Subir Categoria");
-                ListaDC.extraer(ced);
+        if (d > 40) {
+            cat = ListaDC.cambiarCategoria(ced, "Subir Categoria");
+            boolean v = Queue.enqueue(new Solicitud(fec, ced, d, cP, ma, mo, ex, 0, "####", cat, "Registrada"));
+            if (v == true) {
                 JOptionPane.showMessageDialog(null, "Solicitud Agregada \nLa categoria del cliente ha cambiado");
-            }else{
-                JOptionPane.showMessageDialog(null, "Solicitud Agregada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Solicitud no agregada");
             }
-            this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Solicitud no agregada");
+            boolean v = Queue.enqueue(new Solicitud(fec, ced, d, cP, ma, mo, ex, 0, "####", cat, "Registrada"));
+            if (v == true) {
+                JOptionPane.showMessageDialog(null, "Solicitud Agregada");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Solicitud no agregada");
+            }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 

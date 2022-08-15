@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
  *
  * @author antho
  */
-public class AgregarCliente extends javax.swing.JFrame {
+public class ModificarCliente extends javax.swing.JFrame {
 
     int est = 0;
 
-    public AgregarCliente() {
+    public ModificarCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
         txtNombreC.setEnabled(false);
@@ -39,7 +39,7 @@ public class AgregarCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
-        btnValidar = new javax.swing.JButton();
+        btnCargar = new javax.swing.JButton();
         fecha = new javax.swing.JSpinner();
         btnAgregar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -56,15 +56,15 @@ public class AgregarCliente extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 102, 0));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
-        jLabel1.setText("Agregar Cliente");
+        jLabel1.setText("Modificar Cliente");
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel2.setText("Cedula:");
 
-        btnValidar.setText("Validar Cliente");
-        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+        btnCargar.setText("Cargar datos");
+        btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidarActionPerformed(evt);
+                btnCargarActionPerformed(evt);
             }
         });
 
@@ -121,7 +121,7 @@ public class AgregarCliente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnAgregar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnValidar)))
+                                .addComponent(btnCargar)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -132,11 +132,11 @@ public class AgregarCliente extends javax.swing.JFrame {
                                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 4, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnCancelar)))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +167,7 @@ public class AgregarCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnCancelar)
-                    .addComponent(btnValidar))
+                    .addComponent(btnCargar))
                 .addContainerGap())
         );
 
@@ -185,15 +185,15 @@ public class AgregarCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
-        boolean v = ListaDC.validarCliente(txtCedula.getText());
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        boolean v = false; //Metodo para cargar datos
         if (v == true) {
-            JOptionPane.showMessageDialog(null, "Ya existe la cedula \nIngrese otra diferente ");
+            
         } else {
-            txtCedula.setText(txtCedula.getText().toUpperCase());
+            
             desbloquearForm();
         }
-    }//GEN-LAST:event_btnValidarActionPerformed
+    }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String c = txtCedula.getText().toUpperCase();
@@ -205,10 +205,10 @@ public class AgregarCliente extends javax.swing.JFrame {
 
         boolean v = ListaDC.agregar(new Cliente(c, n, fec, co, est, 0));
         if (v == true) {
-            JOptionPane.showMessageDialog(null, "Cliente agregado");
+            JOptionPane.showMessageDialog(null, "Clienre modificado");
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Cliente no agregado");
+            JOptionPane.showMessageDialog(null, "Error al modificar cliente");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -234,6 +234,7 @@ public class AgregarCliente extends javax.swing.JFrame {
         txtCorreo.setEnabled(true);
         categoria.setEnabled(true);
         btnAgregar.setEnabled(true);
+        btnCargar.setEnabled(false);
     }
 
     /**
@@ -253,21 +254,23 @@ public class AgregarCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarCliente().setVisible(true);
+                new ModificarCliente().setVisible(true);
             }
         });
     }
@@ -275,7 +278,7 @@ public class AgregarCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnValidar;
+    private javax.swing.JButton btnCargar;
     private javax.swing.JComboBox<String> categoria;
     private javax.swing.JSpinner fecha;
     private javax.swing.JLabel jLabel1;
