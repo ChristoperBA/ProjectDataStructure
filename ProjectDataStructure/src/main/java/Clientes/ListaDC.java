@@ -18,7 +18,7 @@ public class ListaDC {
         return inicio == null;
     }
 
-<<<<<<< HEAD
+
     public void agregar() {
         Cliente c = new Cliente();
         c.setCedula(JOptionPane.showInputDialog(null,"Digite su ID: "));
@@ -32,37 +32,37 @@ public class ListaDC {
         
         Node nuevo = new Node();
         nuevo.setElemento(c);
-=======
+
     public static void agregar(Cliente c) {
         Node<Cliente> nuevo = new Node(c);
->>>>>>> 1b9d9c3e17fe495aafc33ee2d168fb7a41348431
+
         if (esVacia()) {
             inicio = nuevo;
             fin = nuevo;
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
-<<<<<<< HEAD
-//        } else if (c.getCategoria() < inicio.getElemento().getCategoria()) {
-//            nuevo.setSiguiente(inicio);
-//            inicio = nuevo;
-//            fin.setSiguiente(inicio);
-//            inicio.setAnterior(fin);
-//        } else if (c.getCategoria() >= fin.getElemento().getCategoria()) {
-//            fin.setSiguiente(nuevo);
-//            fin = fin.getSiguiente(); //fin=nuevo;
-//            fin.setSiguiente(inicio);
-//            inicio.setAnterior(fin);
-//        } else {
-//            Node aux = inicio;
-//            while (aux.getSiguiente().getElemento().getCategoria()< c.getCategoria()) 
-//            {
-//                aux = aux.getSiguiente();
-//            }
-//            nuevo.setSiguiente(aux.getSiguiente());
-//            nuevo.setAnterior(aux);
-//            aux.setSiguiente(nuevo);
-//            nuevo.getSiguiente().setAnterior(nuevo);
-=======
+
+        } else if (c.getCategoria() < inicio.getElemento().getCategoria()) {
+            nuevo.setSiguiente(inicio);
+            inicio = nuevo;
+            fin.setSiguiente(inicio);
+            inicio.setAnterior(fin);
+        } else if (c.getCategoria() >= fin.getElemento().getCategoria()) {
+            fin.setSiguiente(nuevo);
+            fin = fin.getSiguiente(); //fin=nuevo;
+            fin.setSiguiente(inicio);
+            inicio.setAnterior(fin);
+        } else {
+            Node aux = inicio;
+            while (aux.getSiguiente().getElemento().getCategoria()< c.getCategoria()) 
+            {
+                aux = aux.getSiguiente();
+            }
+            nuevo.setSiguiente(aux.getSiguiente());
+            nuevo.setAnterior(aux);
+            aux.setSiguiente(nuevo);
+            nuevo.getSiguiente().setAnterior(nuevo);
+
         } else if (c.getCategoria() < inicio.getElemento().getCategoria()) {
             nuevo.setSiguiente(inicio);
             inicio = nuevo;
@@ -82,7 +82,6 @@ public class ListaDC {
             nuevo.setAnterior(aux);
             aux.setSiguiente(nuevo);
             nuevo.getSiguiente().setAnterior(nuevo);
->>>>>>> 1b9d9c3e17fe495aafc33ee2d168fb7a41348431
         }
     }
 
@@ -129,7 +128,7 @@ public class ListaDC {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-<<<<<<< HEAD
+
     }
 
     public void modificar(String curso) {
@@ -158,7 +157,7 @@ public class ListaDC {
                 aux = aux.getSiguiente();
             }
             JOptionPane.showMessageDialog(null, "Los datos fueron modificados!");
-=======
+
         Node<Cliente> aux = inicio;
         while (aux != fin) {
             String s = categoria(aux.getElemento().getCategoria());
@@ -166,7 +165,7 @@ public class ListaDC {
                 aux.getElemento().getCorreo(), s, aux.getElemento().getCantAlquilado()};
             modelo.addRow(TablaC);
             aux = aux.getSiguiente();
->>>>>>> 1b9d9c3e17fe495aafc33ee2d168fb7a41348431
+
         }
         String s = categoria(fin.getElemento().getCategoria());
         Object[] TablaC = {fin.getElemento().getId(), fin.getElemento().getNomCompleto(), fin.getElemento().getFechaNacimiento(),
