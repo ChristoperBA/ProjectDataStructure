@@ -17,22 +17,49 @@ public class ListaDC {
         return inicio == null;
     }
 
-    public static boolean agregar(Cliente c) {
-        Node<Cliente> nuevo = new Node(c);
+    public static boolean agregar(Cliente cliente) {
+        Node<Cliente> nuevo = new Node(cliente);
         boolean v = false;
+
         if (esVacia()) {
             inicio = nuevo;
             fin = nuevo;
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
+
+
+        } else if (cliente.getCategoria() < inicio.getElemento().getCategoria()) {
+            nuevo.setSiguiente(inicio);
+            inicio = nuevo;
+            fin.setSiguiente(inicio);
+            inicio.setAnterior(fin);
+        } else if (cliente.getCategoria() >= fin.getElemento().getCategoria()) {
+            fin.setSiguiente(nuevo);
+            fin = fin.getSiguiente(); //fin=nuevo;
+            fin.setSiguiente(inicio);
+            inicio.setAnterior(fin);
+        } else {
+            Node aux = inicio;
+            while (aux.getSiguiente().getElemento().getCategoria()< c.getCategoria()) 
+            {
+                aux = aux.getSiguiente();
+            }
+            nuevo.setSiguiente(aux.getSiguiente());
+            nuevo.setAnterior(aux);
+            aux.setSiguiente(nuevo);
+            nuevo.getSiguiente().setAnterior(nuevo);
+
+
             v = true;
-        } else if (c.getCategoria() < inicio.getElemento().getCategoria()) {
+            
+         if(){
+        } else if (cliente.getCategoria() < inicio.getElemento().getCategoria()) {
             nuevo.setSiguiente(inicio);
             inicio = nuevo;
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
             v = true;
-        } else if (c.getCategoria() >= fin.getElemento().getCategoria()) {
+        } else if (cliente.getCategoria() >= fin.getElemento().getCategoria()) {
             fin.setSiguiente(nuevo);
             fin = fin.getSiguiente(); //fin=nuevo;
             fin.setSiguiente(inicio);
@@ -47,7 +74,9 @@ public class ListaDC {
             nuevo.setAnterior(aux);
             aux.setSiguiente(nuevo);
             nuevo.getSiguiente().setAnterior(nuevo);
+
             v = true;
+
         }
         return v;
     }
@@ -74,7 +103,18 @@ public class ListaDC {
         }
     }
 
+<<<<<<< HEAD
     public static String cambiarCategoria(String ced, String tipo) {
+=======
+    public static void llenarTablaC(DefaultTableModel modelo) {
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+
+    }
+
+    public static void cambiarCategoria(String ced, String tipo) {
+>>>>>>> 723283de0231eeb2a3c51193e691290ad9421ccc
 
         Node<Cliente> aux = inicio;
         String cat = "";
@@ -137,6 +177,10 @@ public class ListaDC {
                 }
                 aux = aux.getSiguiente();
             }
+
+            JOptionPane.showMessageDialog(null, "Los datos fueron modificados!");
+
+
             if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                 if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                     switch (fin.getElemento().getCategoria()) {
@@ -165,6 +209,7 @@ public class ListaDC {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
+
         Node<Cliente> aux = inicio;
         while (aux != fin) {
             String s = categoria(aux.getElemento().getCategoria());
@@ -172,6 +217,7 @@ public class ListaDC {
                 aux.getElemento().getCorreo(), s, aux.getElemento().getCantAlquilado()};
             modelo.addRow(TablaC);
             aux = aux.getSiguiente();
+
         }
         String s = categoria(fin.getElemento().getCategoria());
         Object[] TablaC = {fin.getElemento().getId(), fin.getElemento().getNomCompleto(), fin.getElemento().getFechaNacimiento(),

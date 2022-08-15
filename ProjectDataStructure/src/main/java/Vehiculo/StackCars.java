@@ -60,7 +60,7 @@ public class StackCars {
         }
     }
 
-    public void modificar(String Placa) {
+    public void Modify(String Placa) {
         int OpcionModificar;
         do {
             System.out.println("""
@@ -75,7 +75,11 @@ public class StackCars {
         [7] Modificar Precio
         [8] Modificar Condicion 
         [9] Modificar Extra                        
-        [10] Salir del sistema""");
+        [8] Modificar Extra 
+        [9] Modificar Condicion
+        [10] Modificar Estado 
+        [11] Modificar Cantidad Alquilado                                             
+        [12] Salir del sistema""");
             OpcionModificar = Integer.parseInt(sc.nextLine());
             NodeCar<Car> aux = top;
             while (aux != null && !Placa.equals(aux.getValue().getPlaca())) {
@@ -117,25 +121,33 @@ public class StackCars {
                     case 7 -> {
                         System.out.println("Ingresa el dato a modificar: ");
                         String dato = sc.nextLine();
-                        aux.getValue().setPrice(Integer.parseInt(dato));
+                        aux.getValue().setPrice(Double.parseDouble(dato));
                     }
                     case 8 -> {
                         System.out.println("Ingresa el dato a modificar: ");
                         String dato = sc.nextLine();
-                        aux.getValue().setCondition(dato);
+                        aux.getValue().setExtra(dato);
                     }
                     case 9 -> {
                         System.out.println("Ingresa el dato a modificar: ");
                         String dato = sc.nextLine();
-                        aux.getValue().setExtra(dato);
+                        aux.getValue().setCondition(dato);
                     }
                     case 10 -> {
+                        System.out.println("Ingresa el dato a modificar: ");
+                        String dato = sc.nextLine();
+                        aux.getValue().setEstado(dato);
+                    }
+                    case 11 -> {
+                        System.out.println("Ingresa el dato a modificar: ");
+                        String dato = sc.nextLine();
+                        aux.getValue().setCantAlquilado(Integer.parseInt(dato));                    }
+                    case 12 -> {
                         System.out.println("""
-                           Cerrando Programa...
-                           El programa fue cerrado con exito
-                             
-                           ___________________________Fin del programa___________________________""");
-
+                               Cargando menu
+                               ...
+                               :)
+                               ___________________________Fin del programa___________________________""");
                     }
                     default -> {
                         System.out.println("Opcion Invalida, Intentelo nuevamente\n:(");
@@ -151,7 +163,39 @@ public class StackCars {
 
     }
 
-    public void eliminar(String Placa) {
+    public void Delete(String Placa) {
+        NodeCar aux = top;
+        while (aux != null && !Placa.equals(aux.getValue().getPlaca()))
+        {
+            aux = aux.getNext();
+        }
+        if(aux!=null){
+            //primero
+            if(aux==top){
+                top=aux.getNext();
+            }else{
+                NodeCar temp = top;
+                    while (temp.getNext()!=aux)
+                    {
+                        temp = temp.getNext();
+                    }
+                //Ultimo
+                if(aux.getNext()==null){
+
+                temp.setNext(null);
+                }
+                //medio
+                else{
+
+                    temp.setNext(aux.getNext());
+                }
+
+            }
+        }else{
+            System.out.println("El vehiculo ingresado, no se encuentra en nuestra  base de datos");
+        }
+
+
     }
 
     public static void buscar(String placa, DefaultTableModel modelo) {
