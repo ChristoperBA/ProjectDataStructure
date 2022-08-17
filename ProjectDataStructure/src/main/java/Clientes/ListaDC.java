@@ -53,6 +53,43 @@ public class ListaDC {
         }
         return v;
     }
+    public void Eliminar(String Cedula){
+      if (inicio == null)
+        {
+            System.out.println("La lista esta vacia");
+        } else if (Cedula.equals(inicio.getElemento().getId()))
+        {
+            //Mueve head al siguiente nodo 
+            inicio = inicio.getSiguiente();
+            inicio.setAnterior(fin);
+            //Mantiene la circularidad
+            fin.setSiguiente(inicio);
+
+        } else
+        {
+            Node<Cliente> aux = inicio;
+            Node<Cliente> temp = aux.getSiguiente();
+            while (aux.getSiguiente() != fin)
+            {
+                if (temp.getElemento().getId().equals(Cedula))
+                {
+                    aux.setSiguiente(aux.getSiguiente().getSiguiente());
+                    break;
+                }
+                aux = aux.getSiguiente();
+                temp = aux.getSiguiente();
+
+            }
+            if (Cedula.equals(fin.getElemento().getId()))
+            {
+                fin = aux;
+                fin.setSiguiente(inicio);
+                inicio.setSiguiente(fin);
+            }
+
+        }
+
+    }
 
     public static void cargarDatos(String ced, JTextField n, JTextField f, JTextField c, JComboBox cat) {
         Node aux = inicio;
@@ -93,6 +130,15 @@ public class ListaDC {
             }
         }
     }
+    public void imprimirLista() {
+        Node<Cliente> aux = inicio;
+        while (aux != fin)
+        {
+            System.out.println(aux.getElemento().toString());
+            aux = aux.getSiguiente();
+        }
+        System.out.println(fin.getElemento().toString());
+    }
 
     public static boolean modificarCliente(String ced, String n, String f, String c, int cat) {
         Node aux = inicio;
@@ -116,6 +162,7 @@ public class ListaDC {
         }
         return v;
     }
+    
 
     public static String cambiarCategoria(String ced, String tipo) {
 
