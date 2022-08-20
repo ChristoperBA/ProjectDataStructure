@@ -23,8 +23,6 @@ public class PanelAlquileres extends javax.swing.JPanel {
         popupMenu.add(subMenu);
         item = "Registradas";
         tipoBusqueda = "Solicitudes";
-        jLabel1.setForeground(Color.WHITE);
-        jLabel2.setForeground(Color.WHITE);
         String[] titulos = {"Fecha", "Cedula", "Dias", "Cant. Pasajeros", "Marca", "Modelo", "Extras", "Categoria", "Estado"};
         modelo = new DefaultTableModel(null, titulos);
         tablaSolicitudes.setModel(modelo);
@@ -139,10 +137,12 @@ public class PanelAlquileres extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Datos de solicitud");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Control de Alquileres");
 
         combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registradas", "Rechazadas", "Registro de solicitudes" }));
