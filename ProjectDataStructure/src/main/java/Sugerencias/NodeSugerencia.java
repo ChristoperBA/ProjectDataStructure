@@ -1,8 +1,8 @@
-
 package Sugerencias;
 
 public class NodeSugerencia {
-      private NodeSugerencia ChildLeft;
+
+    private NodeSugerencia ChildLeft;
     private NodeSugerencia ChildRigth;
     private String sugerencia;
 
@@ -10,7 +10,6 @@ public class NodeSugerencia {
         this.sugerencia = sugerencia;
     }
 
-    
     public NodeSugerencia getChildLeft() {
         return ChildLeft;
     }
@@ -34,7 +33,5 @@ public class NodeSugerencia {
     public void setSugerencia(String sugerencia) {
         this.sugerencia = sugerencia;
     }
-    
 
-    
 }
