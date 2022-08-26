@@ -4,6 +4,7 @@ import Alquiler.Queue;
 import Alquiler.Solicitud;
 import Clientes.Cliente;
 import Clientes.ListaDC;
+import Sugerencias.Sugerencias;
 import Vehiculo.Car;
 import Vehiculo.StackCars;
 
@@ -19,14 +20,14 @@ public class Main {
     public static void main(String[] args) {
 
         //Nodo nulo, funciona para poder acomodar los vehiculos por año mas reciente al mas viejo
-        StackCars.push(new Car("######", "#", "#", 0001, "#", "# cc ", 0, 0, "#", "#", "#", 0));        
-        
+        StackCars.push(new Car("######", "#", "#", 0001, "#", "# cc ", 0, 0, "#", "#", "#", 0));
+
         StackCars.push(new Car("CAF654", "Nissan", "Sentra", 2010, "Rojo", "1.600 cc ", 6, 5000, "B", "Nuevo", "Disponible", 8));
         StackCars.push(new Car("BFF126", "Mitsubichi", "L200", 2016, "Azul", "2.400 cc ", 4, 3000, "A", "Nuevo", "Disponible", 10));
         StackCars.push(new Car("BIC074", "Chevrolet", "Spark", 2014, "Azul", "1.400 cc ", 5, 4000, "C", "Nuevo", "Alquilado", 7));
         StackCars.push(new Car("FO902N", "Mitsubichi", "L200", 2022, "Azul", "2.400 cc ", 4, 2500, "D", "Nuevo", "Disponible", 5));
         StackCars.push(new Car("J90NWA", "Mitsubichi", "L200", 2011, "Azul", "2.400 cc ", 4, 6000, "E", "Nuevo", "Disponible", 2));
-        
+
         ListaDC.agregar(new Cliente("00", "0000", "00/00/2000", "0@gmail.com", 2, 1));
         ListaDC.agregar(new Cliente("A1", "Alex", "01/01/2001", "a@gmail.com", 1, 11));
         ListaDC.agregar(new Cliente("D4", "Dani", "04/04/2004", "d@gmail.com", 1, 20));
@@ -43,7 +44,7 @@ public class Main {
         Queue.enqueue(new Solicitud("00/00/0000", "00", 0, 0, "0", "0", "0", 0, "####", "ZAFIRO", "##########"));
         Queue.enqueue(new Solicitud("00/00/0000", "00", 0, 0, "0", "0", "0", 0, "####", "BRONCE", "##########"));
         Queue.enqueue(new Solicitud("00/00/0000", "00", 0, 0, "0", "0", "0", 0, "####", "ORO", "##########"));
-        
+
         Queue.enqueue(new Solicitud("00/00/0000", "00", 0, 0, "0", "0", "0", 0, "####", "PLATA", "Registrada"));
         Queue.enqueue(new Solicitud("09/08/2022", "A1", 1, 1, "1", "1", "1", 0, "####", "ZAFIRO", "Registrada"));
         Queue.enqueue(new Solicitud("09/08/2022", "B2", 15, 4, "Mitsubichi", "L200", "A", 0, "####", "ORO", "Registrada"));
@@ -59,9 +60,14 @@ public class Main {
         Queue.enqueue(new Solicitud("09/08/2022", "L12", 12, 12, "12", "12", "12", 0, "####", "ORO", "Registrada"));
         Queue.enqueue(new Solicitud("09/08/2022", "A1", 13, 5, "Chevrolet", "Spark", "Extra", 337.87, "BIC074", "PLATA", "Finalizada"));
 
+        Sugerencias.inserta("Deberian de agregar mas vehiculos electricos");
+        Sugerencias.inserta("Cobran muy caro, deberian de cobrar un poco menos");
+        Sugerencias.inserta("El auto no estaba disponible");
+        Sugerencias.inserta("Deberian de tener el tanque de los vehiculos llenos");
+
         MenuPrincipal m = new MenuPrincipal();
         m.setVisible(true);
-        
+
     }
-    
+
 }

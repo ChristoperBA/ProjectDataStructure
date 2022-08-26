@@ -6,6 +6,7 @@ package Principal;
 
 import Alquiler.PanelAlquileres;
 import Clientes.PanelClientes;
+import Sugerencias.PanelSugerencias;
 import Vehiculo.PanelVehiculos;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -43,7 +44,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         salir = new javax.swing.JButton();
         btnAnalisis = new javax.swing.JButton();
         btnInicio = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSugerencias = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,7 +106,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Sugerencias");
+        btnSugerencias.setText("Sugerencias");
+        btnSugerencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSugerenciasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,7 +130,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAnalisis)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnSugerencias)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnInicio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,7 +150,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(salir)
                     .addComponent(btnAnalisis)
                     .addComponent(btnInicio)
-                    .addComponent(jButton1))
+                    .addComponent(btnSugerencias))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -192,6 +198,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         PanelInicio i = new PanelInicio();
         paneles(i);
     }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void btnSugerenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSugerenciasActionPerformed
+        PanelSugerencias pS = new PanelSugerencias();
+        paneles(pS);
+    }//GEN-LAST:event_btnSugerenciasActionPerformed
 
     private void paneles(JPanel p) { //metodo para quitar el panel contenedor y cmabiarlo por un panel del boton seleccionado
         p.setSize(contenedor.getSize()); //indica el tamaño del panel
@@ -243,11 +254,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnalisis;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnSugerencias;
     private javax.swing.JPanel contenedor;
     private javax.swing.JButton controlAlquileres;
     private javax.swing.JButton controlClientes;
     private javax.swing.JButton controlVehiculos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables

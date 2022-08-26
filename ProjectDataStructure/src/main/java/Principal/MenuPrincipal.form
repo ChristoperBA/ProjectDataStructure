@@ -66,7 +66,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnAnalisis" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSugerencias" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnInicio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -90,7 +90,7 @@
                       <Component id="salir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnAnalisis" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSugerencias" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -166,10 +166,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInicioActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnSugerencias">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sugerencias"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSugerenciasActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
