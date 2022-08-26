@@ -6,7 +6,6 @@ package Alquiler;
 
 import Clientes.ListaDC;
 import Vehiculo.StackCars;
-import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +27,6 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         btnAsignar.setEnabled(false);
         btnRechazar.setEnabled(false);
         bloquearjText();
-        cambiarColor();
     }
 
     /**
@@ -100,24 +98,29 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaVehiculos);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Asignar Vehiculo");
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Fecha:");
 
         txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cedula:");
 
         txtCed.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Dias:");
 
         txtDias.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cant. Pas:");
 
         txtCant.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -125,29 +128,35 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         txtMarca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Marca:");
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Datos del cliente:");
 
         txtModelo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Extras:");
 
         txtExtras.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Categoria:");
 
         txtCategoria.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel11.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Placa:");
 
         txtPlaca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel13.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("IVA 13%:");
 
         txtIva.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -158,6 +167,7 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Total:");
 
         txtTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -184,6 +194,7 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         });
 
         jLabel12.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Modelo:");
 
         textDatos.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
@@ -348,6 +359,11 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         if (v == true) {
             this.dispose();
             JOptionPane.showMessageDialog(null, "Se agrego correctamente un vehiculo a la solicitud");
+            double total = Double.parseDouble(txtTotal.getText());
+            if (total > 70000) {
+                ListaDC.cambiarCategoria(txtCed.getText(), "Subir Categoria");
+                JOptionPane.showMessageDialog(null, "La categoria del cliente ha subido");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Error a la hora de agregar un vehiculo a la solicitud");
         }
@@ -356,6 +372,11 @@ public class AsignarVehiculo extends javax.swing.JFrame {
     private void btnRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarActionPerformed
         this.dispose();
         Queue.cambiarEstado(txtCed.getText());
+//        int d = Integer.parseInt(txtDias.getText());
+//        if (d > 40) {
+//            ListaDC.cambiarCategoria(txtCed.getText(), "Bajar Categoria");
+//            JOptionPane.showMessageDialog(null, "La categoria del cliente ha bajado");
+//        }
     }//GEN-LAST:event_btnRechazarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -396,23 +417,6 @@ public class AsignarVehiculo extends javax.swing.JFrame {
         txtPlaca.setEnabled(false);
         txtIva.setEnabled(false);
         txtTotal.setEnabled(false);
-    }
-    
-    private void cambiarColor(){
-        jLabel1.setForeground(Color.WHITE);
-        jLabel2.setForeground(Color.WHITE);
-        jLabel3.setForeground(Color.WHITE);
-        jLabel4.setForeground(Color.WHITE);
-        jLabel5.setForeground(Color.WHITE);
-        jLabel1.setForeground(Color.WHITE);
-        jLabel6.setForeground(Color.WHITE);
-        jLabel7.setForeground(Color.WHITE);
-        jLabel9.setForeground(Color.WHITE);
-        jLabel10.setForeground(Color.WHITE);
-        jLabel11.setForeground(Color.WHITE);
-        jLabel12.setForeground(Color.WHITE);
-        jLabel13.setForeground(Color.WHITE);
-        jLabel14.setForeground(Color.WHITE);
     }
 
     private double calcularTotal(double precio) {

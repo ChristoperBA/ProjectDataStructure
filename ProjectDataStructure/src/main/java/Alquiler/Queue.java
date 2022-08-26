@@ -1,18 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Alquiler;
 
+import Clientes.ListaDC;
 import Vehiculo.StackCars;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author antho
- */
 public class Queue {
 
     private static Node<Solicitud> head;
@@ -235,11 +228,14 @@ public class Queue {
                 }
                 aux = aux.getNext();
             }
-            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
-                Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getCantidadPasajeros(),
-                    tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
-                modelo.addRow(TablaC);
+            if (tail != null) {
+                if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Registrada")) {
+                    Object[] TablaC = {tail.getValue().getFecha(), tail.getValue().getCedulaCliente(), tail.getValue().getDias(), tail.getValue().getCantidadPasajeros(),
+                        tail.getValue().getMarca(), tail.getValue().getModelo(), tail.getValue().getExtras(), tail.getValue().getCategoria(), tail.getValue().getEstadoSolicitud()};
+                    modelo.addRow(TablaC);
+                }
             }
+
         } else if (tipo.equalsIgnoreCase("LlenarRechazadas")) {
             Node<Solicitud> aux = head;
             while (aux != tail) {
@@ -258,6 +254,34 @@ public class Queue {
 
         }
 
+    }
+
+    public static boolean asignarVehiculo(String ced, double total, String placa, String nuevoEst) {
+
+        boolean v = false;
+        Node<Solicitud> aux = head;
+        while (aux != tail) {
+            if (aux.getValue().getCedulaCliente().equalsIgnoreCase(ced)) {
+                aux.getValue().setPrecioTotal(total);
+                aux.getValue().setPlacaVehiculo(placa);
+                aux.getValue().setEstadoSolicitud(nuevoEst);
+                v = true;
+                StackCars.cambiarEstadoVehiculo(placa, "Asignar");
+                ListaDC.modificarCantAlquilado(ced);
+                break;
+            }
+            aux = aux.getNext();
+        }
+        if (tail.getValue().getCedulaCliente().equalsIgnoreCase(ced)) {
+            tail.getValue().setPrecioTotal(total);
+            tail.getValue().setPlacaVehiculo(placa);
+            tail.getValue().setEstadoSolicitud(nuevoEst);
+            StackCars.cambiarEstadoVehiculo(placa, "Asignar");
+            ListaDC.modificarCantAlquilado(ced);
+            v = true;
+        }
+        
+        return v;
     }
 
     public static String promedio() {
@@ -298,28 +322,30 @@ public class Queue {
             }
             aux = aux.getNext();
         }
-        if (tail.getValue().getCategoria().equalsIgnoreCase("ZAFIRO")) {
-            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
-                cont1 = cont1 + 1;
-                total1 = total1 + tail.getValue().getPrecioTotal();
+        if (tail != null) {
+            if (tail.getValue().getCategoria().equalsIgnoreCase("ZAFIRO")) {
+                if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    cont1 = cont1 + 1;
+                    total1 = total1 + tail.getValue().getPrecioTotal();
+                }
             }
-        }
-        if (tail.getValue().getCategoria().equalsIgnoreCase("ORO")) {
-            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
-                cont2 = cont2 + 1;
-                total2 = total2 + tail.getValue().getPrecioTotal();
+            if (tail.getValue().getCategoria().equalsIgnoreCase("ORO")) {
+                if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    cont2 = cont2 + 1;
+                    total2 = total2 + tail.getValue().getPrecioTotal();
+                }
             }
-        }
-        if (aux.getValue().getCategoria().equalsIgnoreCase("PLATA")) {
-            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
-                cont3 = cont3 + 1;
-                total3 = total3 + tail.getValue().getPrecioTotal();
+            if (aux.getValue().getCategoria().equalsIgnoreCase("PLATA")) {
+                if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    cont3 = cont3 + 1;
+                    total3 = total3 + tail.getValue().getPrecioTotal();
+                }
             }
-        }
-        if (tail.getValue().getCategoria().equalsIgnoreCase("BRONCE")) {
-            if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
-                cont4 = cont4 + 1;
-                total4 = total4 + tail.getValue().getPrecioTotal();
+            if (tail.getValue().getCategoria().equalsIgnoreCase("BRONCE")) {
+                if (tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Procedada") || tail.getValue().getEstadoSolicitud().equalsIgnoreCase("Finalizada")) {
+                    cont4 = cont4 + 1;
+                    total4 = total4 + tail.getValue().getPrecioTotal();
+                }
             }
         }
 
@@ -330,31 +356,5 @@ public class Queue {
 
         return promedios;
     }
-
-    public static boolean asignarVehiculo(String ced, double total, String placa, String nuevoEst) {
-
-        boolean v = false;
-        Node<Solicitud> aux = head;
-        while (aux != tail) {
-            if (aux.getValue().getCedulaCliente().equalsIgnoreCase(ced)) {
-                aux.getValue().setPrecioTotal(total);
-                aux.getValue().setPlacaVehiculo(placa);
-                aux.getValue().setEstadoSolicitud(nuevoEst);
-                v = true;
-                StackCars.cambiarEstadoVehiculo(placa, "Asignar");
-                break;
-            }
-            aux = aux.getNext();
-        }
-        if (tail.getValue().getCedulaCliente().equalsIgnoreCase(ced)) {
-            tail.getValue().setPrecioTotal(total);
-            tail.getValue().setPlacaVehiculo(placa);
-            tail.getValue().setEstadoSolicitud(nuevoEst);
-            StackCars.cambiarEstadoVehiculo(placa, "Asignar");
-            v = true;
-        }
-
-        return v;
-    }
-
+    
 }

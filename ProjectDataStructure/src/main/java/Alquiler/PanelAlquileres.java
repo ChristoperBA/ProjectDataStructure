@@ -1,22 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Alquiler;
 
-import java.awt.Color;
+import Clientes.ListaDC;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author antho
- */
 public class PanelAlquileres extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
     String item;
     String tipoBusqueda;
+    String cedula;
+    int dias;
 
     public PanelAlquileres() {
         initComponents();
@@ -213,6 +208,8 @@ public class PanelAlquileres extends javax.swing.JPanel {
             JTable receptor = (JTable) evt.getSource();
             if (receptor.getColumnCount() == 9) {
                 if (item.equalsIgnoreCase("Registradas")) {
+                    dias = Integer.parseInt(receptor.getValueAt(receptor.getSelectedRow(), 2).toString());
+                    cedula = receptor.getValueAt(receptor.getSelectedRow(), 1).toString();
                     String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nCédula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
                             + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCant. Pasajeros: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
                             + " \nMarca: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nModelo: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString()
@@ -226,6 +223,8 @@ public class PanelAlquileres extends javax.swing.JPanel {
                         btnCambiarEstado.setEnabled(true);
                     }
                 } else if (item.equalsIgnoreCase("Rechazadas")) {
+                    dias = Integer.parseInt(receptor.getValueAt(receptor.getSelectedRow(), 2).toString());
+                    cedula = receptor.getValueAt(receptor.getSelectedRow(), 1).toString();
                     String datos = "Fecha: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nCédula: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
                             + "\nDias: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCant. Pasajeros: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
                             + " \nMarca: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nModelo: " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString()
@@ -281,6 +280,12 @@ public class PanelAlquileres extends javax.swing.JPanel {
         Queue.cambiarEstado(txtOculta.getText());
         Queue.llenarTabla("LlenarSolicitudes", modelo);
         refrescar();
+//        if (dias > 40) {
+//            if (item.equalsIgnoreCase("Rechazadas")) {
+//                ListaDC.cambiarCategoria(cedula, "Subir Categoria");
+//                JOptionPane.showMessageDialog(null, "La categoria del cliente ha subido nuevamente");
+//            }
+//        }
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
     private void comboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboxItemStateChanged

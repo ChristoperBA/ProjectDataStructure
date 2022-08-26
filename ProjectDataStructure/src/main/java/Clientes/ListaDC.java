@@ -1,5 +1,7 @@
 package Clientes;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -53,42 +55,46 @@ public class ListaDC {
         }
         return v;
     }
-    public void Eliminar(String Cedula){
-      if (inicio == null)
-        {
+
+    public static boolean Eliminar(String Cedula) {
+
+        boolean v = false;
+        if (inicio == null) {
             System.out.println("La lista esta vacia");
-        } else if (Cedula.equals(inicio.getElemento().getId()))
-        {
+        } else if (Cedula.equals(inicio.getElemento().getId())) {
             //Mueve head al siguiente nodo 
             inicio = inicio.getSiguiente();
             inicio.setAnterior(fin);
             //Mantiene la circularidad
             fin.setSiguiente(inicio);
+            v = true;
 
-        } else
-        {
+        } else {
             Node<Cliente> aux = inicio;
             Node<Cliente> temp = aux.getSiguiente();
-            while (aux.getSiguiente() != fin)
-            {
-                if (temp.getElemento().getId().equals(Cedula))
-                {
+            while (aux.getSiguiente() != fin) {
+                if (temp.getElemento().getId().equals(Cedula)) {
                     aux.setSiguiente(aux.getSiguiente().getSiguiente());
                     break;
                 }
                 aux = aux.getSiguiente();
                 temp = aux.getSiguiente();
+                v = true;
 
             }
-            if (Cedula.equals(fin.getElemento().getId()))
-            {
-                fin = aux;
+            if (Cedula.equals(fin.getElemento().getId())) {
+//                fin = aux;
+//                fin.setSiguiente(inicio);
+//                inicio.setSiguiente(fin);
+                fin.setSiguiente(aux);
+                fin = fin.getSiguiente(); //fin=nuevo;
                 fin.setSiguiente(inicio);
-                inicio.setSiguiente(fin);
+                inicio.setAnterior(fin);
+
+                v = true;
             }
-
         }
-
+        return v;
     }
 
     public static void cargarDatos(String ced, JTextField n, JTextField f, JTextField c, JComboBox cat) {
@@ -130,14 +136,28 @@ public class ListaDC {
             }
         }
     }
+
     public void imprimirLista() {
         Node<Cliente> aux = inicio;
-        while (aux != fin)
-        {
+        while (aux != fin) {
             System.out.println(aux.getElemento().toString());
             aux = aux.getSiguiente();
         }
         System.out.println(fin.getElemento().toString());
+    }
+
+    public static void modificarCantAlquilado(String ced) {
+        Node aux = inicio;
+        boolean v = false;
+        while (aux != fin) {
+            if (aux.getElemento().getId().equalsIgnoreCase(ced)) {
+                aux.getElemento().setCantAlquilado(aux.getElemento().getCantAlquilado() + 1);
+            }
+            aux = aux.getSiguiente();
+        }
+        if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
+            fin.getElemento().setCantAlquilado(fin.getElemento().getCantAlquilado() + 1);
+        }
     }
 
     public static boolean modificarCliente(String ced, String n, String f, String c, int cat) {
@@ -162,7 +182,6 @@ public class ListaDC {
         }
         return v;
     }
-    
 
     public static String cambiarCategoria(String ced, String tipo) {
 
@@ -175,14 +194,38 @@ public class ListaDC {
                         case 2 -> {
                             aux.getElemento().setCategoria(1);
                             cat = "ZAFIRO";
+                            String c = aux.getElemento().getId();
+                            String n = aux.getElemento().getNomCompleto();
+                            String f = aux.getElemento().getFechaNacimiento();
+                            String co = aux.getElemento().getCorreo();
+                            int ct = aux.getElemento().getCategoria();
+                            int cantA = aux.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         case 3 -> {
                             aux.getElemento().setCategoria(2);
                             cat = "ORO";
+                            String c = aux.getElemento().getId();
+                            String n = aux.getElemento().getNomCompleto();
+                            String f = aux.getElemento().getFechaNacimiento();
+                            String co = aux.getElemento().getCorreo();
+                            int ct = aux.getElemento().getCategoria();
+                            int cantA = aux.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         case 4 -> {
                             aux.getElemento().setCategoria(3);
                             cat = "PLATA";
+                            String c = aux.getElemento().getId();
+                            String n = aux.getElemento().getNomCompleto();
+                            String f = aux.getElemento().getFechaNacimiento();
+                            String co = aux.getElemento().getCorreo();
+                            int ct = aux.getElemento().getCategoria();
+                            int cantA = aux.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                     }
                 }
@@ -192,16 +235,40 @@ public class ListaDC {
                 if (fin.getElemento().getId().equalsIgnoreCase(ced)) {
                     switch (fin.getElemento().getCategoria()) {
                         case 2 -> {
-                            aux.getElemento().setCategoria(1);
+                            fin.getElemento().setCategoria(1);
                             cat = "ZAFIRO";
+                            String c = fin.getElemento().getId();
+                            String n = fin.getElemento().getNomCompleto();
+                            String f = fin.getElemento().getFechaNacimiento();
+                            String co = fin.getElemento().getCorreo();
+                            int ct = fin.getElemento().getCategoria();
+                            int cantA = fin.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         case 3 -> {
                             fin.getElemento().setCategoria(2);
                             cat = "ORO";
+                            String c = fin.getElemento().getId();
+                            String n = fin.getElemento().getNomCompleto();
+                            String f = fin.getElemento().getFechaNacimiento();
+                            String co = fin.getElemento().getCorreo();
+                            int ct = fin.getElemento().getCategoria();
+                            int cantA = fin.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         case 4 -> {
                             fin.getElemento().setCategoria(3);
                             cat = "PLATA";
+                            String c = fin.getElemento().getId();
+                            String n = fin.getElemento().getNomCompleto();
+                            String f = fin.getElemento().getFechaNacimiento();
+                            String co = fin.getElemento().getCorreo();
+                            int ct = fin.getElemento().getCategoria();
+                            int cantA = fin.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                     }
                 }
@@ -214,14 +281,38 @@ public class ListaDC {
                         case 1 -> {
                             aux.getElemento().setCategoria(2);
                             cat = "ORO";
+                            String c = aux.getElemento().getId();
+                            String n = aux.getElemento().getNomCompleto();
+                            String f = aux.getElemento().getFechaNacimiento();
+                            String co = aux.getElemento().getCorreo();
+                            int ct = aux.getElemento().getCategoria();
+                            int cantA = aux.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         case 2 -> {
                             aux.getElemento().setCategoria(3);
                             cat = "PLATA";
+                            String c = aux.getElemento().getId();
+                            String n = aux.getElemento().getNomCompleto();
+                            String f = aux.getElemento().getFechaNacimiento();
+                            String co = aux.getElemento().getCorreo();
+                            int ct = aux.getElemento().getCategoria();
+                            int cantA = aux.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         case 3 -> {
                             aux.getElemento().setCategoria(4);
                             cat = "BRONCE";
+                            String c = aux.getElemento().getId();
+                            String n = aux.getElemento().getNomCompleto();
+                            String f = aux.getElemento().getFechaNacimiento();
+                            String co = aux.getElemento().getCorreo();
+                            int ct = aux.getElemento().getCategoria();
+                            int cantA = aux.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                     }
                 }
@@ -233,14 +324,38 @@ public class ListaDC {
                         case 1 -> {
                             aux.getElemento().setCategoria(2);
                             cat = "ORO";
+                            String c = fin.getElemento().getId();
+                            String n = fin.getElemento().getNomCompleto();
+                            String f = fin.getElemento().getFechaNacimiento();
+                            String co = fin.getElemento().getCorreo();
+                            int ct = fin.getElemento().getCategoria();
+                            int cantA = fin.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         case 2 -> {
                             fin.getElemento().setCategoria(3);
                             cat = "PLATA";
+                            String c = fin.getElemento().getId();
+                            String n = fin.getElemento().getNomCompleto();
+                            String f = fin.getElemento().getFechaNacimiento();
+                            String co = fin.getElemento().getCorreo();
+                            int ct = fin.getElemento().getCategoria();
+                            int cantA = fin.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         case 3 -> {
                             fin.getElemento().setCategoria(4);
                             cat = "BRONCE";
+                            String c = fin.getElemento().getId();
+                            String n = fin.getElemento().getNomCompleto();
+                            String f = fin.getElemento().getFechaNacimiento();
+                            String co = fin.getElemento().getCorreo();
+                            int ct = fin.getElemento().getCategoria();
+                            int cantA = fin.getElemento().getCantAlquilado();
+                            Eliminar(ced);
+                            agregar(new Cliente(c, n, f, co, ct, cantA));
                         }
                         default -> {
                         }
@@ -263,10 +378,12 @@ public class ListaDC {
             modelo.addRow(TablaC);
             aux = aux.getSiguiente();
         }
-        String s = categoria(fin.getElemento().getCategoria());
-        Object[] TablaC = {fin.getElemento().getId(), fin.getElemento().getNomCompleto(), fin.getElemento().getFechaNacimiento(),
-            fin.getElemento().getCorreo(), s, fin.getElemento().getCantAlquilado()};
-        modelo.addRow(TablaC);
+        if (fin != null) {
+            String s = categoria(fin.getElemento().getCategoria());
+            Object[] TablaC = {fin.getElemento().getId(), fin.getElemento().getNomCompleto(), fin.getElemento().getFechaNacimiento(),
+                fin.getElemento().getCorreo(), s, fin.getElemento().getCantAlquilado()};
+            modelo.addRow(TablaC);
+        }
 
     }
 
@@ -307,6 +424,31 @@ public class ListaDC {
         return info;
     }
 
+    public static String promedio() {
+        String promedio = "";
+        String s;
+        int cont = 0;
+        ArrayList<Cliente> pCliente = new ArrayList();
+        Node<Cliente> aux = inicio;
+        while (aux != fin) {
+            pCliente.add(aux.getElemento());
+            aux = aux.getSiguiente();
+        }
+        pCliente.add(fin.getElemento());
+        Collections.sort(pCliente);
+        for (int i = 0; i < pCliente.size(); i++) {
+            cont = cont + 1;
+            if (cont <= 5) {
+                s = categoria(pCliente.get(i).getCategoria());
+                promedio = promedio + "\nTop #" + cont + "\nDatos del cliente \nCédula: " + pCliente.get(i).getId() + "\nNombre completo: " + pCliente.get(i).getNomCompleto()
+                        + "\nNacimiento: " + pCliente.get(i).getFechaNacimiento() + "\nCorreo: " + pCliente.get(i).getCorreo()
+                        + "\nCategoria: " + s + "\nCant. de alquileres: " + pCliente.get(i).getCantAlquilado() + "\n";
+//                promedio = promedio + "Top #" + cont + pCliente.get(i).toString() + "\n";
+            }
+        }
+        return promedio;
+    }
+
     public static String categoria(int n) {
         String cat;
         switch (n) {
@@ -329,4 +471,5 @@ public class ListaDC {
         }
         return cat;
     }
+
 }

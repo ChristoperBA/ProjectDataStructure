@@ -5,6 +5,8 @@
 package Principal;
 
 import Alquiler.Queue;
+import Clientes.ListaDC;
+import Vehiculo.StackCars;
 
 /**
  *
@@ -18,14 +20,17 @@ public class PanelAnalisis extends javax.swing.JPanel {
     public PanelAnalisis() {
         initComponents();
         text1.setText("Top 5 de los clientes con mayor cantidad de alquileres realizados.");
-        text2.setText("Top 5 del vehículo que se ha alquilado la mayor cantidad de veces.");
+        text2.setText("Top 5 de los vehículos que se han alquilado la mayor cantidad de veces.");
         text3.setText("Promedio y total del monto pagado por alquileres en cada categoría de clientes. ");
         text1.setEnabled(false);
         text2.setEnabled(false);
         text3.setEnabled(false);
-        text4.setText("");
-        text5.setText("");
+        text4.setText(ListaDC.promedio());
+        text5.setText(StackCars.promedio());
         text6.setText(Queue.promedio());
+        text4.setEnabled(false);
+        text5.setEnabled(false);
+        text6.setEnabled(false);
     }
 
     /**

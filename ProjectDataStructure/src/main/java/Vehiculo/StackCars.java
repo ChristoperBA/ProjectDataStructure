@@ -1,5 +1,7 @@
 package Vehiculo;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -62,7 +64,7 @@ public class StackCars {
 
     public void Modify(String Placa) {
         int OpcionModificar;
-       
+
         do {
             System.out.println("""
          ____________________Modificar Vehiculo____________________
@@ -142,7 +144,8 @@ public class StackCars {
                     case 11 -> {
                         System.out.println("Ingresa el dato a modificar: ");
                         String dato = sc.nextLine();
-                        aux.getValue().setCantAlquilado(Integer.parseInt(dato));                    }
+                        aux.getValue().setCantAlquilado(Integer.parseInt(dato));
+                    }
                     case 12 -> {
                         System.out.println("""
                                Cargando menu
@@ -164,35 +167,34 @@ public class StackCars {
 
     }
 
-    public void Delete(String Placa) {
+    public static void Delete(String Placa) {
+
         NodeCar<Car> aux = top;
-        while (aux != null && !Placa.equals(aux.getValue().getPlaca()))
-        {
+        while (aux != null && !Placa.equals(aux.getValue().getPlaca())) {
             aux = aux.getNext();
         }
-        if(aux!=null){
+        if (aux != null) {
             //primero
-            if(aux==top){
-                top=aux.getNext();
-            }else{
+            if (aux == top) {
+                top = aux.getNext();
+                JOptionPane.showMessageDialog(null, "El vehiculo ha sido eliminado");
+            } else {
                 NodeCar temp = top;
-                    while (temp.getNext()!=aux)
-                    {
-                        temp = temp.getNext();
-                    }
+                while (temp.getNext() != aux) {
+                    temp = temp.getNext();
+                }
                 //Ultimo
-                if(aux.getNext()==null){
+                if (aux.getNext() == null) {
 
-                temp.setNext(null);
-                }
-                //medio
-                else{
-
+                    temp.setNext(null);
+                    JOptionPane.showMessageDialog(null, "El vehiculo ha sido eliminado");
+                } //medio
+                else {
                     temp.setNext(aux.getNext());
+                    JOptionPane.showMessageDialog(null, "El vehiculo ha sido eliminado");
                 }
-
             }
-        }else{
+        } else {
             System.out.println("El vehiculo ingresado, no se encuentra en nuestra  base de datos");
         }
     }
@@ -348,6 +350,27 @@ public class StackCars {
             }
             aux = aux.getNext();
         }
+    }
+
+    public static String promedio() {
+        
+        String promedio = "";
+        int cont = 0;
+        ArrayList<Car> pVehiculo = new ArrayList();
+        NodeCar<Car> aux = top;
+        while (aux != null) {
+            pVehiculo.add(aux.getValue());
+            aux = aux.getNext();
+        }
+        Collections.sort(pVehiculo);
+        for (int i = 0; i < pVehiculo.size(); i++) {
+            cont = cont + 1;
+            if (cont <= 5) {
+                promedio = promedio + "\nTop #" + cont + pVehiculo.get(i).toString() + "\n";
+            }
+        }
+        
+        return promedio;
     }
 
 }

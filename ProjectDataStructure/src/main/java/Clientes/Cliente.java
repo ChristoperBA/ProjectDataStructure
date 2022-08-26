@@ -1,6 +1,6 @@
 package Clientes;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
 
     private String id;
     private String nomCompleto;
@@ -75,12 +75,27 @@ public class Cliente {
         sb.append("\nDatos del cliente");
         sb.append("\nId: ").append(id);
         sb.append("\nNombre completo: ").append(nomCompleto);
-        sb.append("\nFecha de nacimiento: ").append(fechaNacimiento);
+        sb.append("\nNacimiento: ").append(fechaNacimiento);
         sb.append("\nCorreo: ").append(correo);
         sb.append("\nCategoria: ").append(categoria);
-        sb.append("\nCantidad que ha alquilado: ").append(cantAlquilado);
+        sb.append("\nCant. de alquileres: ").append(cantAlquilado);
         sb.append("\n");
         return sb.toString();
     }
-    
+
+    @Override
+    public int compareTo(Cliente o) {
+        
+        if (this.cantAlquilado > o.getCantAlquilado()) {
+            return -1;
+        } else {
+            if (this.cantAlquilado > o.getCantAlquilado()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        
+    }
+
 }

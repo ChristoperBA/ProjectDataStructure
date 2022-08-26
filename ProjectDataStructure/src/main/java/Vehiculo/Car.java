@@ -1,6 +1,6 @@
 package Vehiculo;
 
-public class Car {
+public class Car implements Comparable<Car>{
 
     /*
     Atributos del Vehículo: Placa, modelo, año, color, cilindrada, 
@@ -138,7 +138,31 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" + "Placa=" + Placa + ", Marca=" + Marca + ", Model=" + Model + ", Years=" + Years + ", Color=" + Color + ", CylinderCapacity=" + CylinderCapacity + ", Passangers=" + Passangers + ", Price=" + Price + ", Extra=" + Extra + ", Condition=" + Condition + ", estado=" + estado + ", cantAlquilado=" + cantAlquilado + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nDatos del vehiculo");
+        sb.append("\nPlaca: ").append(Placa);
+        sb.append("\nMarca: ").append(Marca);
+        sb.append("\nModelo: ").append(Model);
+        sb.append("\nAño: ").append(Years);
+        sb.append("\nColor: ").append(Color);
+        sb.append("\nPrecio: ").append(Price);
+        sb.append("\nCant. de veces alquilado: ").append(cantAlquilado);
+        return sb.toString();
+    }
+
+    
+    
+    @Override
+    public int compareTo(Car o) {
+        if (this.cantAlquilado > o.getCantAlquilado()) {
+            return -1;
+        } else {
+            if (this.cantAlquilado > o.getCantAlquilado()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
     
 }

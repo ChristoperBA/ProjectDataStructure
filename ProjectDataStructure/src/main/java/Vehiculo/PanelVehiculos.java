@@ -215,7 +215,8 @@ public class PanelVehiculos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        StackCars.Delete(txtOculta.getText());
+        refrescar();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void refrescar() {

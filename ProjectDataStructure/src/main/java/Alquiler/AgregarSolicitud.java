@@ -290,7 +290,8 @@ public class AgregarSolicitud extends javax.swing.JFrame {
             cat = ListaDC.cambiarCategoria(ced, "Subir Categoria");
             boolean v = Queue.enqueue(new Solicitud(fec, ced, d, cP, ma, mo, ex, 0, "####", cat, "Registrada"));
             if (v == true) {
-                JOptionPane.showMessageDialog(null, "Solicitud Agregada \nLa categoria del cliente ha cambiado");
+                JOptionPane.showMessageDialog(null, "Solicitud Agregada \nLa categoria del cliente ha subido");
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Solicitud no agregada");
             }

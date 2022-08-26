@@ -4,6 +4,7 @@
  */
 package Clientes;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,9 +13,9 @@ import javax.swing.table.DefaultTableModel;
  * @author antho
  */
 public class PanelClientes extends javax.swing.JPanel {
-    
+
     DefaultTableModel modelo;
-    
+
     public PanelClientes() {
         initComponents();
         String[] titulos = {"Cedula", "Nombre completo", "Fecha de nacimiento", "Correo", "Categoria", "Cant. Alquileres"};
@@ -92,6 +93,11 @@ public class PanelClientes extends javax.swing.JPanel {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -182,7 +188,7 @@ public class PanelClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+
         text.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -198,14 +204,22 @@ public class PanelClientes extends javax.swing.JPanel {
             String datos = "Cedula: " + receptor.getValueAt(receptor.getSelectedRow(), 0).toString() + "\nNombre completo: " + receptor.getValueAt(receptor.getSelectedRow(), 1).toString()
                     + "\nFecha de naciciento: " + receptor.getValueAt(receptor.getSelectedRow(), 2).toString() + "\nCorreo: " + receptor.getValueAt(receptor.getSelectedRow(), 3).toString()
                     + "\nCategoria: " + receptor.getValueAt(receptor.getSelectedRow(), 4).toString() + "\nCantidad de alquileres " + receptor.getValueAt(receptor.getSelectedRow(), 5).toString();
-            
+
             txtOculta.setText(receptor.getValueAt(receptor.getSelectedRow(), 0).toString());
             text.setText(datos);
             btnModificar.setEnabled(true);
             btnEliminar.setEnabled(true);
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
-    
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        boolean v = ListaDC.Eliminar(txtOculta.getText());
+        if (v = true) {
+            JOptionPane.showMessageDialog(null, "EL cliente ha sido eliminado");
+            refrescar();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     private void refrescar() {
         text.setText("");
         txtBuscar.setText("");
